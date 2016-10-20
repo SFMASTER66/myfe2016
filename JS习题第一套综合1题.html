@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var a=Math.random();
+    var b=Math.random();
+    console.log(a);
+    console.log(b);
+    console.log(a>b?a:b);
+    var today,year,is_leap_year
+    today = new Date();
+    year = today.getFullYear();
+    is_leap_year = ((year%4==0 && year%100!=0) || (year%400==0));
+    document.write("本年");document.write(is_leap_year?"是闰年":"不是闰年");
+
+
+  /*  var age;
+    age = prompt("请输入你的年龄:","18");
+    if (age<14)
+        document.write("你是儿童");
+    else if (age<24)
+        document.write("你是青少年");
+    else if (age<40)
+        document.write("你是青年人");
+    else if (age<60)
+        document.write("你是中年人");
+    else
+        document.write("你是老年人");*/
+
+    var num;
+    num=prompt("请输入一个数字","2");
+    if(num==0) {
+        document.write("今天是星期日")
+    }else if(num==1) {
+        document.write("今天是星期一")
+    }else if(num==2) {
+        document.write("今天是星期二")
+    }else if(num==3) {
+        document.write("今天是星期三")
+    }else if(num==4) {
+        document.write("今天是星期四")
+    }else if(num==5) {
+        document.write("今天是星期五")
+    }else if(num==6) {
+        document.write("今天是星期六")
+    }else if(num<0) {
+        document.write("请输入正确的数字")
+    }else if(num>6) {
+        document.write("请输入正确的数字")
+    }
+
+    for(var i=0;i<6;i++){
+
+    }
+</script>
+</body>
+</html>
