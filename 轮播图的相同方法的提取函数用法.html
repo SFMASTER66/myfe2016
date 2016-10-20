@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            position: relative;
+            left: 300px;
+        }
+
+        #content li{
+            float:left;
+            list-style: none;
+            width: 100px;
+            height: 50px;
+            margin-right: 5px;
+            background: red;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        #content{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        #container3 span{
+            float: left;
+            width: 50px;
+            height: 25px;
+            background: red;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        #container3{
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+        }
+        #content .selected{
+            background: gray;
+
+        }
+        #container2 .selected{
+
+            display: block;
+        }
+        #container2 img{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="container1">
+        <ul id="content">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div id="container2">
+        <img class="selected" src="img/1.jpg" alt=""/>
+        <img src="img/2.jpg" alt=""/>
+        <img src="img/3.jpg" alt=""/>
+        <img src="img/4.jpg" alt=""/>
+    </div>
+    <div id="container3">
+        <span id="lt"> &lt;</span>
+        <span id="gt"> &gt;</span>
+    </div>
+</div>
+<script>
+    var oContainer=document.getElementById("container");
+    var oContent=document.getElementById("content");
+    var aLi=oContent.getElementsByTagName("li");
+    var oC2=document.getElementById("container2");
+    var aImg=oC2.getElementsByTagName("img");
+    var oC3=document.getElementById("container3");
+    var oLt=document.getElementById("lt");
+    var oGt=document.getElementById("gt");
+    var iNow=0;
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index=i;
+
+        aLi[i].onmouseover=function(){
+            iNow=this.index;//一开始的iNow设置的是0；可是当我点击li里的4的时候，此时的iNow还是0，所以按下一页的时候iNow是1，显示的是第二张图片！！记住！要在点击li这几个数字下的onclick下设置！！！
+             changeimg(this.index);
+           // clearInterval(timer);
+        };
+
+    }
+    function changeimg(ind){
+        for(var i=0;i<aLi.length;i++){
+            aImg[i].className="";
+            aLi[i].className="";
+        }
+        aImg[ind].className="selected";
+        aLi[ind].className="selected";
+
+    };
+
+    oGt.onclick=function(){
+        iNow=iNow+1;
+
+        if(iNow==aLi.length){
+            iNow=0;
+        }
+        changeimg(iNow);
+    };
+    oLt.onclick=function(){
+        iNow=iNow-1;
+        if(iNow==-1){
+            iNow=3;
+        }
+         changeimg(iNow);
+    };
+   var timer= setInterval(function(){
+        oGt.onclick();
+    },1000)
+    oContainer.onmouseover=function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout=function(){
+        timer =setInterval(function(){
+            oGt.onclick();
+        },1000)
+    }
+
+
+</script>
+</body>
+</html>
