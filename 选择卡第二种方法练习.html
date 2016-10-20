@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            background:red;
+            margin:50px auto;
+            width: 400px;
+            height: 200px;
+        }
+        #nav li{
+            list-style:none;
+            float:left;
+            margin-right:5px;
+            background:gray;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height:60px;
+        }
+        #nav{
+            overflow:hidden;
+        }
+        #content{
+            background:lightgray;
+            height: 140px;
+        }
+        #content div{
+            display:none;
+        }
+        #content .selected1{
+            display:block;
+        }
+        #nav .selected{
+            background:black;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="nav">
+        <li class="selected">js</li>
+        <li>html</li>
+        <li>css</li>
+    </ul>
+    <div id="content">
+        <div class="selected1">11111111</div>
+        <div>222222222</div>
+        <div>33333333</div>
+    </div>
+</div>
+<script>
+    var oUl= document.getElementById("nav");
+    var aLi=oUl.getElementsByTagName("li");
+    var oContent=document.getElementById("content");
+    var aDiv=oContent.getElementsByTagName("div");
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index=i;
+        aLi[i].onclick=function(){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className="";
+                aDiv[i].className="";  //把原来的有的内容全部先去掉，然后在后面点击的时候才对应的显示出要的内容。
+            }
+            this.className="selected";
+            aDiv[this.index].className="selected1";
+        };
+    }
+</script>
+</body>
+</html>
