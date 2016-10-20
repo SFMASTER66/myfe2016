@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 400px;
+            height: 200px;
+            background: gray;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        #container1{
+            /*width:880px ;*/
+            position: absolute;
+            overflow: hidden;
+        }
+        #container1 li{
+            width: 100px;
+            height: 80px;
+            background: black;
+            color: white;
+            list-style: none;
+            text-align: center;
+            line-height: 80px;
+            float: left;
+            margin-right: 10px;
+        }
+        #container2{
+            width: 220px;
+            height: 50px;
+            position: absolute;
+            left: 100px;
+            bottom: 5px;
+        }
+        #container2 span{
+            float: left;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 10px;
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="container1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="container2">
+        <span id="left">&lt;</span>
+        <span id="right">&gt;</span>
+    </div>
+</div>
+<script>
+    var oContainer1=document.getElementById("container1");
+    var oLeft=document.getElementById("left");
+    var oRight=document.getElementById("right");
+    var aLi=oContainer1.getElementsByTagName("li");
+    oContainer1.innerHTML=oContainer1.innerHTML+oContainer1.innerHTML;
+    oContainer1.style.width=aLi.length*(aLi[0].offsetWidth+10)+"px";
+    var speed=-2;
+    setInterval(function(){
+        oContainer1.style.left=oContainer1.offsetLeft+speed+"px";
+        if( oContainer1.offsetLeft==-oContainer1.offsetWidth/2){
+            oContainer1.style.left=0;
+        }
+        if(oContainer1.offsetLeft>0){
+            oContainer1.style.left=-oContainer1.offsetWidth/2+"px";
+        }
+    },30);
+    oLeft.onmouseover=function(){
+        speed=-2;
+    };
+    oRight.onmouseover=function(){
+        speed=2;
+    };
+</script>
+</body>
+</html>
