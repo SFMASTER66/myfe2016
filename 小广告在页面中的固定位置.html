@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 8000px;
+        }
+        #div1{
+            background: red;
+            width: 40px;
+            height: 100px;
+            position: absolute;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var oDiv1=document.getElementById("div1");
+    window.onscroll=function(){     //这里的onscroll是特别指滚动条吗？？
+        var scrolltop=document.documentElement.scrollTop||document.body.scrollTop; //分别对应哪个浏览器？？
+        oDiv1.style.top=scrolltop+400+"px";
+    };
+</script>
+</body>
+</html>
