@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var nb=0;
+    function func(){
+        for(var i=1000;i<=9999;i++){
+            if(i%13==0&&Math.floor(i/1000)==Math.floor((i%1000)/100)+Math.floor(((i%1000)%100)/10)){
+                document.write(i);
+                document.write(" ");
+                nb=nb+1;
+            }
+        }
+        document.write("共有"+nb+"个符合情况的");
+    };
+    func();
+</script>
+</body>
+</html>
