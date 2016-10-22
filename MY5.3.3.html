@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var nb=0
+    function func(){
+        for(var i=1;i<=1000;i++){
+            if(i%3==0&&i%5==0&&i%7==0){
+                document.write(i);
+                document.write(" ");
+                nb=nb+1;    //这算是个小方法，用新定义的一个变量来计数有几个符合要求的数字。 MY4.3.8也用到了。
+                if(nb%6==0){
+                    document.write("<br>");
+                }
+            }
+        }
+    };
+    func();
+</script>
+</body>
+</html>
