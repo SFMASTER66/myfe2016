@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">点我</button>
+<ul id="list">
+    <li>111</li>
+    <li>2222</li>
+    <li>3333</li>
+</ul>
+<script>
+    var bTn=document.getElementById("btn");
+    var oList=document.getElementById("list")
+    bTn.onclick=function(){
+    var oLi=document.createElement("li");  //因为我想点击button的时候，可以弹出li，然后我就得创建li
+        oLi.innerHTML=Math.random();
+        oList.appendChild(oLi);   //这里就是使得创建出来的li加入到olist里。
+    };
+    oList.onclick=function(e){   //这个就是应用冒泡的原理，通过父元素来出发子元素。
+        var target= e.target||window.event.srcElement;
+        alert(target.innerHTML);
+    };
+</script>
+</body>
+</html>
