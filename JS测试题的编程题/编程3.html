@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<select name="" id="xiala">
+    <option value="1111">aaaa</option>
+    <option value="2222">bbbb</option>
+    <option value="3333">cccc</option>
+</select>
+<input type="text" id="zhi"/>
+<input type="text" id="wenben"/>
+<script>
+    var oXiala=document.getElementById("xiala");
+    var aOption=oXiala.getElementsByTagName("option");
+    var oZhi=document.getElementById("zhi");
+    var oWenben=document.getElementById("wenben");
+    oXiala.onchange=function(){
+        for(var i=0;i<aOption.length;i++){
+            oZhi.value=aOption[i].value;
+            oWenben.value=aOption[i].innerHTML;
+        }
+    };
+</script>
+</body>
+</html>
