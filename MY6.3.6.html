@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var yuwen=prompt("yuwen","00");
+    var shuxue=prompt("shuxue","00");
+    var yingyu=prompt("yingyu","00");
+    var huaxue=prompt("hauxue","00");
+    var dili=prompt("dili","00");
+    var shengwu=prompt("shengwu","00");
+    var wuli=prompt("wuli","00");
+    var aa=new Array(yuwen,shuxue,yingyu ,huaxue,dili,shengwu,wuli);
+    console.log(aa[0]);
+    console.log(typeof aa[0]);
+    var all=0;
+    var average;
+        for(var i=0;i<aa.length;i++){
+             all+=parseInt(aa[i]);
+             average=all/aa.length;
+            if(aa[i]<60){
+                document.write(aa[i]+"<br>");
+            }
+            }
+            document.write(all+"<br>");
+            document.write(average+"<br>");
+           /* if(aa[i]<60) {
+                document.write(parseInt(aa[i]) + "<br>");
+            }*/
+
+
+</script>
+</body>
+</html>
