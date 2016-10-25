@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="" id="ddddd">
+<input type="radio" name="sex"/>aa
+<input type="radio" name="sex"/>bb
+<input type="radio" name="sex"/>cc
+<input type="radio" name="sex"/>dd
+</form>
+<script>
+    var oFrom=document.getElementById("ddddd");
+    var aInput=document.getElementsByName("sex");
+    oFrom.onchange=function(){
+        for(var i=0;i<aInput.length;i++){
+            if(aInput[i].checked){
+                alert(i+1);
+            }
+        }
+    };
+</script>
+</body>
+</html>
