@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 1000px;
+            height: 150px;
+            position: relative;
+            left: 5px;
+            top: 5px;
+            border: 1px solid black;
+        }
+        #name{
+            margin-top: 8px;
+        }
+        #ps{
+            margin-top: 4px;
+        }
+        #wenben{
+            margin-top: 4px;
+        }
+        .f{
+            border: 1px solid red;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<script src="jquery-1.12.4.js"></script>
+<div>
+    名称： <input id="name" type="text"  value="名称"/><br/>        <!--value是这个文本框的默认值。-->
+    密码： <input id="ps" type="password" value="密码"/><br/>
+    详细信息： <textarea name="" id="wenben" cols="17" rows="5" >fdsfsdfsdfsd</textarea>
+</div>
+<script>
+
+   $(function(){
+
+       $(":input").on("focus",function(){
+           $(this).addClass("f");
+           if($(this).val()==this.defaultValue){
+               $(this).val("");
+           }
+       });
+       $(":input").on("blur",function(){
+           $(this).removeClass("f");
+           if($(this).val()==""){
+               $(this).val(this.defaultValue);
+           }
+       });
+
+
+
+   })
+
+</script>
+
+
+
+</body>
+</html>
