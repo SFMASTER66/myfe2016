@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<p id="111"></p>
+<script>
+
+    /* var date=new Date();
+        var year=date.getFullYear();
+        var month=date.getMonth();
+        var dates=date.getDate();
+        var hour=date.getHours();
+        var minute=date.getMinutes();
+       // var second=date.getSeconds();
+        var day=date.getDay();*/
+   var timer= setInterval(function(){
+       var date=new Date();
+       var year=date.getFullYear();
+       var month=date.getMonth();
+       var dates=date.getDate();
+       var hour=date.getHours();
+       var minute=date.getMinutes();
+       var second=date.getSeconds();
+       var day=date.getDay();
+
+       document.getElementById("111").innerHTML=("现在是"+year+"年"+month+"月"+dates+"日"+hour+"点"+minute+"分"+second+"秒");
+    },1000);
+//   document.write("现在是"+year+"年"+month+"月"+dates+"日"+hour+"点"+minute+"分"+second+"秒");
+
+</script>
+</body>
+</html>
