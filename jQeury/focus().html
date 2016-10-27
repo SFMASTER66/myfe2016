@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>span {display:none;}</style>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+<p><input type="text" /> <span>focus fire</span></p>
+<p><input type="password" /> <span>focus fire</span></p>
+<script>
+    $("input").focus(function () {
+        $(this).next("span").css('display','block').fadeOut(1000);   //为什么fadeout慢慢的显示再消失？fadeout不就是慢慢的消失的意思吗？为什么fadein显示不一样？
+    });
+</script>
+
+</body>
+</html>
