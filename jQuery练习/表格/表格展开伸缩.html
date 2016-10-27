@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        thead{
+            border-bottom: 1px solid black;
+        }
+        td{
+            width: 100px;
+        }
+        th{
+            text-align: left;
+        }
+        .f{
+            background: yellow;
+        }
+        .g{
+            background: pink;
+        }
+ /*       #row_01{
+            display: block;
+        }*/
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr><th>姓名</th><th>性别</th><th>年龄</th></tr>
+    </thead>
+    <tbody>
+    <tr class="parent" id="row_01"><td>张</td><td>男女</td><td>小孩</td></tr>
+    <tr class="child_row_01"><td>张三</td><td>男</td><td>4</td></tr>
+    <tr class="child_row_01"><td>张四</td><td>女</td><td>5</td></tr>
+    <tr class="parent" id="row_02"><td>李</td><td>男女</td><td>中年</td></tr>
+    <tr class="child_row_02"><td>李四</td><td>女</td><td>30</td></tr>
+    <tr class="child_row_02"><td>李无</td><td>男</td><td>35</td></tr>
+    <tr class="parent" id="row_03"><td>王</td><td>男女</td><td>老人</td></tr>
+    <tr class="child_row_03"><td>王六</td><td>女</td><td>60</td></tr>
+    <tr class="child_row_03"><td>王七</td><td>男</td><td>65</td></tr>
+    </tbody>
+</table>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        $("tr:contains(男女)").addClass("f");
+       /* $("#row_01").on("click",function(){
+
+            if($(this).siblings(".child_row_01").is(":hidden")){
+                $(this).removeClass("g").siblings(".child_row_01").show();
+            }else{
+                $(this).addClass("g").siblings(".child_row_01").hide();
+            }
+        });*/
+        $("#row_02").on("click",function(){
+            if($(this).siblings(".child_row_02").is(":hidden")){
+                $(this).removeClass("g").siblings(".child_row_02").show();
+            }else{
+                $(this).addClass("g").siblings(".child_row_02").hide();
+            }
+        });
+        $("#row_03").on("click",function(){
+            if($(this).siblings(".child_row_03").is(":hidden")){
+                $(this).removeClass("g").siblings(".child_row_03").show();
+            }else{
+                $(this).addClass("g").siblings(".child_row_03").hide();
+            }
+        });
+
+        $("#row_01").on("click",function(){
+            $(this).toggleClass("g").siblings(".child_row_01").toggle();
+        });
+
+    });
+</script>
+</body>
+</html>
