@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>gt demo</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+
+</ul>
+<script>
+    $( "li:gt(1)" ).css( "backgroundColor", "yellow" );   // 索引从0开始，大于1，所以从第三个li开始变黄色
+    $( "li:gt(-2)" ).css( "color", "red" );    // 倒过来，大于-2的就是第四个li了
+</script>
+
+</body>
+</html>
