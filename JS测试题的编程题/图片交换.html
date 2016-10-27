@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<img id="we" src="1.jpg" alt=""/>
+<script>
+    var oImg = document.getElementById('we');
+    oImg.flag = true;
+    oImg.onclick = function(){
+        //oImg.flag = true;
+        if(this.flag==true){
+            this.src = '2.jpg';
+            this.flag=false;
+        }else{
+            this.src="1.jpg";
+            this.flag=true;
+        }
+       // this.flag=true;
+      //this.flag=!this.flag;
+
+    };
+
+
+
+
+
+
+
+
+
+//    var oImg = document.getElementById('we');
+//    oImg.flag = 1;
+//    oImg.onclick = function(){
+//        if(this.flag == 1){
+//            this.src = '1.jpg';
+//            this.flag = 2;
+//        }else if(this.flag == 2) {
+//            this.src = '2.jpg';
+//            this.flag = 3;
+//        }else{
+//            this.src = '3.jpg';
+//            this.flag = 1;
+//        }
+//
+//    }
+</script>
+</body>
+</html>
