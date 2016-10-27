@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0px;
+        }
+        #container1{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 20px;
+        }
+        #container2{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 250px;
+            top: 0px;
+        }
+        #kuang1{
+            width: 100px;
+            height: 150px;
+        }
+        #kuang2{
+            width: 100px;
+            height: 150px;
+        }
+        #xk1{
+            cursor: pointer;
+            background: gray;
+        }
+        #xk2{
+            cursor: pointer;
+            margin-top: 10px;
+            background: gray;
+        }
+        #xk3{
+            cursor: pointer;
+            background: gray;
+        }
+        #xk4{
+            cursor: pointer;
+            margin-top: 10px;
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+<div id="container1">
+    <select multiple="multiple" name="" id="kuang1">
+        <option value="">1</option>
+        <option value="">2</option>
+        <option value="">3</option>
+        <option value="">4</option>
+        <option value="">5</option>
+        <option value="">6</option>
+        <option value="">7</option>
+        <option value="">8</option>
+    </select>
+    <div id="xk1" >选中添加到右边&gt;&gt;</div>
+    <div id="xk2">全部添加到右边&lt;&lt;</div>
+</div>
+<div id="container2">
+    <select multiple="multiple" name="" id="kuang2">
+        <option value="">9</option>
+    </select>
+    <div id="xk3">选中添加到左边&lt;&lt;</div>
+    <div id="xk4">全部添加到左边&gt;&gt;</div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        $("#xk1").on("click",function(){
+            $("#kuang1 option:selected").appendTo($("#kuang2"));
+        });
+        $("#xk2").on("click",function(){
+            $("#kuang1 option").appendTo($("#kuang2"));
+        });
+        $("#kuang1").on("dblclick",function(){
+            $("#kuang1 option:selected").appendTo($("#kuang2"));
+           // $("#kuang2").append($(this));
+        });
+        $("#xk3").on("click",function(){
+            $("#kuang2 option:selected").appendTo($("#kuang1"))
+        });
+        $("#xk4").on("click",function(){
+            $("#kuang1").append($("#kuang2 option"));
+        });
+        $("#kuang2").on("dblclick",function(){
+            $("#kuang2 option:selected").appendTo($("#kuang1"));
+    });
+
+       /* $('#kuang2').dblclick(function(){
+            $("option:selected",this).appendTo('#kuang1');  //怎么解释这里的this啊？？
+        });
+        $('#kuang1').dblclick(function(){
+            $("option:selected",this).appendTo('#kuang2');
+        });*/
+
+
+
+
+
+
+
+
+
+
+    })
+</script>
+</body>
+</html>
