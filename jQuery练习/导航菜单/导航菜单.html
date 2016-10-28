@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        div{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #d{
+            height: 30px;
+        }
+        .f{
+            background: gray;
+            float: left;
+            width: 100px;
+            height: 20px;
+            background-image: url(up.gif);
+            background-repeat: no-repeat;  /*取消横铺*/
+            text-indent: 5px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .g{
+            background: darkslategray;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <ul id="d">
+        <li class="f">菜单项1
+           <ul class="g">
+               <li ><a href="#">菜单项11</a></li>
+               <li ><a href="#">菜单项12</a></li>
+           </ul>
+        </li>
+
+
+
+       <li  class="f">菜单项2
+           <ul class="g">
+               <li><a href="#">菜单项11</a></li>
+               <li><a href="#">菜单项12</a></li>
+           </ul>
+       </li>
+
+
+        <li class="f">菜单项3
+            <ul class="g">
+                <li><a href="#">菜单项11</a></li>
+                <li><a href="#">菜单项12</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        $("li.f").hover(function(){
+           // $(this).siblings("li").hide();
+
+                $(this).find("ul").stop().slideDown();
+
+            $(this).css("background-image","url('down.gif')");
+        },function(){
+            $(this).find("ul").stop().slideUp();
+            $(this).css("background-image","url('up.gif')");
+        });
+
+
+    });
+</script>
+</body>
+</html>
