@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            border-collapse: collapse;
+        }
+       /*#biaoti{*/
+           /*width: 200px;*/
+           /**/
+       /*}*/
+        td{
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+        }
+        .f{
+            background: cornflowerblue;
+        }
+        .g{
+            background: lightpink;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr><td colspan="2">鼠标点击表格就可以编辑</td></tr>
+    <tr id="xuehao"><td >学号</td><td>姓名</td></tr>
+    <tr><td>1</td><td  class="jia">张三</td></tr>
+    <tr><td>2</td><td  class="jia">李四</td></tr>
+    <tr><td>3</td><td  class="jia">王五</td></tr>
+    <tr><td>4</td><td  class="jia">张六</td></tr>
+</table>
+<script src="jquery-1.12.4.js"></script>
+<script>
+     $("#xuehao").addClass("f");
+     $("tr:contains(4)").addClass("g");
+     $("tr:contains(2)").addClass("g");
+    $(function(){
+        $("td.jia").on("click",function(){
+             var $aaa=$(this);
+            var $input=$("<input type='text'/>");
+            $input.val($(this).text());  //先获取，后面再清空。
+            //console.log($(this).has("input[type='text']").size());
+            if($(this).has("input[type='text']").size()==0){    //has 找的是所有后代 find找的是所有后代  children找的是亲儿子都可以
+                $(this).empty().append($input);
+                }
+            $input.trigger("focus");   //使得文本框获取光标。
+            $input.css("border","none").css("background",$(this).css("background"));
+            $input.on("keypress",function(event){
+               // $(this).val().hide();
+                if(event.keyCode==13){
+                    $aaa.text($input.val());
+
+                }
+            });
+
+        });
+
+
+
+
+
+    });
+
+
+
+
+</script>
+</body>
+</html>
