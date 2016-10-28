@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #main{
+            position: relative;
+            left: 50px;
+            top: 100px;
+        }
+        #container{
+            position: relative;
+            width: 110px;
+            height: 50px;
+        }
+        #da{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+        #xiao{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 60px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="container">
+        <div id="da">放大</div>
+        <div id="xiao">缩小</div>
+    </div>
+    <textarea name="" id="wenben" cols="30" rows="10">dfsadfsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdafsdgfsfsdfdsfsdfsdfsdfsdafsdafsdafsdfsdfsdafsdafdsdfsdfsdfdsafdsafsdf</textarea>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        $("#da").on("click",function(){
+            var $font=$("#wenben").css("font-size");
+            var $num=parseInt($font);
+           $num=$num+2;
+            if($num>22){
+                $num=22;
+            }
+            $("#wenben").css("font-size",$num+2);
+        });
+        $("#xiao").on("click",function(){
+            var $font=$("#wenben").css("font-size");
+          //  console.log($num);
+            var $num=parseInt($font);     //浏览器默认最小12px
+            $("#wenben").css("font-size",$num-2);
+            console.log($num);
+        });
+
+    })
+</script>
+</body>
+</html>
