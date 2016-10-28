@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #container{
+            width: 1200px;
+            height: 800px;
+            position: relative;
+            left: 70px;
+        }
+        #container1{
+            /*overflow: hidden;*/   /*可以不要*/
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+        #container1 li{
+            list-style: none;
+            float: left;
+            background: red;
+            margin-right: 5px;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;  /*新的方法，鼠标滑过是手的形状！！！！！！！*/
+        }
+        #container3 span{
+            float: left;   /*span是行级元素，所以必须要加float来设置宽高。*/
+            width: 100px;
+            height: 50px;
+            background: orangered;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        #container3{
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+        }
+        #container1 .selected{
+            background: greenyellow;
+        }
+        #container2 .selected{
+            display: block;
+        }
+        #container2 img{
+            display: none;   /* 先让所有的图片隐藏，然后再通过上面的display: block;显示第一张图片。*/
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div >
+        <ul id="container1">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div id="container2">
+        <img class="selected" src="picture/1.jpg" alt=""/>
+        <img src="picture/2.jpg" alt=""/>
+        <img src="picture/1.jpg" alt=""/>
+        <img src="picture/2.jpg" alt=""/>
+    </div>
+    <div id="container3">
+        <span id="lt">&lt;</span>
+        <span id="gt">&gt;</span>
+    </div>
+</div>
+<script>
+//    var oC=document.getElementById("container");
+    var iNow=0;
+    var oC1=document.getElementById("container1");
+    var aLi=oC1.getElementsByTagName("li");
+    var oC2=document.getElementById("container2");
+    var aI=oC2.getElementsByTagName("img");
+    var oGt=document.getElementById("gt");
+    var oLt=document.getElementById("lt");
+//    var oC2=oC.getElementById("container2");
+//    var aI=oC2.getElementsByTagName("img");
+    for(var i=0;i<aLi.length;i++){
+        aLi[i].index=i;
+
+        aLi[i].onclick=function(){
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].className="";
+                aI[i].className="";
+            }
+            this.className="selected";/*只有鼠标点击onclick的时候，才会执行第二个for的代码动作，可是此时的整个for循环已经结束了，所以要自定义 aLi[i].index=i;*/
+            //上面的代码也可以写成aLi[this.index].className="selected"跟this.className="selected" 效果是一样的。
+            aI[this.index].className="selected";
+           iNow=this.index;
+        };
+    }
+
+    oGt.onclick=function(){
+
+        iNow=iNow+1;
+        console.log(iNow);
+        if(iNow==aLi.length){
+         //aI[iNow=aLi.length-1].style.display="block";
+            //iNow=3;   这个也是可以的，效果和上面一样！！！！！
+         iNow=0;
+        }
+        for(var i=0;i<aLi.length;i++){
+            aI[i].className="";
+            aLi[i].className="";
+        }
+        aI[iNow].className="selected";
+        aLi[iNow].className="selected";
+    };
+    oLt.onclick=function(){
+
+        iNow=iNow-1;
+       if(iNow==-1){
+            iNow=3;
+        }
+        for(var i=0;i<aLi.length;i++){
+            aI[i].className="";
+            aLi[i].className="";
+        }
+        aI[iNow].className="selected";
+        aLi[iNow].className="selected";
+    };
+</script>
+</body>
+</html>
