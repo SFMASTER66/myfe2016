@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #container{
+            position: relative;
+            left: 100px;
+            top: 100px;
+        }
+        table{
+            border: 0;
+            border-collapse: collapse;  //*默认是separate*/
+        }
+        td{
+            width: 100px;   /*给td设定了宽度，然后td里的文本就会自动的往左边靠拢*/
+            height: 50px;
+        }
+        th{
+            text-align: left;   /*这个使得th里面的字往左边移动 th里的字会自动的居中*/
+        }
+        #biaoti{
+            border-bottom: 1px solid black;
+        }
+        td{
+            font:normal 12px/17px  Arial;  /*格式吧*/
+        }
+        .f{
+            background: yellow;
+        }
+        .g{
+            background: pink;
+        }
+
+    </style>
+</head>
+<body>
+<table id="container">
+    <thead id="biaoti">
+    <tr><th>姓名</th><th>性别</th><th>地址</th></tr>
+    </thead>
+    <tbody>
+    <tr><td>张三</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td>张一</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td>张二</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td>张四</td><td>女</td><td>哈尔滨</td></tr>
+    <tr><td>张无</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td>张六</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td>张八一</td><td>男</td><td>哈尔滨</td></tr>
+    </tbody>
+</table>
+<script src="jquery-1.12.4.js"></script>
+
+<script>
+    $("tbody tr:even").addClass("f");
+    $("tbody tr:contains('男')").addClass("g");
+</script>
+</body>
+</html>
