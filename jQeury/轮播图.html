@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        li{
+            float: left;
+            width: 100px;
+            height: 20px;
+            background: gray;
+            text-align: center;
+            line-height: 20px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            position: relative;
+            margin: 50px auto;
+            /*overflow: hidden;*/
+        }
+        #menu{
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+        #zuoyou{
+            width: 100px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+        }
+        span{
+            background: gray;
+            float: left;
+            width: 25px;
+            height: 20px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+        .selected{
+            display: block;
+        }
+        img{
+            display: none;
+        }
+        .sel{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="menu" style="z-index: 6666">
+        <ul>
+            <li class="sel">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div>
+        <img class="selected" src="1.jpg" alt=""/>
+        <img src="2.jpg" alt=""/>
+        <img src="3.jpg" alt=""/>
+        <img src="4.jpg" alt=""/>
+    </div>
+    <div id="zuoyou" style="z-index: 6666">
+        <span id="pre">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function() {
+        var index = 0;
+        var iNow = 0;
+        $("li").on("mouseover", function () {
+            var $this = $(this).index();
+            $("img").eq($this).addClass("selected").siblings().removeClass("selected");
+            $(this).addClass("sel").siblings().removeClass("sel");
+            iNow = $(this).index();
+        });
+        $("#next").on("click", function () {
+            iNow = iNow + 1;
+            if (iNow == $("img").size()) {
+                iNow = 0;
+            }
+            $("img").eq(iNow).addClass("selected").siblings().removeClass("selected");
+            $("li").eq(iNow).addClass("sel").siblings().removeClass("sel");
+            // $("img").eq(index).trigger("click");
+        });
+        $("#pre").on("click", function () {
+            iNow = iNow - 1;
+            if (iNow == -1) {
+                iNow = 3;
+            }
+            $("img").eq(iNow).addClass("selected").siblings().removeClass("selected");
+            $("li").eq(iNow).addClass("sel").siblings().removeClass("sel");
+            // $("img").eq(index).trigger("click");
+        });
+        var timer = setInterval(function () {
+            $("#next").trigger("click");
+        }, 1000);
+        $("#container").on("mouseover", function () {
+            clearInterval(timer);
+        }).on("mouseout", function () {
+            timer = setInterval(function () {
+                $("#next").trigger("click");
+            }, 1000);
+        });
+    });
+
+</script>
+
+</body>
+</html>
