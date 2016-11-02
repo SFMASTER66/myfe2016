@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    #container{
+        width: 500px;
+        height: 300px;
+        margin:50px auto;
+        background:green;
+    }
+    #container li{
+        list-style:none;
+        float: left;
+        width: 100px;
+        height: 70px;
+        margin-right:5px;
+        background:red;
+        text-align: center;
+        line-height:70px;
+    }
+    #nav{
+        /*overflow: hidden;*/    /*这两个都行*/
+        height: 70px;
+    }
+    #content{
+        background:gray;
+        height: 230px;
+    }
+    #container .li1{
+        background:black;
+        color: antiquewhite;
+    }
+</style>
+<body>
+<div id="container">
+    <ul id="nav">
+        <li class="li1">js</li>
+        <li>css</li>
+        <li>html</li>
+    </ul>
+    <div id="content">1234567</div>
+</div>
+<script>
+    var data=["3333333333","55555555","44444444"]
+    var oDiv=document.getElementById("container");
+//    var oUl=oDiv.getElementById("nav");
+    var oLi=oDiv.getElementsByTagName("li");
+    var oContent=document.getElementById("content")
+    for(var i=0;i<oLi.length;i++){
+        oLi[i].index=i;
+        oLi[i].onclick=function(){
+            for(var i=0;i<oLi.length;i++){
+                oLi[i].className="";          /* 是哪一个的className为空了！！！*/
+            }
+            this.className="li1";
+            oContent.innerHTML=data[this.index];
+        };
+    }
+</script>
+</body>
+</html>
