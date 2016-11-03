@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div1{
+            width: 400px;
+            height: 200px;
+            background: red;
+            margin-left:50px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script>
+    var oDiv1=document.getElementById("div1");
+    var getStyle=function(elem,prop){
+        if(window.getComputedStyle){
+            return window.getComputedStyle(oDiv1,null)[prop];
+        }else if(elem.currentStyle){
+            return elem.currentStyle[prop];
+        }
+    }
+//    oDiv1.onclick=function(){
+//       if(oDiv1.style.width==400+"px"){
+//            oDiv1.style.width=300+"px";
+//        }
+//        alert(getStyle(oDiv1,"height"));
+//    }
+
+    oDiv1.onmousedown=function(e){
+        var divX1= e.clientX-oDiv1.offsetLeft;  //  oDiv1.offsetLeft是oDov1到body的距离，那oDiv1.style.left也是oDoyov1到body的距离，有什么区别。
+        var divY1= e.clientY-oDiv1.offsetTop;
+        document.onmousemove=function(e){
+            oDiv1.style.left= e.clientX-divX1+"px";  //这里可以直接用oDiv1.style.left，为啥？不是不可以这样调用对象的属性吗？ 因为能为oDiv1.style.left这个赋值，但是不能取值。
+            oDiv1.style.top= e.clientY-divY1+"px";
+        }
+        oDiv1.onmouseup=function(){
+            oDiv1.onmousemove=null;
+        }
+    }
+
+</script>
+</body>
+</html>
