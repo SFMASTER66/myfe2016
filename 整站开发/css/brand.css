@@ -1,0 +1,38 @@
+#brand{
+    height: 154px;
+    /*background: red;*/
+    position: relative;
+}
+#s-brand{
+    width: 1002px;
+    height: 154px;
+    margin-left: 235px;
+    margin-top: 70px;
+    float: left;
+}
+#s-brand img{
+    padding: 0 25px;
+}
+#brand span{
+    width: 40px;
+    height: 50px;
+    float: left;
+    background: green;
+}
+#brand #left{
+    background: url("../images/xiaojingling.png") -30px -65px;
+    position: relative;
+    right: 1054px;
+    top: 62px;
+}
+#brand #right{
+    background: url("../images/xiaojingling.png") 9px -65px;
+    position: relative;
+    left: -113px;
+    top: 62px;
+}
+#clients{
+    position: absolute;
+    left: 182px;
+    top: 30px;
+}

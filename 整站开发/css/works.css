@@ -1,0 +1,29 @@
+#works{
+    height: 500px;
+    background: #e2e7ed;
+}
+#sub-works{
+    width: 1002px;
+    height: 72px;
+    /*background: blue;*/
+    margin-left:181px;
+    color: #626262;
+    font-family: Myriad Pro Regular;
+    font-size: 30px;
+    line-height: 72px;
+}
+#xiao-img{
+    width: 1002px;
+    height: 428px;
+    /*background: greenyellow;*/
+    margin-left:181px;
+}
+#xiao-img div{
+    float:left;
+    width : 250px;
+    height: 214px;
+
+}
+/*img{*/
+    /*float: left;*/
+/*}*/

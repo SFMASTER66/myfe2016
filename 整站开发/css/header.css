@@ -1,0 +1,52 @@
+#header{
+    width: 1002px;
+    height: 120px;
+    /*background: gray;*/
+    margin: 0 auto;
+    /*float: left;*/
+}
+#nav li{
+    float: left;
+    padding: 0 25px;
+    border-right: 1px solid black;
+    cursor:pointer;
+}
+li:hover{
+    color:#00aeff
+}
+#nav{
+    margin-left: 145px;
+    margin-top: 53px;
+    float: left;
+}
+#img{
+    margin-top: 37px;
+    float: left;
+}
+input{
+    width: 100px;
+    height: 30px;
+    border: none;
+    background: #f1f3f6;
+    color: #a3a3a3;
+    text-indent: 3px;
+}
+#search{
+    /*margin-right: 0;  margin-right不好使用。*/
+    margin-top: 45px;
+    float: right;
+    background: #f1f3f6;
+}
+#nav .last{
+    border: none;
+}
+span{
+    width: 30px;
+    height: 30px;
+    background: url("../images/xiaojingling.png") 9px 9px;
+    float: right;
+}
+
+
+
+

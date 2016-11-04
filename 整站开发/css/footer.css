@@ -1,0 +1,78 @@
+#footer{
+    height: 176px;
+    background: #31333e;
+    /*position: relative;*/
+}
+#footer .wrap{
+    width: 1002px;
+    margin:0 auto;
+    position: relative;
+}
+#footer-a a{
+    /*float: left;*/
+    padding: 0 25px;
+    border-right: 1px solid black;
+    cursor:pointer;
+    position: static;
+    text-decoration:none;
+}
+#footer .last-last{
+    border: none;
+}
+#footer span{
+    width: 30px;
+    height: 30px;
+    float: left;
+    padding:0 10px;
+}
+#f{
+    background: url("../images/xiaojingling.png") 0 -155px;
+}
+#in{
+    background: url("../images/xiaojingling.png") -56px -155px;
+}
+#t{
+    background: url("../images/xiaojingling.png") -104px -155px;
+}
+#tt{
+    background: url("../images/xiaojingling.png") -160px -155px;
+}
+#ttt{
+    background: url("../images/xiaojingling.png") -213px -155px;
+}
+#g{
+    background: url("../images/xiaojingling.png") -264px -155px;
+}
+
+#lianjie a{
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+#lianjie{
+    position: absolute;
+    left: 700px;
+    top: 40px;
+}
+#footer #footer-a a{
+    font-family: Myriad Pro Regular;
+    font-size: 15px;
+    color: white;
+}
+#footer p{
+    font-family: Myriad Pro Regular;
+    font-size: 12px;
+}
+#footer #banquan{
+    position: absolute;
+    left: 24px;
+    top: 92px;
+}
+#footer #mo{
+    position: absolute;
+    left: 24px;
+    top: 140px;
+}
+
+
+
