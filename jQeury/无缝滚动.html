@@ -58,25 +58,22 @@
 <script src="jquery-1.12.4.js"></script>
 <script>
     $(function(){
-       // var $a=$("#tu").css("left");
-var a=0;
+        var a=0;
         clearInterval(timer2);
         clearInterval(timer3);
         var timer1=setInterval(function(){
-                   a=a-2;
-            //$("#tu").css("left",a);
+            a=a-2;
             if(a<-500){
                 a=0;
             }
             $("#tu").css("left",a);
         },8);
-var timer2;
+         var timer2;
         $(".zuo").on("mouseover",function(){
-            clearInterval(timer1)   点击自己的时候也要去掉别人的定时器，不会有停顿的效果，因为代码读的很快，所以马上执行自己的定时器。
-            clearInterval(timer3)
+            clearInterval(timer1);   //点击自己的时候也要去掉别人的定时器，不会有停顿的效果，因为代码读的很快，所以马上执行自己的定时器。
+            clearInterval(timer3);
             var $c=parseInt($("#tu").css("left"));
-            $("#tu").css("left",$c-2);
-          timer2=  setInterval(function(){
+          timer2=setInterval(function(){
                 $c=$c-2;
                 if($c<-500){
                     $c=0;
@@ -84,7 +81,7 @@ var timer2;
                 $("#tu").css("left",$c);
             },8);
         });
-var timer3;
+         var timer3;
         $(".you").on("mouseover",function() {
             clearInterval(timer1);
             clearInterval(timer2);
