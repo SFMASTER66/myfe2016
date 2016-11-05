@@ -52,14 +52,17 @@
                 $(this).empty().append($input);
                 }
             $input.trigger("focus");   //使得文本框获取光标。
+            //var $thisa = $(this);
             $input.css("border","none").css("background",$(this).css("background"));
             $input.on("keypress",function(event){
                // $(this).val().hide();
                 if(event.keyCode==13){
                     $aaa.text($input.val());
-
                 }
             });
+            $input.on("blur",function(){
+                $aaa.text($input.val());
+            })
 
         });
 
