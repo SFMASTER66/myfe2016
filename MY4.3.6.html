@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function func(num){
+      for(var i=1;i<=num;i++){
+          for(var j=1;j<=num-i;j++){
+              document.write("&nbsp;");
+          }
+         for(var j=1;j<=i;j++){
+             document.write("*");
+             document.write("&nbsp;");
+         }
+          document.write("<br>");
+      }
+    };
+    func(5);
+
+
+ /* var i,line;
+  for(line=1;line<=5;line++)          //答案的代码
+  {
+      document.write("    ");
+      for(i=1;i<=5-line;i++) document.write(" ");
+      for(i=1;i<=line;i++)
+      {
+          document.write("*");
+          if (i>0) document.write(" ");
+      }
+      document.write("<br>");
+  }*/
+</script>
+</body>
+</html>
