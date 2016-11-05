@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #container{
+            position: relative;
+            left: 100px;
+            top: 100px;
+        }
+        table{
+            border: 0;
+            border-collapse: collapse;  //*默认是separate*/
+        }
+        td{
+            width: 100px;   /*给td设定了宽度，然后td里的文本就会自动的往左边靠拢*/
+            height: 50px;
+        }
+        th{
+            text-align: left;   /*这个使得th里面的字往左边移动 th里的字会自动的居中*/
+        }
+        #biaoti{
+            border-bottom: 1px solid black;
+        }
+        td{
+            font:normal 12px/17px  Arial;  /*格式吧*/
+        }
+        .f{
+            background: pink;
+        }
+
+    </style>
+</head>
+<body>
+<table id="container">
+    <thead id="biaoti">
+    <tr><th>姓名</th><th>性别</th><th>地址</th></tr>
+    </thead>
+    <tbody>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张三</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张一</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张二</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张四</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张无</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张六</td><td>男</td><td>哈尔滨</td></tr>
+    <tr><td><input type="radio" name="items" value="足球"  /></td><td>张八一</td><td>男</td><td>哈尔滨</td></tr>
+</table>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $("tbody tr:even").css("background","yellow");  /*这个even是从索引0开始的 内联样式级别跟高，所以后面设置粉红色黄色的没有反应*/
+    $("tr").on("click",function(){
+        if(!$(this).find("input").prop("checked")){
+            $(this).addClass("f").siblings().removeClass("f").end().find(":radio").prop("checked",true);
+        }else{
+            $(this).siblings().removeClass("f").find(":radio").prop("checked",false);
+        }
+    });
+</script>
+</body>
+</html>
