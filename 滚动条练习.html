@@ -25,7 +25,7 @@
         #scroll-bar{
             width: 20px;
             height: 400px;
-            position: absolute;
+            position: absolute;    /*这个应该是相对于整个大的container定位的。*/
             background: green;
             left: 380px;
         }
@@ -73,7 +73,7 @@
             oScrollBtn.style.top=top+"px";
             var fScale=top/(oScrollBar.offsetHeight-oScrollBtn.offsetHeight);
             oContent.style.top=-(oContent.offsetHeight-oContianer.offsetHeight)*fScale+"px";
-            return false; //这个怎么解释来着？？ 取消浏览器的默认行为.
+            return false; //这个怎么解释来着？？ 取消浏览器的默认行为.  这个要在移动的（onmousemove）时候来写这行代码，因为只是移动的时候产生了浏览器的默认行为。
         };
         document.onmouseup=function(){
             document.onmousemove=null;
