@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<select name="ss" id="as">
+    <option value="11111">1</option>
+    <option value="22222">2</option>
+    <option value="33333">3</option>
+</select>
+<input type="text" id="content"/>
+<input type="text" id="qq" />
+<script>
+    var oAs = document.getElementById('as');
+    var aOp=oAs.getElementsByTagName("option");
+    var oContent = document.getElementById('content');
+    var oQq = document.getElementById('qq');
+    oAs.onchange = function(){
+        for(var i=0;i<aOp.length;i++){
+            if(aOp[i].selected){
+                oQq.value=aOp[i].value;
+                oContent.value=aOp[i].innerHTML;
+            }
+        }
+    };
+
+</script>
+</body>
+</html>
