@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        li{
+            float: left;
+            width: 100px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        #menu{
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+        .me{
+            position: absolute;
+            left: 20px;
+            top: 80px;
+            width: 600px;
+            height: 300px;
+        }
+        .text{
+            width: 300px;
+            height: 100px;
+            float: left;
+            border-bottom: 1px dashed black;
+            margin-top: 30px;
+        }
+        .aaa{
+            float: left;
+            width: 48px;
+            margin: 10px;
+        }
+        .rrr{
+            width: 252px;
+        }
+        .selected{
+            background: pink;
+        }
+       .me{
+           display: none;
+       }
+        .content{
+            display: block;   /*.me和.content的权重值一样，则后面的会覆盖前面定义的内容。*/
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <ul>
+        <li class="selected">生活</li>
+        <li>兴趣</li>
+        <li>文化艺术</li>
+        <li>音乐电影</li>
+        <li>本地</li>
+        <li>其他</li>
+</ul>
+</div>
+<div id="kkk">
+<div class="me content">          <!--注意了，这个class是可以这么定义的，写两个名字，中间放个空格。-->
+    <div class="text">
+        <div class="aaa">
+            <img   src="g111124-3.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12238-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g20324-5.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g14153-10.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+<div class="me">
+    <div class="text">
+        <div class="aaa">
+            <img src="g69947-4.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西西西西嘻嘻</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g77374-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g118474-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g131612-4.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+<div class="me">
+    <div class="text">
+        <div class="aaa">
+            <img   src="g111124-3.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12238-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g20324-5.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g14153-10.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+<div class="me">
+    <div class="text">
+        <div class="aaa">
+            <img   src="g111124-3.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12238-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g20324-5.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g14153-10.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+<div class="me">
+    <div class="text">
+        <div class="aaa">
+            <img   src="g111124-3.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12238-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g20324-5.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g14153-10.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+<div class="me">
+    <div class="text">
+        <div class="aaa">
+            <img   src="g111124-3.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">法兰西</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12238-2.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="">谁</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g12247-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">你</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g20324-5.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g44725-1.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">我</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+    <div class="text">
+        <div class="aaa">
+            <img src="g14153-10.jpg" alt=""/>
+        </div>
+        <div class="rrr">
+            <a href="#">花姑娘</a>
+            <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+        </div>
+    </div>
+</div>
+
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        var index=0;
+        var timer;
+            $("li").on("click",function(){
+                //  var $this=$(this).index();
+                $(this).addClass("selected").siblings().removeClass("selected");
+                var $this=$(this).index();
+              //  $(".me").eq($this).show().siblings().hide();    <!--show()和hide()就是显示和隐藏的意思-->
+                   $(".me").eq($this).addClass("content").siblings().removeClass("content");
+               // index=$this;  使得点击li的时候，当前的索引值就是点击的li的索引值，不然当移除鼠标的时候，就不会按照点击的li往后移动。
+            }).hover(function(){
+                clearInterval(timer);
+            },function(){
+                run();
+            });
+        function run(){
+             timer=setInterval(function(){
+                index++;
+                if(index==$("li").size()){
+                    index=0;
+                }
+                $("li").eq(index).trigger("click");//绑定一个click事件，相当于自己点击自己会动
+            },1000)
+        }
+        run();   <!--这个就是一进入页面就会执行run方法里面的定时器-->
+
+    });
+</script>
+</body>
+</html>
