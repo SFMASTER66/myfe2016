@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        div{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        #d{
+            height: 30px;
+        }
+        .f{
+            background: gray;
+            float: left;
+            width: 100px;
+            height: 20px;
+            background-image: url(up.gif);   /*新用法 记住！！！*/
+            background-repeat: no-repeat;  /*取消横铺*/
+            text-indent: 5px;
+            text-align: center;
+            line-height: 20px;
+        }
+        .g{
+            background: pink;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <ul id="d">
+        <li class="f">菜单项1
+            <ul class="g">
+                <li ><a href="#">菜单项11</a></li>
+                <li ><a href="#">菜单项12</a></li>
+            </ul>
+        </li>
+        <li  class="f">菜单项2
+            <ul class="g">
+                <li><a href="#">菜单项11</a></li>
+                <li><a href="#">菜单项12</a></li>
+            </ul>
+        </li>
+        <li class="f">菜单项3
+            <ul class="g">
+                <li><a href="#">菜单项11</a></li>
+                <li><a href="#">菜单项12</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    //下面有两种方法。
+
+//    $(".f").on("mouseenter",function(){
+//        var $this=$(this).index();
+//        $(".g").eq($this).css("display","block");
+//    });
+//    $(".f").on("mouseleave",function(){
+//        var $this=$(this).index();
+//            $(".g").eq($this).css("display","none");
+//    });
+
+    $(".f").hover(function(){
+        var $this=$(this).index();
+        $(".g").eq($this).stop().slideDown();
+        $(this).css("background-image","url('up.gif')");
+    },function(){
+        var $this=$(this).index();
+        $(".g").eq($this).stop().slideUp();
+        $(this).css("background-image","url('down.gif')");
+    });
+</script>
+
+</body>
+</html>
