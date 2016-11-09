@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+        margin:0;
+        padding:0;
+        }
+        #but{
+            width: 300px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<button id="but">
+    把我的内容弹出来
+</button>
+<script>
+    var b=document.getElementById("but");
+    b.onmousedown=function(){
+        alert(this.innerHTML);
+    }
+</script>
+</body>
+</html>
