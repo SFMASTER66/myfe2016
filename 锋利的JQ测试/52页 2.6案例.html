@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+            float: left;
+            width: 100px;
+            height: 25px;
+            padding: 5px;
+        }
+        #container{
+            background: gray;
+            width: 400px;
+            position: relative;
+            margin: 0 auto;
+            top:50px;
+            /*overflow: hidden;*/   /*在不给这个div设置高的时候，然后div里面的li还进行了浮动，就可以用overflow：hidden来解决塌陷问题*/
+            padding-bottom: 30px;    /*给外边框一个30px的框*/
+        }
+        #box{
+            background: lightyellow;
+            width: 100px;
+            height: 25px;
+            color: #31333e;
+            position: absolute;
+            bottom: 1px;
+            left: 134px;
+            cursor: pointer;
+        }
+        .selected{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <li>通用</li>
+    <li>联想</li>
+    <li>卡西欧</li>
+    <li>三星</li>
+    <li>富士</li>
+    <li>尼康</li>
+    <li>索尼</li>
+    <li>三菱</li>
+    <li>三洋</li>
+    <li>明基</li>
+    <li>柯达</li>
+    <li>华硕</li>
+    <li>苹果</li>
+    <li>拍得丽</li>
+    <li>理光</li>
+    <li>奥林巴斯</li>
+    <li>德之杰</li>
+    <li>微米</li>
+    <li>小米</li>
+    <li>乐视</li>
+    <li>广博</li>
+    <li>麦格逊</li>
+    <li>德国旅行家</li>
+    <li>其他品牌</li>
+    <div style="clear:left;"></div>  <!--这个就是解决上面li浮动所导致塌陷问题，相当于在css里给container加overflow：hidden-->
+    <div id="box">
+        显示全部品牌
+    </div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $("li:gt(11)").css("display","none");
+    $("#box").on("click",function(){
+        if($("li").is(":hidden")){
+            $("li:hidden").show();
+            $("#container").css("height","$('#container li:text').height()").css("background","gray");
+            $('#container li').filter(":contains(通用)").addClass("selected");
+            $("#box").text("已经显示全部").css("bottom","5px");
+        }else{
+                $("li:gt(11)").hide();
+                //$("li:gt(11)").css("display","none");
+            $('#container li').filter(":contains(通用)").removeClass("selected");
+                $("#box").text("显示全部品牌").css("bottom","5px");
+        }
+
+    });
+
+//    $("#box").toggle(function(){
+//        $("li:hidden").show();
+//        $("#container").css("height","$('#container li:text').height()").css("background","gray");
+//        $('#container li').filter(":contains(通用)").addClass("selected");
+//        $("#box").text("已经显示全部").css("bottom","5px");
+//    },function(){
+//        $("li:gt(11)").hide();
+//        //$("li:gt(11)").css("display","none");
+//        $('#container li').filter(":contains(通用)").removeClass("selected");
+//        $("#box").text("显示全部品牌").css("bottom","5px");
+//    });
+
+
+</script>
+</body>
+</html>
