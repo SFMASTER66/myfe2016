@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $("div").on("click",function(){
+        $(this).animate({left:"500px"},3000)
+                .animate({top:"500px"},2000)
+                .animate({opacity:"0.6"},1000 ,function(){     //这个属于回调函数
+            $(this).css("border", "1px solid black")
+        })
+//                .fadeOut("slow");
+    });
+</script>
+</body>
+</html>
