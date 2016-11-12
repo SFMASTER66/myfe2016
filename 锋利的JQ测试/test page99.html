@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function one(){
+        alert("one")
+    }
+    function two(){
+        alert("two");
+    }
+//    var two = function(){
+//        alert('two');
+//    }
+//    one();          //有括号就会两个按顺序执行。
+//    two();
+    window.onload=one;      //这个没有括号的就会后面的覆盖前面的。
+    window.onload=two;
+//    window.onload =  function(){
+//        alert('one');
+//    }
+//    window.onload =  function(){
+//        alert('two');
+//    }
+
+    window.onload =  (function(){
+            alert('one');
+        })();
+    window.onload =  (function(){
+        alert('two');
+    })();
+</script>
+
+</body>
+</html>
