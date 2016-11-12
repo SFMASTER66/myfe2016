@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            float: left;
+            width: 310px;
+            height: 310px;
+            border: 1px solid black;
+            margin-left: 5px;
+        }
+        #dd{
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            color: red;
+        }
+        h3{
+            position: absolute;
+            top: 0px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><a href="cloth/blue_one_big.jpg" class="tooltip" title='blue-one'><img src="cloth/blue_one_small.jpg" alt=""/></a></li>
+    <li><a href="cloth/green_one_big.jpg" class="tooltip" title='green_one'><img src="cloth/green_one_small.jpg" alt=""/></a></li>
+    <li><a href="cloth/yellow_one_big.jpg" class="tooltip" title='yellow_one'><img src="cloth/yellow_one_small.jpg" alt=""/></a></li>
+</ul>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        var $div;
+        var x=10;
+        var y=20;
+        var $title;
+        $("a").on("mouseover",function(e){
+            var $pic=$(this).attr("href");
+            $title=this.title;
+            this.title="";
+            $div=$("<div id='dd'><img src="+$pic+"/><h3>"+$title+"</h3></div>");
+            $div.appendTo("body");
+            $div.css({"left":(e.pageX+x)+"px","top":(e.pageY+y)+"px"}).show("slow");
+        }).on("mouseout",function(){
+            $div.remove();
+            this.title=$title;
+        }).on("mousemove",function(e){
+            $div.css({"left":(e.pageX+x)+"px","top":(e.pageY+y)+"px"});
+        });
+    });
+</script>
+</body>
+</html>
