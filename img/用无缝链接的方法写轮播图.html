@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container2 li{
+            list-style: none;
+            float: left;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: black;
+            color: white;
+            margin-left: 5px;
+        }
+        #container2{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            float: left;
+            z-index: 2;
+        }
+
+        #container{
+            width: 680px;
+            height: 344px;
+            position: relative;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        #container1{
+            width: 3400px;
+            height: 344px;
+            float: left;
+            position: absolute;
+        }
+        #container1 img{
+            float: left;
+        }
+        #container3{
+            width: 110px;
+            height: 50px;
+            position: absolute;
+            left: 5px;
+            bottom: 5px;
+        }
+        #container3 span{
+            float: left;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background: black;
+            color: white;
+            margin-right: 5px;
+            cursor: pointer;
+            /*display: none;*/
+        }
+        #container2 .selected{
+            background: orange;
+        }
+        /*#container3 .selected{*/
+            /*display: none;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="container2">
+        <ui>
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ui>
+    </div>
+    <div id="container1">
+        <img class="selected"src="1.jpg" alt=""/>
+        <img src="2.jpg" alt=""/>
+        <img src="3.jpg" alt=""/>
+        <img src="4.jpg" alt=""/>
+        <img src="1.jpg" alt=""/>
+    </div>
+    <div id="container3">
+        <span>&lt;</span>
+        <span>&gt;</span>
+    </div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        var timer1=setInterval(function(){
+            $("#container3 span:eq(1)").trigger("click");
+        },2000);
+        $("#container1 img").each(function(index,img){     /*这三行代码写的是弹入弹出*/
+            $(img).css("z-index",$("#container1 img").length-index);
+        });
+        var a=5;
+        var index=0;
+        $("#container3 span:eq(1)").on("click",function(){
+            index++;
+            if(index>3){
+                index=0;
+            }
+            $("#container2 li").eq(index).addClass("selected").siblings().removeClass("selected");
+            $("#container1 img").css("z-index",a).css("opacity",0).stop(true,true).animate({opacity:1},1000);
+            $("#container1").stop(true,true).animate({left:aa()+'px'},1000);
+            function aa(){
+                var $ff=$("#container1").position().left;    /*position写的是不带px的*/
+                if($ff<-2040){
+                    $("#container1").css({"left": '0px'});  /*这里不用animate,因为animate是动画，有一定的时间性，用css 直接就定位到了第一张*/
+                }
+                return $("#container1").position().left - 680;   /*相对于距离已经定位的父元素的left*/
+            }
+        });
+        $("#container3 span:eq(0)").on("click",function(){
+            index--;
+            if(index<0){
+                index=3;
+            }
+            $("#container2 li").eq(index).addClass("selected").siblings().removeClass("selected");
+                $("#container1 img").css("z-index",a).css("opacity",0).stop(true,true).animate({opacity:1},1000);
+                $("#container1").stop(true,true).animate({left:bb()+"px"},1000);
+                function bb(){
+                    var $left=$("#container1").css("left");   /*用css写的是带px的*/
+                    if($left.split('p')[0]==0){
+                        $("#container1").css({"left": '-2720px'});
+                    }
+                    return $("#container1").position().left+680;   /*相对于距离已经定位的父元素的left*/
+                }
+        });
+        $("#container").on("mouseover",function(){
+            clearInterval(timer1);
+        });
+        $("#container").on("mouseout",function(){
+            timer1=setInterval(function(){
+                $("#container3 span:eq(1)").trigger("click");
+            },2000);
+        });
+    });
+</script>
+</body>
+</html>
