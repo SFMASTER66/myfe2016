@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            height: 100%;
+        }
+        body{
+            display: -webkit-flex;     /*用新盒的方法做的自适应*/
+            -webkit-flex-direction: column;
+            height: 100%;
+        }
+        #header{
+            height: 50px;
+            width: 100%;
+            background: orange;
+        }
+        #body{
+            background: greenyellow;
+            -webkit-flex-grow: 1;
+        }
+        #footer{
+            height: 50px;
+            width: 100%;
+            background:orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="body"></div>
+    <div id="footer"></div>
+</body>
+</html>
