@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 450px;
+            height: 100px;
+        }
+        strong{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <label for="password">密码</label>  <!--写表格的时候用label-->
+    <input type="text" value="username"/>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $("input").each(function(){    //用JQ的方法手动添加红色星星。
+        var $a=$("<strong class='high'>*</strong>");
+        $a.appendTo($(this).parent());
+    });
+    $("input").on("focus",function(){
+        if(this.value==this.defaultValue){
+            this.value=""
+        }
+    })
+    $("input").on("blur",function(){
+        var $notic;
+        $(".notic").remove();
+        if(this.value==""||this.value.length<6){
+            if(this.value==""){
+                this.value = this.defaultValue;
+            }
+            $notic=$("<strong class='notic'>请输入长度大于6的用户名</strong>");
+            $notic.appendTo($(this).parent());
+        }else{
+            $notic=$("<strong class='notic'>输入正确</strong>")
+            $(this).parent().append($notic);
+        }
+    }).on("keyup",function(){
+        $(this).triggerHandler("blur");
+    }).on("keyup",function(){
+        $(this).triggerHandler("focus");
+    });
+</script>
+</body>
+</html>
