@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            -webkit-perspective: 800px;
+        }
+        .circle,.circle::after{
+            width: 200px;
+            height: 200px;
+            border-radius:50%;
+            border: 10px solid;
+            position: absolute;
+        }
+        .circle::after{
+            content:"";
+        }
+        .blue{
+            border-color: blue;
+            -webkit-animation: aaa 4s ease 1s infinite;
+        }
+        @-webkit-keyframes aaa{
+            0%{
+
+            }
+            50%{
+                -webkit-transform: rotateY(360deg);
+                border-color: pink;
+                box-shadow:2px 2px 10px red ;
+            }
+            100%{
+                -webkit-transform: rotateY(720deg);
+            }
+        }
+        .blue::after{
+            border-color: blue;
+            top: -10px;
+            left: -10px;
+            z-index: 1;
+            border-bottom-color:transparent;
+            -webkit-animation: bbb 5s ease 1s infinite;
+        }
+        @-webkit-keyframes bbb{
+            0%{
+
+            }
+            50%{
+                -webkit-transform: rotateY(360deg);
+                border-color: black;
+            }
+            100%{
+                -webkit-transform: rotateY(720deg);
+            }
+        }
+        .yellow{
+            border-color: yellow;
+            top: 0;
+            left: 230px;
+            -webkit-animation: aaa 4s ease 1s infinite;
+        }
+        .yellow::after{
+            border-color: yellow;
+            top: -10px;
+            left: -10px;
+            z-index: 1;
+            border-left-color:transparent ;
+            -webkit-animation: bbb 5s ease 1s infinite;
+        }
+        .red{
+            border-color: red;
+            top: 0;
+            left: 460px;
+            -webkit-animation: aaa 4s ease 1s infinite;
+        }
+        .red::after{
+            border-color: red;
+            top: -10px;
+            left: -10px;
+            z-index: 1;
+            border-left-color:transparent;
+            -webkit-animation: bbb 5s ease 1s infinite;
+        }
+        .green{
+            border-color: green;
+            top: 130px;
+            left: 110px;
+            -webkit-animation: aaa 4s ease 1s infinite;
+        }
+        .green::after{
+            border-color: green;
+            top: -10px;
+            left: -10px;
+            -webkit-animation: bbb 5s ease 1s infinite;
+        }
+        .black{
+            border-color: black;
+            top: 130px;
+            left: 350px;
+            -webkit-animation: aaa 4s ease 1s infinite;
+        }
+        .black::after{
+            border-color: black;
+            top: -10px;
+            left: -10px;
+            z-index: 1;
+            border-top-color:transparent;
+            border-right-color: transparent;
+            -webkit-animation: bbb 5s ease 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle blue"></div>
+    <div class="circle yellow"></div>
+    <div class="circle red"></div>
+    <div class="circle green"></div>
+    <div class="circle black"></div>
+</body>
+</html>
