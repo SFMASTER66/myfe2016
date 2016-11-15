@@ -1,0 +1,399 @@
+#header{
+    height: 105px;
+    background: #dae0ec;
+    /*position: relative;*/
+}
+#header .wrap{
+    width: 990px;
+    height: 105px;
+    margin: 0 auto;
+    position: relative;
+}
+#sub-menu li{
+    float: left;
+    padding: 11px 6px;
+    width: 64px;
+}
+#menu{
+    width: 990px;
+    height: 37px;
+    /*background: lightgreen;*/
+    position: absolute;
+    bottom: 0px;
+}
+#sub-menu a{
+    text-decoration: none;
+}
+#sub-menu{
+    height: 37px;
+}
+#header input{
+    position: absolute;
+    top: 28px;
+    left: 186px;
+}
+#header img{
+    position: absolute;
+    top: 5px;
+}
+#sub-menu .ssub-menu{
+    display: none;
+    z-index: 666;
+    position: absolute;
+}
+#menu #sub-menu .ssub-menu li{
+    color: #a3a3a3;
+    padding: 10px 18px;
+}
+#skin{
+    float: left;
+    width: 120px;
+    height: 15px;
+    position: absolute;
+    left: 1000px;
+    top: 16px;
+}
+#skin li{
+    float: left;
+    width: 20px;
+    height: 15px;
+    background-image:url("../images/upload/theme.gif");
+    background-repeat: no-repeat;
+    /*text-indent: -9999px;*/
+    /*overflow: hidden;*/
+}
+input{
+    color: lightgray;
+}
+#skin_0{
+    background-position:0px 0px;
+}
+#skin_1{
+    background-position:-20px 0px;
+}
+#skin_2{
+    background-position:-40px 0px;
+}
+#skin_3{
+    background-position:-60px 0px;
+}
+#skin_4{
+    background-position:-80px 0px;
+}
+#skin_5{
+    background-position:-100px 0px;
+}
+
+#skin_0.s-selected{
+    background-position:0px -15px;
+}
+#skin_1.s-selected{
+    background-position:-20px -15px;
+}
+#skin_2.s-selected{
+    background-position:-40px -15px;
+}
+#skin_3.s-selected{
+    background-position:-60px -15px;
+}
+#skin_4.s-selected{
+    background-position:-80px -15px;
+}
+#skin_5.s-selected{
+    background-position:-100px -15px;
+}
+#menu.skin_0_color{
+    background:#4f71b9;
+}
+#menu.skin_1_color{
+    background:#b1d410;
+}
+#menu.skin_2_color{
+    background:#f9af2a;
+}
+#menu.skin_3_color{
+    background:#0abdce;
+}
+#menu.skin_4_color{
+    background:#e1215d;
+}
+#menu.skin_5_color{
+    background:#c152da;
+}
+#s-head.skin_0_color{
+    background: #3f5e9f
+}
+#s-head.skin_1_color{
+    background: #afd302;
+}
+#s-head.skin_2_color{
+    background: #fba60a;
+}
+#s-head.skin_3_color{
+    background: #98E0E6;
+}
+#s-head.skin_4_color{
+    background: #e44a76;
+}
+#s-head.skin_5_color{
+    background: #ca6fde;
+}
+
+
+#commodity{
+    height: 580px;
+    background: white;
+    /*position: relative;*/
+}
+#commodity  .wrap{
+    width: 990px;
+    height: 580px;
+    margin: 0 auto;
+    position: relative;
+}
+#fenlei{
+    position: absolute;
+    top: 8px;
+}
+#commodity .s-fenlei{
+    width: 187px;
+    height: 133px;
+}
+#commodity .s-fenlei li{
+    float: left;
+    width: 79px;
+    height: 24px;
+    /*text-decoration: none;*/
+    /*text-align: center;*/
+    line-height: 24px;
+}
+#commodity a{
+    text-decoration: none;
+}
+#fenlei p{
+    border-bottom: 1px solid black;
+}
+#s-head h3{
+    text-align: left;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+#fenlei ul{
+    padding-top: 5px;
+}
+#s-head{
+    width: 187px;
+    height: 30px;
+    /*background: gray;*/
+    color: white;
+    position: relative;
+    margin-bottom: 5px;
+}
+#sub-menu .ssub-menu{
+    width: 300px;
+    height: 150px;
+    background: white;
+    z-index: 666;
+}
+
+#lunbotu{
+    width: 550px;
+    height: 321px;
+    position: absolute;
+    left: 202px;
+    top: 8px;
+    overflow: hidden;
+}
+#l-explain{
+    width: 550px;
+    height: 42px;
+    position: absolute;
+    bottom: 1px;
+    z-index: 9999;
+}
+#l-explain a{
+    float: left;
+    font-size: 10px;
+    width: 107px;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+    margin-right: 1px;
+}
+#lunbotu a{
+    width: 109px;
+    height: 42px;
+}
+#dongtu{
+    width: 230px;
+    height: 176px;
+    position: absolute;
+    left: 760px;
+    top: 8px;
+}
+#bulletin{
+    width: 230px;
+    height: 135px;
+    background: white;
+    position: absolute;
+    left: 760px;
+    top: 194px;
+    border: 1px solid gray;
+}
+#eee{
+    width: 230px;
+    height: 108px;
+    position: absolute;
+    top: 25px;
+}
+#bulletin h3{
+    margin-top: 4px;
+    border-bottom: 1px solid gray;
+    padding-left: 5px;
+}
+#bulletin a{
+    height: 10px;
+    padding: 5px 5px;
+    /*border-right: 1px solid black;*/
+    font-size: 13px;
+}
+
+
+#ads{
+    width: 790px;
+    height: 224px;
+    position: absolute;
+    top: 355px;
+    left: 200px;
+    overflow: hidden;
+}
+#cuxiao{
+    width: 88px;
+    height: 25px;
+}
+#kuanshi{
+    width: 220px;
+    height: 25px;
+    position: absolute;
+    top: 0px;
+    left: 540px;
+    border-bottom:1px solid gray;
+}
+#kuanshi li{
+    float: left;
+    width: 50px;
+    height: 25px;
+    /*background: pink;*/
+    margin-right: 5px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+.selected{
+    background: pink;
+}
+#main-img a {
+    width: 182px;
+    height: 25px;
+    /*border: 1px solid black;*/
+    float: left;
+    background: lightgray;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 25px;
+}
+#main-img{
+    position: absolute;
+    top: 32px;
+    width: 3500px;
+    height: 190px;
+    overflow: hidden;
+}
+#main-img div{
+    float: left;
+}
+#main-img .hhh{
+    height: 190px;
+    width: 183px;
+    margin-right: 17px;
+}
+#l-explain em{
+    width: 109px;
+    height: 42px;
+    float: left;
+    margin-right:1px;
+    position: relative;
+    background: lightgray;
+}
+#l-explain em.selected span{
+    display: block;
+}
+#l-explain em span{
+    position: absolute;
+    bottom: 0;
+    left: 47px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: transparent transparent #943445  transparent;
+    display: none;
+}
+#lunbotu img{
+    float: left;
+    position: absolute;
+}
+#l-lunbotu{
+    width: 2750px;
+    height: 321px;
+    overflow: hidden;
+}
+
+#kuanshi ul span{
+    border-width: 6px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+    position: absolute;
+    bottom:-12px;
+    left: 18px;
+    display: none;
+}
+#kuanshi ul.selected span{
+    display: block;
+}
+#kuanshi ul{
+    height: 26px;
+    width: 51px;
+    float: left;
+    position: relative;
+}
+#l-explain em.c{
+    background: lightgreen;
+}
+
+#fenlei #hot{
+    background-image: url("../images/upload/hot.gif");
+    background-repeat:no-repeat;
+    background-position:46px -1px;
+}
+#fenlei #hhot{
+    background-image: url("../images/upload/hot.gif");
+    background-repeat:no-repeat;
+    background-position:25px -1px;
+}
+
+#eee .tip{
+    position: relative;
+}
+
+
+#title{
+    position:absolute;
+    border:1px solid #333;
+    background:#f7f5d1;
+    padding:1px;
+    color:#333;
+    display:none;
+}
+
+
+

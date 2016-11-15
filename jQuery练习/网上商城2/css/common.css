@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,li{
+    list-style: none;
+}
+image{
+    border: none;
+}
+.wrap{
+    width: 990px;
+    margin: 0 auto;
+    position: relative;
+}
+body{
+    font:normal 12px/17px Arial;
+}
