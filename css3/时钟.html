@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align:end ;
+        }
+        /*li{*/
+            /*list-style: none;*/
+        /*}*/
+        #container{
+            width: 200px;
+            height: 200px;
+            border: 1px solid white;
+            background: black;
+            border-radius: 30px;
+        }
+        #clock{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 50%;
+            position: relative;
+            /*top: 300px;*/
+            box-shadow: 2px 2px 10px red;
+            background: lightslategray;
+            -webkit-animation:run 4s ease infinite;
+            /*-webkit-transform: rotateY(45deg);*/
+        }
+        /*@-webkit-keyframes run {*/
+            /*20%{*/
+            /*-webkit-transform: translateX(400px);*/
+        /*}*/
+            /*60%{*/
+                /*-webkit-transform: translateY(-400px);*/
+            /*}*/
+            /*100%{*/
+                /*-webkit-transform: translateY(200px);*/
+            /*}*/
+        /*}*/
+        #dial li{
+            list-style: none;
+            width: 1px;
+            height: 10px;
+            background: green;
+            position: absolute;
+            -webkit-transform-origin: center 100px;
+            top: 0;
+            left:100px;
+        }
+        #dial li:nth-child(5n+1){
+            height: 15px;
+            background: deeppink;
+        }
+        #hour{
+            width: 4px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            top: 80px;
+            left:98px;
+            -webkit-transform-origin: center bottom;
+        }
+        #minute{
+            width: 2px;
+            height: 35px;
+            background: green;
+            position: absolute;
+            top: 65px;
+            left: 99px;
+            -webkit-transform-origin: center bottom;
+        }
+        #second{
+            width: 1px;
+            height: 55px;
+            background: black;
+            position: absolute;
+            top: 45px;
+            left: 100px;
+            -webkit-transform-origin: center bottom;
+            box-shadow: 2px 2px 10px darkred;
+        }
+        #dates{
+            width: 20px;
+            height: 20px;
+            background: wheat;
+            position: absolute;
+            top: 61px;
+            left: 138px;
+        }
+        #year{
+            width: 35px;
+            height: 20px;
+            background: wheat;
+            position: absolute;
+            top: 61px;
+            left: 38px;
+        }
+        #month{
+            width: 20px;
+            height: 20px;
+            background: wheat;
+            position: absolute;
+            top: 61px;
+            left: 99px;
+        }
+        p{
+            position: absolute;
+            top: 30px;
+            left: 40%;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="clock">
+        <p>OMEGA</p>
+        <ul id="dial">
+        </ul>
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+        <div id="dates"></div>
+        <div id="year"></div>
+        <div id="month"></div>
+    </div>
+</div>
+
+<script>
+    var oDial=document.getElementById("dial");
+    var oHour=document.getElementById("hour");
+    var oMinute=document.getElementById("minute");
+    var oSecond=document.getElementById("second");
+    var oDates=document.getElementById("dates");
+    var oYear=document.getElementById("year");
+    var oMonth=document.getElementById("month");
+    var html="";
+    for(var i=0;i<60;i++){
+    html+="<li style=-webkit-transform:rotate("+i*6+"deg)></li>";
+    };
+    oDial.innerHTML=html;
+    var run=function(){
+        var date=new Date();
+        var second=date.getSeconds(),
+                minute=date.getMinutes()+second/60,
+                hour=date.getHours()+minute/60,
+                dates=date.getDate(),
+        year=date.getFullYear(),
+        month=date.getMonth()+1;
+            oDates.innerHTML=dates;
+        oYear.innerHTML=year;
+        oMonth.innerHTML=month;
+        oHour.style.WebkitTransform="rotate("+hour*30+"deg)";
+        oSecond.style.WebkitTransform="rotate("+second*6+"deg)";
+        oMinute.style.WebkitTransform="rotate("+minute*6+"deg)";
+    }
+    run();
+    setInterval(run,1000);
+</script>
+</body>
+</html>
