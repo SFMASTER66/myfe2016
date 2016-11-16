@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 800px;
+            height: 450px;
+            margin: 100px auto;
+            position: relative;
+            /*-webkit-transform-origin:center bottom ;*/
+        }
+        #imgs{
+
+        }
+        img{
+            position: absolute;
+            opacity: 0;
+        }
+        #prev,#next{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: gray;
+            position:absolute;
+            font-size: 50px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            -webkit-text-stroke:1px black;
+            box-shadow: 2px 2px 10px gray;
+            cursor: pointer;
+        }
+        #next{
+            top: 50%;
+            right: -125px;
+        }
+        #prev{
+            top: 50%;
+            left: -117px;
+        }
+        .show{
+            -webkit-animation: show 1s ease forwards;
+            -webkit-transform-origin:center bottom ;
+        }
+        @-webkit-keyframes show {
+            from{
+                opacity: 0;
+                -webkit-transform: rotateX(-180deg);
+            }
+            to{
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+            }
+        }
+        .hide{
+            -webkit-animation: hide 1s ease forwards;
+            -webkit-transform-origin:center bottom ;
+        }
+        @-webkit-keyframes hide {
+            from{
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+            }
+            to{
+                opacity: 0;
+                -webkit-transform: rotateX(180deg);
+            }
+        }
+        img.d{
+            opacity:1;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="imgs">
+        <img src="img/f1.JPG" alt="" class="d" />
+        <img src="img/f2.JPG" alt=""/>
+        <img src="img/f3.JPG" alt=""/>
+        <img src="img/f4.JPG" alt=""/>
+    </div>
+    <span id="prev">&lt;</span>
+    <span id="next">&gt;</span>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    var $index=0;
+    $("#next").on("click",function(){
+        $("img").eq($index).addClass("hide").removeClass("show")
+        $index++;
+        if($index>3){
+            $index=0;
+        }
+            $("img").eq($index).addClass("show").removeClass("hide");
+    });
+    $("#prev").on("click",function(){
+        $("img").eq($index).addClass("hide").removeClass("show")
+        $index--;
+        if($index<1){
+            $index=$("img").size()-1;
+        }
+        $("img").eq($index).addClass("show").removeClass("hide");
+    });
+</script>
+</body>
+</html>
