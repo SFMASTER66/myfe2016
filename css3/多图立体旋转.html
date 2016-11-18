@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: black;
+            -webkit-perspective: 800px;
+            -webkit-perspective-origin: center top;    /*爷爷级别用perspective  比如有perspective-origin*/
+        }
+        #container{
+            /*background: red;*/
+            width: 200px;
+            height: 400px;
+            /*margin: 200px auto;*/
+            position: relative;
+            top: 160px;
+            left: 565px;
+            -webkit-transform-style: preserve-3d;   /*爸爸级别用transform  比如有transform-origin*/
+            -webkit-animation: run 10s linear infinite;
+        }
+        @-webkit-keyframes run {
+              /*20%{*/
+                  /*-webkit-transform: translate(600px) rotateY(360deg);*/
+              /*}*/
+            100%{
+                -webkit-transform:rotateY(360deg);   /*只能先平移 但是当100%的时候不能转*/
+            }
+        }
+        #container div{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+            /*background: orange;*/
+            /*text-align: center;*/
+            line-height: 200px;
+            font-size: 30px;
+        }
+        img{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /*#eight{*/
+            /*-webkit-transform:rotateY(135deg) translateZ(146px) ;*/
+        /*}*/
+        /*#seven{*/
+             /*-webkit-transform:rotateY(90deg) translateZ(147px) ;*/
+         /*}*/
+        /*#six{*/
+            /*-webkit-transform:rotateY(225deg) translateZ(-146px) ;*/
+        /*}*/
+        /*#five{*/
+            /*-webkit-transform:rotateY(180deg) translateZ(145px) ;*/
+        /*}*/
+        /*#four{*/
+            /*-webkit-transform:rotateY(45deg) translateZ(-144px) ;*/
+        /*}*/
+        /*#three{*/
+            /*-webkit-transform:rotateY(90deg) translateZ(-152px) ;*/
+        /*}*/
+        /*#two{*/
+            /*-webkit-transform:rotateY(135deg) translateZ(-146px);*/
+        /*}*/
+        /*#one{*/
+            /*-webkit-transform:translateZ(145px);*/
+        /*}*/
+
+        #eight{
+            -webkit-animation: eight 5s linear forwards
+        }
+        @-webkit-keyframes eight {
+        100%{-webkit-transform:rotateY(135deg) translateZ(146px)}
+        }
+        #seven{
+            -webkit-animation: seven 5s linear forwards
+        }
+        @-webkit-keyframes seven {
+            100%{ -webkit-transform:rotateY(90deg) translateZ(147px) ;}
+        }
+        #six{
+            -webkit-animation: six 5s linear forwards
+        }
+        @-webkit-keyframes six {
+            100%{ -webkit-transform:rotateY(225deg) translateZ(-146px) ;}
+        }
+        #five{
+            -webkit-animation: five 5s linear forwards
+        }
+        @-webkit-keyframes five {
+            100%{ -webkit-transform:rotateY(180deg) translateZ(145px) ;}
+        }
+        #four{
+            -webkit-animation: four 5s linear forwards
+        }
+        @-webkit-keyframes four {
+            100%{ -webkit-transform:rotateY(45deg) translateZ(-144px) ;}
+        }
+        #three{
+            -webkit-animation: three 5s linear forwards
+        }
+        @-webkit-keyframes three {
+            100%{ -webkit-transform:rotateY(90deg) translateZ(-152px) ;}
+        }
+        #two{
+            -webkit-animation: two 5s linear forwards
+        }
+        @-webkit-keyframes two {
+            100%{ -webkit-transform:rotateY(135deg) translateZ(-146px) ;}
+        }
+        #one{
+            -webkit-animation: one 5s linear forwards
+        }
+        @-webkit-keyframes one {
+            100%{ -webkit-transform:rotateY(360deg) translateZ(145px) ;}
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="one"><img src="img/1.jpeg" alt=""/></div>
+    <div id="two"><img src="img/2.jpeg" alt=""/></div>
+    <div id="three"><img src="img/3.jpeg" alt=""/></div>
+    <div id="four"><img src="img/4.jpeg" alt=""/></div>
+    <div id="five"><img src="img/5.jpeg" alt=""/></div>
+    <div id="six"><img src="img/6.jpeg" alt=""/></div>
+    <div id="seven"><img src="img/7.jpeg" alt=""/></div>
+    <div id="eight"><img src="img/8.jpeg" alt=""/></div>
+    <!--<div id="one">1</div>-->
+    <!--<div id="two">2</div>-->
+    <!--<div id="three">3</div>-->
+    <!--<div id="four">4</div>-->
+    <!--<div id="five">5</div>-->
+    <!--<div id="six">6</div>-->
+    <!--<div id="seven">7</div>-->
+    <!--<div id="eight">8</div>-->
+</div>
+<script>
+    var aDiv=document.getElementsByTagName("div");
+    var oContainer=document.getElementById("container");
+    var a=0;
+           oContainer.onclick=function(){
+            a++;
+            oContainer.style.WebkitTransform="rotateY("+45*a+"deg)";
+        };
+
+//        oContainer.onmouseover=function(){
+//            a++;
+//            oContainer.style.WebkitTransform="rotateY("+45*a+"deg)";
+//        };
+
+</script>
+</body>
+</html>
