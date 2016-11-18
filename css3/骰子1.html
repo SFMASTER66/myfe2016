@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: black;
+            -webkit-perspective: 800px;
+            -webkit-perspective-origin:  center top;  /*下面要转的整个框定位的时候，写relative比较好，然后这个比较好用*/
+            /*-webkit-perspective-origin: center 200%;*/
+        }
+        #container{
+            width: 300px;
+            height: 300px;
+            /*position: relative;*/
+            /*margin: 100px auto;*/
+            /*left: 50%;*/
+            /*top: 200px;*/
+            -webkit-transform-style:preserve-3d ;  /*让整个框呈现3d效果*/
+            -webkit-animation: run 10s linear infinite;
+            box-shadow: 2px 2px 10px pink;
+        }
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        @-webkit-keyframes run {
+            20%{
+                text-shadow: 1px  1px 1px #ccc,
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px #ff00de,
+                0 0 70px #ff00de,
+                0 0 80px #ff00de,
+                0 0 100px #ff00de,
+                0 0 150px #ff00de;
+            }
+            100%{
+                -webkit-transform:  rotateY(360deg);   /*只能先平移 但是当100%的时候不能转*/
+            }
+        }
+      #container div{
+          width: 300px;
+          height: 300px;
+          background: beige;
+          text-align: center;
+          line-height: 300px;
+          font-size: 50px;
+          /*opacity: 0.95;*/
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 10%;
+          color: goldenrod;
+      }
+      /*#container #six{*/
+          /*background: greenyellow;*/
+      /*}*/
+        #container{
+            position: relative;
+            left: 500px;
+            top: 150px;
+        }
+        /*#one{*/
+            /*-webkit-animation:one 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes one {*/
+            /*100%{-webkit-transform: rotateX(90deg) translateZ(200px)}*/
+        /*}*/
+        /*#two{*/
+            /*-webkit-animation:two 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes two {*/
+            /*100%{-webkit-transform:rotateY(360deg) translateZ(200px)}*/
+        /*}*/
+        /*#three{*/
+            /*-webkit-animation:three 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes three {*/
+            /*100%{-webkit-transform: rotateY(90deg) translateZ(200px)}*/
+        /*}*/
+        /*#four{*/
+            /*-webkit-animation:four 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes four {*/
+            /*100%{-webkit-transform:rotateY(180deg) translateZ(200px)}*/
+        /*}*/
+        /*#five{*/
+            /*-webkit-animation:five 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes five {*/
+            /*100%{-webkit-transform:rotateY(-90deg) translateZ(200px)}*/
+        /*}*/
+        /*#six{*/
+            /*-webkit-animation:six 2s ease infinite ;*/
+        /*}*/
+        /*@-webkit-keyframes six {*/
+            /*100%{-webkit-transform:rotateX(-90deg) translateZ(200px)}*/
+        /*}*/
+
+
+        #one{
+            -webkit-transform:scale3d(1.2,1.2,1.2) rotateX(90deg) translateZ(150px);   /*记住,旋转完之后,原来的x,y,z轴会跟着旋转一起动*/
+        }
+        #six{
+            -webkit-transform:scale3d(1.2,1.2,1.2) rotateX(-90deg) translateZ(150px);
+        }
+        #five{
+            -webkit-transform:scale3d(1.2,1.2,1.2) rotateY(-90deg) translateZ(150px);
+        }
+        #four{
+            -webkit-transform:scale3d(1.2,1.2,1.2) rotateY(180deg) translateZ(150px);
+        }
+        #two{
+            -webkit-transform: scale3d(1.2,1.2,1.2) translateZ(150px);
+        }
+        #three{
+            -webkit-transform:scale3d(1.2,1.2,1.2) rotateY(90deg) translateZ(150px);
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <img src="img/pic.jpg" alt=""/>
+    <div id="one">1</div>
+    <div id="two">2</div>
+    <div id="three">3</div>
+    <div id="four">4</div>
+    <div id="five">5</div>
+    <div id="six">6</div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $("html").on("click",function(){
+        $("#container div").eq(0).css({"-webkit-transition":'3s linear',"-webkit-transform":"rotateX("+90+"deg) translateZ("+150+"px)"});
+        $("#container div").eq(2).css({"-webkit-transition":'3s linear',"-webkit-transform":"rotateY("+90+"deg) translateZ("+150+"px)"});
+        $("#container div").eq(1).css({"-webkit-transition":'3s linear',"-webkit-transform":"translateZ("+150+"px)"});
+        $("#container div").eq(3).css({"-webkit-transition":'3s linear',"-webkit-transform":"rotateY("+180+"deg) translateZ("+150+"px)"});
+        $("#container div").eq(4).css({"-webkit-transition":'3s linear',"-webkit-transform":"rotateY("+-90+"deg) translateZ("+150+"px)"});
+        $("#container div").eq(5).css({"-webkit-transition":'3s linear',"-webkit-transform":"rotateX("+-90+"deg) translateZ("+150+"px)"});
+    });
+    $("#container").on("click",function(e){
+        $("#container div").eq(0).css({"-webkit-transition":'5s linear',"-webkit-transform":"rotateX("+90+"deg) translateZ("+600+"px)"});
+        $("#container div").eq(2).css({"-webkit-transition":'5s linear',"-webkit-transform":"rotateY("+90+"deg) translateZ("+600+"px)"});
+        $("#container div").eq(1).css({"-webkit-transition":'5s linear',"-webkit-transform":"translateZ("+600+"px)"});
+        $("#container div").eq(3).css({"-webkit-transition":'5s linear',"-webkit-transform":"rotateY("+180+"deg) translateZ("+600+"px)"});
+        $("#container div").eq(4).css({"-webkit-transition":'5s linear',"-webkit-transform":"rotateY("+-90+"deg) translateZ("+600+"px)"});
+        $("#container div").eq(5).css({"-webkit-transition":'5s linear',"-webkit-transform":"rotateX("+-90+"deg) translateZ("+600+"px)"});
+        e.stopPropagation();
+//        return false;
+    });
+
+</script>
+</body>
+</html>
