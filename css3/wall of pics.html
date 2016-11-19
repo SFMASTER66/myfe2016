@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            height: 100%;
+            width: 100%;
+            background-image: url("imgs/bg.jpg");
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        #container .img{
+              width: 120px;
+              height: 120px;
+              border: 5px solid white;
+              position: absolute;
+              top: -150px;
+              left: -150px;
+              -webkit-transition: all 1.5s ease-out;
+          }
+        #prev{
+            width: 100%
+            height: 100%;
+        }
+        #next{
+            width: 100%
+            height: 100%;
+        }
+        .img span{       /*权重值的问题，span前面要加东西*/
+            width: 100%;
+            height:100%;
+            position: absolute;
+            opacity: 0;    /*opacity一开始的默认值为1，所以一开始就有慢慢变化的效果，就要让一开始opacity为0；*/
+            -webkit-transition: opacity 1.5s ease-in-out;
+        }
+        #prev,#next{
+            width: 50px;
+            height: 90px;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+        }
+        #prev{
+            border-radius: 0 15px 15px 0;
+            top: 50%;
+            margin-top: -45px;
+            background: url(imgs/prev.png) center no-repeat navajowhite;
+       }
+        #next{
+            border-radius: 15px 0 0 15px;
+            top: 50%;
+            margin-top: -45px;
+            right: 0;
+            background: url(imgs/next.png) center no-repeat navajowhite;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="prev"></div>-->
+    <div id="container">
+
+    </div>
+    <div id="prev"></div>
+    <div id="next"></div>
+</body>
+<script>
+    var oContainer=document.getElementById("container");
+    var oPrev=document.getElementById("prev");
+    var oNext=document.getElementById("next");
+    var num=0;
+    for(var i= 0;i<24;i++){
+        var img=new Image();
+        img.onload=function(){
+            num++;
+            if(num==48){
+                loadsuccess();
+            }
+        }
+        img.src="imgs/thumbs/"+(i+1)+".jpg";
+    }
+    for(var i=0;i<24;i++){
+        var img=new Image();
+        img.onload=function(){
+            num++;
+            if(num==48){
+                loadsuccess()
+            }
+        }
+        img.src="imgs/"+(i+1)+".jpg"
+    }
+    var colWidth=(oContainer.offsetWidth-6*120)/7;
+    var rowHeight=(oContainer.offsetHeight-4*120)/5;
+    var index=0;
+    var iNow=0;
+    function loadsuccess(){
+        for(var i=0;i<4;i++){
+            for(var j=0;j<6;j++){
+                var oDiv=document.createElement("div");
+                oDiv.className="img";
+                oDiv.pos={
+                    left:colWidth+j*(120+colWidth),
+                    top : rowHeight+i*(120+rowHeight)
+                }
+                oDiv.rowCal={
+                    row:i,
+                    col:j
+                }
+                oDiv.imgIndex=index;
+                oDiv.style.background="url(imgs/thumbs/"+(index+1)+".jpg)";
+                oDiv.onclick=fn;
+                oDiv.innerHTML="<span></span>"   //往元素里面添加东西
+                oContainer.appendChild(oDiv);
+                index++;
+            }
+        }
+
+        var aDiv=oContainer.getElementsByTagName("div");
+        var timer1=setInterval(function(){
+            index--;
+            aDiv[index].style.left=aDiv[index].pos.left+"px";
+            aDiv[index].style.top=aDiv[index].pos.top+"px";
+            aDiv[index].style.WebkitTransform='rotate('+(Math.random()*40-20)+'deg)';
+            if(index==0){
+                clearInterval(timer1);
+            }
+        },30);
+
+        var flag=0;
+        function fn(){
+            flag++;
+            var colLeft=(oContainer.offsetWidth-720)/2;
+            var rowTop=(oContainer.offsetHeight-480)/2;
+            if(flag==1){
+                for(var i=0;i<24;i++){
+                    aDiv[i].style.left=aDiv[i].rowCal.col*120+colLeft+"px";
+                    aDiv[i].style.top=aDiv[i].rowCal.row*120+rowTop+"px";
+                    aDiv[i].style.WebkitTransform="rotate("+0+"deg)";
+                    aDiv[i].style.border="1px solid white"
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];
+                    oSpan.style.opacity = 1;
+                    var spanLeft = -aDiv[i].rowCal.col * 120;
+                    var spanTop = -aDiv[i].rowCal.row * 120;
+                    /*下面的小精灵定位，给每一个小的span定位图片的位置*/
+                    oSpan.style.background = 'url(imgs/'+(this.imgIndex+1)+'.jpg) '+spanLeft+'px '+spanTop+'px no-repeat';/*px后面要留有看空格，因为本身不字符串拼接的时候，每一个值后面就是有空格的*/
+
+                }
+                iNow=this.imgIndex;
+                oPrev.style.display="block";
+                oNext.style.display="block";
+            }else{
+                for(var i=0;i<24;i++){
+                    aDiv[i].style.left=aDiv[i].pos.left+"px";
+                    aDiv[i].style.top=aDiv[i].pos.top+"px";
+                    aDiv[i].style.WebkitTransform='rotate('+(Math.random()*40-20)+'deg)';
+                    aDiv[i].style.border="5px solid white";
+                    var oSpan = aDiv[i].getElementsByTagName('span')[0];
+                    oSpan.style.opacity = 0;
+                }
+                flag=0;
+                oPrev.style.display="none";
+                oNext.style.display="none";
+            }
+        }
+
+
+        oPrev.onclick= oNext.onclick=function(){
+            if(this==oNext){
+                iNow++;
+                if(iNow==aDiv.length){
+                    iNow=0;
+                }
+            }else{
+                iNow--;
+                if(iNow<0){
+                    iNow=aDiv.length-1;
+                }
+            }
+
+            var arr=[];
+            for(var i=0;i<24;i++){
+                arr.push(i);
+            }
+            arr.sort(function(a,b){
+                return Math.random()-0.5;
+            })
+            var timer2=setInterval(function(){
+                var random=arr.pop();
+                var oSpan=aDiv[random].getElementsByTagName("span")[0];
+                var spanLeft = -aDiv[random].rowCal.col * 120;
+                var spanTop = -aDiv[random].rowCal.row * 120;
+                oSpan.style.background = 'url(imgs/'+(iNow+1)+'.jpg) '+spanLeft+'px '+spanTop+'px no-repeat';
+                if(arr.length == 0){
+                    clearInterval(timer2);
+                }
+            },30)
+        }
+    }
+</script>
+</html>
