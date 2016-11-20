@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #main{
+            position: relative;
+            left: 50px;
+            top: 100px;
+        }
+        #container{
+            position: relative;
+            width: 110px;
+            height: 50px;
+        }
+        #da{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+        #xiao{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 60px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="container">
+        <div id="da">放大</div>
+        <div id="xiao">缩小</div>
+    </div>
+    <textarea name="" id="wenben" cols="30" rows="10">dfsadfsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdafsdgfsfsdfdsfsdfsdfsdfsdafsdafsdafsdfsdfsdafsdafdsdfsdfsdfdsafdsafsdf</textarea>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+   $("#da").on("click",function(){
+       //console.log($size);
+       var $size=$("#wenben").css("font-size");  /*这个取出来是带px单位的*/
+       //console.log($size);
+       var $ss=parseInt($size);
+//       $ss=$ss+2;
+       if($ss<60){
+           $("#wenben").css("font-size",$ss+2+"px");   /*这里的$ss+2是不带px的，可以不带px赋值*/
+           //console.log($ss);
+       }
+       });
+       $("#xiao").on("click",function(){
+           var $size=$("#wenben").css("font-size");
+           var $ss=parseInt($size);
+           /* $ss=$ss-2;
+            if($ss>12){*/       /*浏览器默认是12px，所以不用判断了。*/
+           $("#wenben").css("font-size",$ss-2+"px");    //一下子就缩小完了，
+//           }
+           console.log($ss);       //可以看控制台的输出
+   });
+
+</script>
+
+
+</body>
+</html>
