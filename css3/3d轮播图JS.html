@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 800px;
+            height: 450px;
+            margin: 50px auto;
+            position: relative;
+        }
+        #prev,#next{
+            width: 60px;
+            height: 60px;
+            background: gray;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px;
+            font-size: 70px;
+            position: absolute;
+            margin-top: -30px;
+            -webkit-text-stroke: 1px black;  /*描字体的边 第一个参数是厚度，第二个是描边的颜色是什么*/
+            color: white;
+            cursor: pointer;
+        }
+        #prev{
+            top: 50%;
+            left: -80px;
+        }
+        #next{
+            top: 50%;
+            right: -80px;
+        }
+        img{
+            width: 800px;
+            height: 450px;
+            position: absolute;
+            display: none;
+        }
+        .show{
+            display: block;
+        }
+        .iimg{
+            opacity: 1;
+            -webkit-animation: aa 1.3s ease forwards;
+            -webkit-transform-origin:center bottom ;
+            display: block;
+        }
+        @-webkit-keyframes aa {
+            from{
+                opacity: 0;
+                -webkit-transform: rotateX(-180deg);
+            }
+            to{
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+            }
+        }
+        .bb{
+            -webkit-animation: bb 1.3s ease forwards;
+            -webkit-transform-origin: center bottom;
+            display: block;
+        }
+        @-webkit-keyframes bb {
+            from{
+                opacity: 1;
+                -webkit-transform: rotateX(0deg);
+            }
+            to{
+                opacity: 0;
+                -webkit-transform: rotateX(-180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+</div>
+
+<script>
+    var oContainer=document.getElementById("container");
+    var oNext=document.getElementById("next");
+    var oPrev=document.getElementById("prev");
+    var num=0;
+    var index=0;
+    for(var i=0;i<4;i++){
+        var img=new Image();
+        img.onload=function(){
+            num++;
+            if(num==4){
+                loadSuccess();
+            }
+        }
+        img.src="img/f"+(i+1)+".JPG";
+    }
+    function loadSuccess(){
+        for(var i=0;i<4;i++){
+            var pic=document.createElement("img");
+            pic.imgIndex=index;
+            pic.src="img/f"+(index+1)+".JPG";
+            oContainer.appendChild(pic);
+            index++;
+        }
+        var aPic=document.getElementsByTagName("img");
+        aPic[0].className="show";
+        var iNow=0;
+        oNext.onclick=oPrev.onclick=function(){
+            if(this==oNext){
+                iNow++;
+                if(iNow==aPic.length){
+                    iNow=0;
+                }
+                console.log(iNow);
+                for(var i=0;i<4;i++){
+                    aPic[i].className="";
+                }
+                aPic[iNow].className="iimg";
+                if(iNow==0){
+                    aPic[aPic.length-1].className="bb";
+                }else{
+                    aPic[iNow-1].className="bb";
+                }
+                return false;
+            }else{
+                iNow--;
+                if(iNow<0){
+                    iNow=aPic.length-1;
+                }
+                console.log(iNow);
+                for(var i=0;i<4;i++){
+                    aPic[i].className="";
+                }
+                aPic[iNow].className="iimg";
+                if(iNow==aPic.length-1){
+                    aPic[0].className="bb";
+                }else{
+                    aPic[iNow+1].className="bb";
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
