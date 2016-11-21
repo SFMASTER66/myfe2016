@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 650px;
+            height: 650px;
+            margin: 50px auto;
+        }
+
+        #container img{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            -webkit-transition: all 2s ease;
+            /*-webkit-transition: opacity 1.3s ease,transform 1.3s ease;*/
+        }
+        .pic{
+            width: 200px;
+            height: 200px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div class="pic">
+            <img class="bb" src="img/1.jpeg" alt=""/>
+            <img class="aa" src="img/G1.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img  class="bb" src="img/2.jpeg" alt=""/>
+            <img class="aa" src="img/G2.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/3.jpeg" alt=""/>
+            <img class="aa" src="img/G3.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/4.jpeg" alt=""/>
+            <img class="aa" src="img/G4.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/5.jpeg" alt=""/>
+            <img class="aa" src="img/G5.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img  class="bb" src="img/6.jpeg" alt=""/>
+            <img class="aa" src="img/G6.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/7.jpeg" alt=""/>
+           <img class="aa" src="img/G7.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/8.jpeg" alt=""/>
+            <img class="aa" src="img/G8.jpg" alt=""/>
+    </div>
+    <div class="pic">
+            <img class="bb"  src="img/9.jpeg" alt=""/>
+            <img class="aa" src="img/G9.jpg" alt=""/>
+    </div>
+</div>
+<script>
+    var oContainer=document.getElementById("container");
+    var aDiv=document.getElementsByTagName("div");
+    var aImg=document.getElementsByTagName("img")
+    var flag=0;
+    oContainer.onclick=function(){
+        flag++;
+        if(flag==1){
+            for(var i=0;i<10;i++){
+                if(aDiv[i].className=="pic"){
+                    aDiv[i].style.webkitTransitionDuration=300+"ms";
+                    aDiv[i].style.webkitTransitionDelay=i*100+"ms";
+                    aDiv[i].style.webkitTransform="rotateY("+180+"deg)";
+                    }
+                for(var k=0;k<18;k++){
+                    if(aImg[k].className=="aa"){
+                    aImg[k].style.opacity=-2;
+                }
+                    if(aImg[k].className=="bb"){
+                        aImg[k].style.opacity=2;
+                    }
+                }
+            }
+            console.log(k);
+        }else{
+            for(var i=0;i<10;i++){
+                if(aDiv[i].className=="pic"){
+//                    aDiv[i].style.webkitTransitionDuration=(aDiv.length-i)*100+"ms";
+                    aDiv[i].style.webkitTransitionDuration=300+"ms";
+                    aDiv[i].style.webkitTransitionDelay=(aDiv.length-i)*100+"ms";
+                    aDiv[i].style.webkitTransform="rotateY("+0+"deg)";
+                }
+                for(var k=0;k<18;k++){
+                    if(aImg[k].className=="bb"){
+                        aImg[k].style.opacity=-2;
+                    }
+                    if(aImg[k].className=="aa"){
+                        aImg[k].style.opacity=2;
+                    }
+                }
+            }
+            flag=0;
+        }
+
+    }
+</script>
+</body>
+</html>
