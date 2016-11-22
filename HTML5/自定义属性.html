@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="box" aa="bb"></div>
+</body>
+<script>
+    var oDiv=document.getElementById("box");
+    console.log(oDiv.aa);      //获取元素里面已经自定义的属性的内容，用这个方法是不好使的，只能通过下面的方法来实现
+    console.log(oDiv.getAttribute("aa"));   //这个方法是可以实现获取自定义属性的值的。
+    //在元素外面，自定义一个元素的属性，然后赋值。
+    oDiv.mm=1;
+    console.log(oDiv.mm);   //在用这个方法就可以获取这个元素的属性的值了。
+</script>
+</html>
