@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="button">click me</button>
+<div id="div"></div>
+<script>
+    var oButton=document.getElementById("button");
+    var oDiv=document.getElementById("div");
+    oButton.onclick=function(){
+        var arr=[];
+        for(var i=0;i<9;i++){
+            var num=Math.ceil(Math.random()*35);
+            arr.push(num);
+        }
+        console.log(arr);
+        oDiv.innerHTML=arr;
+        history.pushState(arr,"")
+    }
+
+
+    window.onpopstate=function(e){
+        oDiv.innerHTML= e.state;
+    }
+</script>
+</body>
+</html>
