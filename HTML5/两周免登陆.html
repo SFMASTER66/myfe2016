@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form id="form" action="随机彩票.html">
+    用户名：<input id="text" type="text"/><br><br>
+    密&nbsp码：<input id="password" type="password"/><br><br>
+    两周免登陆：<input id="checkbox" type="checkbox"/><br><br>
+    <input id="submit" type="submit"/>
+</form>
+<script>
+    var oText=document.getElementById("text");
+    var oPassword=document.getElementById("password");
+    var oCheckbox=document.getElementById("checkbox");
+    var oForm=document.getElementById("form");
+    var oSubmit=document.getElementById("submit");
+    function setCookie(key,value,day){
+        var str=key+"="+value+";";
+        if(day){
+           var now=new Date();
+            now.setDate(now.getDate()+day);
+            str+="expires="+now;
+        }
+        document.cookie=str;
+    }
+//    setCookie("name","lisi",13);
+//    setCookie("names","limeimei",2);
+    function getCookie(key){
+        var str=document.cookie;
+        var arr=str.split("; ");  //记住，这里的分号后面还要有一个空格，不然当设置两个cookie的时候，要get第二个cookie的时候，就会出现undefined的事情，原因就是这里了，要用分号加空格进行分割
+        for(var i=0;i<arr.length;i++){
+            var arr1=arr[i].split("=");
+            if(arr1[0]==key){
+                return arr1[1];
+            }
+        }
+    }
+//    console.log(getCookie("name"));
+//    console.log(getCookie("names"));
+    oSubmit.onclick=function(){       //oForm.onsubmit相对应。    oSubmit.onclick
+        if(oCheckbox.checked){
+            var name=oText.value;
+            var psd=oPassword.value;
+            setCookie("name",name,13);
+            setCookie("password",psd,13);
+        }
+    }
+
+    var names=getCookie("name");
+    var passwords=getCookie("password");
+    if(names && passwords){
+        oText.value=names;
+        oPassword.value=passwords;
+//        oForm.submit();     //与上面相对应。  但是为什么这里的submit不好使？？而老师的代码里好使？？？
+        oSubmit.click();
+    }
+
+
+
+
+</script>
+</body>
+</html>
