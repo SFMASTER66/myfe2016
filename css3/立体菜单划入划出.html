@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            -webkit-perspective: 800px;     /*必须加*/
+        }
+        #container{
+            width: 800px;
+            height: 400px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        img{
+            width: 300px;
+            height: 400px;
+        }
+        #container div{
+            width: 100px;
+            height: 400px;
+            float: left;
+            -webkit-transform: rotateY(30deg);
+            -webkit-transition: all 1s ease;
+        }
+        /*#container div:hover div{*/
+            /*width: 10px;*/
+        /*}*/
+        #container div:hover{
+            width: 300px;
+            -webkit-transform: rotate(0deg);
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div>
+        <img src="img/G1.jpg" alt=""/>
+    </div>
+    <div>
+        <img src="img/G2.jpg" alt=""/>
+    </div>
+    <div>
+        <img src="img/G3.jpg" alt=""/>
+    </div>
+    <div>
+        <img src="img/G5.jpg" alt=""/>
+    </div>
+    <div>
+        <img src="img/G6.jpg" alt=""/>
+    </div>
+    <div>
+        <img src="img/G9.jpg" alt=""/>
+    </div>
+</div>
+</body>
+</html>
