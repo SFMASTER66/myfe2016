@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #ul1{
+            list-style: none;
+        }
+        li{
+            float: left;   /*浮动之后，ul就没有高度了*/
+        }
+        .clearfix::after{     /*把这个设置为公共样式，然后在谁需要添加高度的时候，添加上这个类就行了。*/
+            content:"";
+            display: block;   /*after设置的行级元素，所以要变成块级元素，然后内容为空，并且清除浮动。*/
+            clear: both;
+        }
+        #div1{
+            width: 50px;
+            height: 50px;
+            background: orange;
+            overflow: hidden;      /*这行包括下面的两行都要写。*/
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        #div2{
+            width: 500px;
+            height: 480px;
+            border: 20px dashed black;
+            background-image: url(1.jpg);
+            background-repeat: no-repeat;
+            font-size: 20px;
+            padding: 10px;
+            background-origin: content-box;     /*从哪里开始显示图片。*/
+            -webkit-background-clip:text;    /*这个就是这样的，必须这么写。*/
+            color: transparent;   /*使字体带有背景图片，就要先让字体的颜色为透明的*/
+        }
+
+        #div3{
+            width: 500px;
+            height: 480px;
+            border: 20px dashed black;
+            background-image: url(3.jpg);
+            background-repeat: no-repeat;
+            background-size:100px 200px ;   /*当设置背景图片的时候，也可以改变图片的大小，就是通过这个方法改变的。*/
+        }
+
+        img{
+            /*width: 200px;*/
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1" class="clearfix">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+</ul>
+
+<div id="div1">
+    adfdsfafsdfdsfsdafsdfsadfsadfsdafsdfdsf
+</div>
+
+
+<div id="div2">
+啦啦啦啦啦啦啦啦
+</div>
+
+<div id="div3"></div>
+
+<img src="3.jpg" alt=""/>
+</body>
+</html>
