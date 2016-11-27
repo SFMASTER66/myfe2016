@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div">
+    <!--<p id="p">你最可爱</p>-->
+    <!--<p>你最帅了</p>-->
+</div>
+<script>
+    var oDiv=document.getElementById("div");
+    var oP=document.getElementById("p");
+    var next=function(elem){
+        do{
+            elem=elem.nextSibling;
+        }while(elem&&elem.nodeType!=1)  //当elem没有下一个兄弟节点的时候，有就是说第一个elem不存在，就返回了false，所以就是null。只有两个都存在，才会返回要的兄弟节点。
+        return elem;
+    }
+    console.log(next(oDiv));
+
+    //为什么这么写不对？？
+//    var results;
+//    var next=function(elem){
+//        do{
+//            results=elem.nextSibling;
+//        }while(results&&results.nodeType!=1)  //当elem没有下一个兄弟节点的时候，有就是说第一个elem不存在，就返回了false，所以就是null。只有两个都存在，才会返回要的兄弟节点。
+//        return results;
+//    }
+//    console.log(next(oDiv));
+
+
+    var first=function(elem){
+        elem=elem.firstChild;
+        if(elem&&elem.nodeType==1){   //元素是一，文本（空格）是3；
+            return elem;
+        }else{
+            return next(elem);
+        }
+    }
+    console.log(first(oDiv));
+
+</script>
+</body>
+</html>
