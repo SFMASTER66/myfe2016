@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+        #link1{
+            width: 100%;
+            height: 400px;
+            background: red;
+        }
+        #link2{
+            width: 100%;
+            height: 400px;
+            background: orchid;
+        }
+        #link3{
+            width: 100%;
+            height: 400px;
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+<a href="#link1">link1</a>
+<a href="#link2">link2</a>
+<a href="#link3">link3</a>
+<div id="link1"></div>
+<div id="link2"></div>
+<div id="link3"></div>
+<script src="../jquery-1.12.4.js"></script>
+<script>
+    var aLink=document.getElementsByTagName("a");
+    var oBody=document.getElementsByTagName("body");
+    var oDiv2=document.getElementById("link2");
+        for(var i=0;i<3;i++) {
+            aLink[i].onclick = function () {
+                var arr = this.getAttribute("href");    //这里就是只能写this。
+                $("body").animate({         //这个只是用动画来移动点击之后的效果。
+                    scrollTop:$(arr).offset().top
+                });
+                history.pushState($(arr).offset().top,'');   //这个是能产生历史的关键
+                return false;                //为了不让点击a的时候跳转到href指定的东西。取消默认行为。
+            }
+        }
+    window.onpopstate = function(e){    //没有这个也能通过历史事件返回，但是就不是通过动画返回的，就是一下子跳过去了。
+        $("body").animate({
+            scrollTop: e.state
+        })
+    }
+</script>
+</body>
+</html>
