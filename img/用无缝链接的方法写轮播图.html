@@ -26,7 +26,6 @@
             float: left;
             z-index: 2;
         }
-
         #container{
             width: 680px;
             height: 344px;
@@ -66,9 +65,6 @@
         #container2 .selected{
             background: orange;
         }
-        /*#container3 .selected{*/
-            /*display: none;*/
-        /*}*/
     </style>
 </head>
 <body>
@@ -114,10 +110,11 @@
             $("#container1").stop(true,true).animate({left:aa()+'px'},1000);
             function aa(){
                 var $ff=$("#container1").position().left;    /*position写的是不带px的*/
+                console.log($ff);
                 if($ff<-2040){
                     $("#container1").css({"left": '0px'});  /*这里不用animate,因为animate是动画，有一定的时间性，用css 直接就定位到了第一张*/
                 }
-                return $("#container1").position().left - 680;   /*相对于距离已经定位的父元素的left*/
+                return $("#container1").position().left-680;       /*相对于距离已经定位的父元素的left*/
             }
         });
         $("#container3 span:eq(0)").on("click",function(){
@@ -130,7 +127,8 @@
                 $("#container1").stop(true,true).animate({left:bb()+"px"},1000);
                 function bb(){
                     var $left=$("#container1").css("left");   /*用css写的是带px的*/
-                    if($left.split('p')[0]==0){
+                    console.log($left);
+                    if($left.split('p')[0]>=0){
                         $("#container1").css({"left": '-2720px'});
                     }
                     return $("#container1").position().left+680;   /*相对于距离已经定位的父元素的left*/
