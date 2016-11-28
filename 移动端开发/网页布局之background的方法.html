@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网页布局之background的方法</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header,nav,footer{
+            width: 960px;
+            height: 100px;
+            background: gray;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+       #img{
+           width: 960px;
+           height: 480px;
+           background: url(img/01.jpg) center ;
+           background-size: cover;
+           margin: 10px auto;
+       }
+       #content{
+           width: 960px;
+           margin: 0 auto;
+       }
+       #left,#right{
+           height: 380px;
+           display: table;      /*要想给多行字居中在框的中间，就在字体的父元素加上这个属性。然后在自己的（也就是字体）加上下面的代码*/
+       }
+       #left p,#right p{
+           display: table-cell;
+           vertical-align: middle;   /*垂直方向上居中。*/
+           text-align: center;
+       }
+       #left{
+           width: 500px;
+           background: red;
+           float: left;
+       }
+        #right{
+            width: 430px;
+            background:gold;
+            float: right;
+        }
+        footer{
+            clear: both;
+        }
+        @media (max-width: 980px) {
+            header,nav,footer{
+                width: 100%;
+            }
+            #img{
+                width: 100%;
+                padding-top: 50%;
+                height: 0;
+                background-image: url(img/01_s_2x.jpg);
+            }
+            #content{
+                width: 100%;
+            }
+            #left{
+                width: 67%;
+            }
+            #right{
+                width: 30%;
+            }
+        }
+        @media (max-width: 480px) {
+            #img{
+                width: 100%;
+                padding-top: 50%;
+                height: 0;
+                background-image: url(img/01_s.jpg);
+            }
+            #content{
+                width: 100%;
+            }
+            #left{
+                width: 100%;
+            }
+            #right{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>标题</header>
+<nav>导航</nav>
+<div id="img"></div>
+<div id="content">
+    <div id="left">
+        <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+    </div>
+    <div id="right">
+        <p>Donec dolor arcu, interdum sed turpis faucibus, placerat ultricies felis. Donec pulvinar gravida rhoncus. Suspendisse vestibulum est eget dolor lobortis.</p>
+    </div>
+</div>
+<footer>页脚</footer>
+</body>
+</html>
