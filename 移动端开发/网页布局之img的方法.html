@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>网页布局之img的方法</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header,nav,footer{
+            width: 990px;
+            height: 100px;
+            background: gray;
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+        #div1{
+            width: 800px;
+            /*height: 450px;       /!*高度不要写死*!/*/
+            margin: 10px auto;
+        }
+        #content{
+            width: 800px;
+            /*height: 400px;*/
+            margin: 10px auto;
+        }
+        #div2,#div3{
+            height: 400px;
+            display: table;
+        }
+        #div2 p,#div3 p{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        #div2{
+            width: 400px;
+            background: orange;
+            float: left;
+        }
+        #div3{
+            width: 380px;
+            background: red;
+            float: right;
+        }
+        footer{
+            clear: both;
+        }
+        @media (max-width: 1008px) {
+            header,nav,footer{
+                width: 100%;
+            }
+        }
+        @media (max-width: 817px){
+            #div1{
+                width: 100%;
+            }
+            img{
+                width: 100%;
+            }
+            #content{
+                width: 100%;
+            }
+            #div2{
+                float: none;
+                width: 100%;
+            }
+            #div3{
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>页头</header>
+<nav>导航</nav>
+<div id="div1"><img src="img/1.JPG" alt=""/></div>
+<div id="content">
+    <div id="div2">
+        <p>啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+    </div>
+    <div id="div3">
+        <p>Donec dolor arcu, interdum sed turpis faucibus, placerat ultricies felis. Donec pulvinar gravida rhoncus. Suspendisse vestibulum est eget dolor lobortis.</p>
+    </div>
+</div>
+<footer>页尾</footer>
+</body>
+</html>
