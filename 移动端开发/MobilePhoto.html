@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 100%;
+            height: 100%;
+        }
+        li{
+            list-style: none;
+            float: left;
+            margin-right: 2px;
+            margin-bottom: 2px;
+        }
+        li:nth-child(4n){
+            margin-right: 0;
+        }
+        #container img{
+            width: 100%;
+            height: 100%;
+        }
+        #big-img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="container"></ul>
+<div id="big-img"></div>
+
+<script src="zepto.min.js"></script>
+<script>
+    var $oLi="";
+    var $padding=2;
+    var $index=0;
+    for(var i=0;i<24;i++){
+        $oLi=$("<li><img src='imgs/"+(i+1)+".jpg'/></li>");
+        $oLi.css({
+            width:($(document.body).width()-3*$padding)/4,
+            height:($(document.body).width()-3*$padding)/4
+        })
+        $("#container").append($oLi);
+    }
+
+    $("li").on("tap",function(){
+        $index=$(this).index();
+        $("#container").hide();
+        $("#big-img").show().css({
+            background:"url(imgs/"+($index+1)+".jpg) no-repeat center",
+            backgroundSize:"contain"
+        })
+    })
+
+    $("#big-img").on("swipeLeft",function(){
+        $index++;
+        if($index==24){
+            $index=0;
+        }
+        $("#big-img").css({
+            background:"url(imgs/"+($index+1)+".jpg) no-repeat center",
+            backgroundSize:"contain"
+        })
+    }).on("swipeRight",function(){
+        $index--;
+        console.log($index);
+        if($index==-1){
+            $index=23;
+        }
+        $("#big-img").css({
+            background:"url(imgs/"+($index+1)+".jpg) no-repeat center",
+            backgroundSize:"contain"
+        })
+    }).on("tap",function(){
+        $("#container").show();
+        $("#big-img").hide()
+    })
+</script>
+</body>
+</html>
