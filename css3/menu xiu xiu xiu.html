@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            -webkit-perspective: 800px;
+        }
+        #menu{
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+        #menu div{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            -webkit-transform-style: preserve-3d;
+        }
+        #four{
+            -webkit-transform-style: preserve-3d;
+        }
+        /*#menu img:hover{*/
+            /*width: 60px;*/
+            /*height: 60px;*/
+        /*}*/
+        /*#menu #one img{*/
+            /*width: 50px;*/
+            /*height: 50px;*/
+        /*}*/
+        #menu div{
+            -webkit-transition: transform 1s ease;
+        }
+        #menu img{
+            -webkit-transition: transform 1s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <div id="one"><img class="aa" src="img/1.jpeg" alt=""/></div>
+    <div id="two"><img src="img/2.jpeg" alt=""/></div>
+    <div id="three"><img src="img/3.jpeg" alt=""/></div>
+    <div id="four"><img src="img/4.jpeg" alt=""/></div>
+    <div id="five"><img src="img/5.jpeg" alt=""/></div>
+    <div  id="six"><img src="img/6.jpeg" alt=""/></div>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    //第一
+//    $("#menu div").each(function(index,div){
+//        $(div).css("z-index",$("img").size()-index)});
+//        var Deg=345;
+//        var flag=0;
+//           $("#one").on("click",function() {
+//               flag++;
+//               if(flag==1){
+//                   $(this).css("-webkit-transform",'rotate('+360+'deg)')
+//               }else{
+//                   $(this).css("-webkit-transform",'rotate('+0+'deg)')
+//                   flag=0;
+//               }
+//               if (flag ==1) {
+//                   for (var i = 1; i < 6; i++) {
+//                       Deg += 20;
+//                       $("#menu div").eq(i).css({
+//                           "-webkit-transition": 'transform 1s linear',
+//                           '-webkit-transform': '  rotate(' + Deg + 'deg) translateX(' + 200 + 'px)  '
+//                       })
+//                   }
+//                   Deg = 345;
+//               } else {
+//               for (var i = 1; i < 6; i++) {
+//                   $("#menu div").eq(i).css({
+//                       "-webkit-transition": 'transform 1s linear',
+//                       '-webkit-transform': 'rotate(' + -360 + 'deg) translateX(' + 0 + 'px)'
+//                   })
+//                   console.log(i);
+//                   flag=0;
+//               }
+//           }
+//})
+
+//第二
+
+    $("#menu div").each(function(index,div){
+        $(div).css("z-index",$("img").size()-index)});
+    var Deg=345;
+    var flag=0;
+    $("#one").on("click",function() {
+        flag++;
+        if(flag==1){
+            $(this).css({"-webkit-transition":"transform 1s linear .3s","-webkit-transform":'rotate('+360+'deg)'})
+        }else{
+            $(this).css({"-webkit-transition":"transform 1s linear .3s","-webkit-transform":'rotate('+0+'deg)'})
+            flag=0;
+        }
+        if (flag ==1) {
+            for (var i = 1; i < 6; i++) {
+                $("#menu div").eq(i).css({
+                    "-webkit-transition": 'transform 1s linear .3s',
+                    '-webkit-transform': 'translateX('+200*Math.cos(((i-1)*22.5)*Math.PI/180)+'px) translateY('+200*Math.sin(((i-1)*22.5)*Math.PI/180)+'px) rotate('+360+'deg) '
+                })
+            }
+            Deg = 345;
+        } else {
+            for (var i = 1; i < 6; i++) {
+                $("#menu div").eq(i).css({
+                    "-webkit-transition": 'transform 1s linear .3s',
+                    '-webkit-transform': 'translateX('+0+'px) translateY('+0+'px) rotate('+0+'deg) '
+                })
+                console.log(i);
+                flag=0;
+            }
+        }
+    })
+
+//自己的点击放大缩小
+//var aa=0;
+//    $("img:not(.aa)").on("click",function(){
+//        aa++;
+//        console.log(flag);
+//        if(aa==1){
+//            $(this).css({"opacity":0.6,"-webkit-transform":"scale(1.2)"});
+//        }else{
+//            $(this).css({"opacity":1,"-webkit-transform":"scale(1)"});
+//            aa=0;
+//        }
+//    });
+
+
+    //老师的点击放大再自动缩小
+    for(var j=0;j<$("img").size();j++){
+        $("img").eq(j+1).on("click",function(){
+            console.log(j)
+            var curTransform=this.style.WebkitTransform;
+            $(this).css("-webkit-transform","scale(2)");
+            var fn=function(){
+                    $(this).css("-webkit-transform",curTransform);
+                $(this).css("opacity",1);
+                remove.addEventListener("webkitTransitionEnd",fn)
+            }
+            this.addEventListener("webkitTransitionEnd",fn ,false)
+        })
+    }
+
+
+</script>
+</body>
+</html>
