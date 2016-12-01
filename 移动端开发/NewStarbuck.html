@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: AvenirRoman, HelveticaNeue-Light, Helvetica Neue, arial, Hiragino Sans GB, 冬青黑体, Microsoft YaHei New, Microsoft Yahei, 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+            font-weight: 400;
+        }
+        a{
+            text-decoration: none;
+        }
+        #header{
+            width: 97%;
+            height: 97px;
+            margin: 0 auto;
+        }
+        #header1{
+            width: 40%;
+            float: left;
+            height: 97px;
+        }
+        #header1 p{
+            font-size: 15px;
+            margin-top: 33px;
+        }
+        #header-img{
+            width: 20%;
+            float: left;
+            height: 97px;
+        }
+        #header-img img{
+            width: 60px;
+            height: 60px;
+            margin:20px auto;
+            display: block;
+        }
+        #header2{
+            width: 40%;
+            height: 97px;
+            float: left;
+        }
+        #header2 #span1{
+            float: right;
+            margin-top: 33px;
+        }
+        #header2 #header2-div{
+            width: 100%;
+            float: right;
+        }
+        #header2 #header2-div #span2{
+            float: right;
+        }
+        #header2-div a{
+            float: right;
+        }
+
+
+        #big-img{
+            width: 100%;
+        }
+        #big-img #big-img1{
+            width: 100%;
+            float: left;
+        }
+        #big-img #big-img2{
+            width: 100%;
+            float: left;
+            display: none;
+        }
+
+        #small-img{
+            width: 100%;
+        }
+        #small-img1{
+            width: 100%;
+            display: block;  /*为了解决一点点的空白问题*/
+        }
+
+
+        #log{
+            width: 100%;
+            height: 390px;
+            background: black;
+            display: table;
+        }
+        #log #sub-log{
+            width: 100%;
+            /*height: 390px;*/
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding: 20px;
+        }
+        #log h2{
+            color: white;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #log p{
+            color: gray;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #log #log-btn{
+            width: 100%;
+            height: 68px;
+            margin-top: 20px;
+        }
+        #log #log-btn button{
+            width: 100px;
+            height: 50px;
+            margin: 10px;
+            border: 2px solid gold;
+            background: black;
+            color: white;
+            cursor: pointer;
+        }
+        #log #log-btn button:hover{
+          background: gold;
+        }
+
+
+        #app{
+            background: #e0e0e0;
+            position: relative;
+        }
+        #sub-app{
+            width: 1130px;
+            margin: 0 auto;
+        }
+        #app-content{
+            width: 55%;
+            padding: 210px 0;
+        }
+        #app-content h3{
+            color:#a98e67;
+            font-size:12px;
+            font-weight: 900;
+            font-family: AvenirBlack, 'HelveticaNeue-Light', 'Helvetica Neue', arial, "Hiragino Sans GB", "冬青黑体", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+            margin-bottom: 15px;
+        }
+        #app-content p{
+            font-size: 26px;
+            line-height: 40px;
+            color: #3d3d3d;
+            margin-bottom: 130px;
+        }
+        #sub-app img{
+            width: 47%;
+            position: absolute;
+            right: 0;
+            bottom: 80px;
+        }
+        #app-btn a{
+            padding:12px 40px; ;
+            margin: 0 30px 0 0;
+        }
+        #app-btn{
+            margin-top: 55px;
+        }
+        #app-btn a{
+            padding: 14px 40px;
+            border: 2px solid #a98e67 ;
+            color:#a98e67;
+            display: inline-block;
+            margin:0 14px;
+        }
+        #app-btn a:hover{
+            color:#ffe;
+            background: #a98e67;
+        }
+        #app-load{
+            display: none;
+        }
+
+
+
+        #two-pic{
+            width: 100%;
+            height: 674px;
+        }
+        #two-pic #two-pic1{
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+        #two-pic #two-pic2{
+            width: 50%;
+            height: 100%;
+            float: left;
+        }
+        #two-pic #two-pic1 a{
+            width: 100%;
+            float: left;      /*这个浮动是为了设置a的宽高*/
+            display: table;
+            position: relative;
+            display: inline-block;
+        }
+        #two-pic #two-pic2 a{
+            width: 100%;
+            float: left;
+            display: table;
+            position: relative;
+            display: inline-block;
+        }
+        #two-pic #two-pic1 img{
+            width: 100%;
+            display: block;
+        }
+        #two-pic #two-pic2 img{
+            width: 100%;
+            display: block;
+        }
+        #two-pic #two-pic1 #two-pic-content1{
+            width: 100%;
+            position: absolute;
+            bottom: 50%;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        #two-pic #two-pic2 #two-pic-content2{
+            width: 100%;
+            position: absolute;
+            bottom: 50%;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        #two-pic #two-pic1 #two-pic-content1 h3{
+            color: darkgoldenrod;
+            margin: 10px;
+            font-size: 10px;
+        }
+        #two-pic #two-pic1 #two-pic-content1 h2{
+            color: white;
+            margin: 10px;
+            font-size: 30px;
+        }
+        #two-pic #two-pic2 #two-pic-content2 h3{
+            color: darkgoldenrod;
+            margin: 10px;
+            font-size: 10px;
+        }
+        #two-pic #two-pic2 #two-pic-content2 h2{
+            color: white;
+            margin: 10px;
+            font-size: 30px;
+        }
+
+
+        #tip{
+            width: 100%;
+            height: 745px;
+            background: lightgrey;
+        }
+        #tip #sub-tip{
+            width: 97%;
+            margin: 0 auto;
+            display: table;
+        }
+        #tip #sub-tip #tip-container{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding-top: 110px;
+        }
+        #tip #sub-tip #tip-container h3{
+            color: darkgoldenrod;
+            margin: 10px;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+        #tip #sub-tip #tip-container h2{
+            color: black;
+            margin: 10px;
+            font-size: 30px;
+        }
+        #tip #sub-tip #tip-container #sub-tip-line{
+            background: gray;
+            margin: 40px auto;
+            width: 150px;
+            height: 1px;
+        }
+        #tip #sub-tip #tip-container p{
+            color: darkgrey;
+            margin: 10px;
+            font-size: 20px;
+        }
+        #tip-pic{
+            width: 100%;
+            overflow: hidden;
+            height: 280px;
+            /*position: relative;*/
+            margin-top: 50px;
+        }
+        #tip-pic img{
+            width: 280px;
+            height: 280px;
+        }
+        #tip-pic a{
+            float: left;
+        }
+        /*#tip-pic #last-tip-pic{*/
+            /*position: absolute;*/
+        /*}*/
+        #tip-pic .tip-pic-div{
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+        }
+        #tip-pic .tip-pic-pics{
+            position: relative;
+            margin-left: 10px;
+        }
+        #tip-pic .tip-pic-div h3{
+            color:darkgoldenrod ;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+        #tip-pic .tip-pic-div p{
+            color:white;
+            font-size: 20px;
+            letter-spacing: 3px;
+            line-height: 30px;
+        }
+        #tip-line{
+            width: 100%;
+            height: 20px;
+            margin: 10px;
+        }
+        #tip-child-line{
+            width: 50%;
+            height: 20px;
+            margin: 0 auto;
+            position: relative;
+        }
+        #tip-pic .sub-tip-pic{
+            width: 3000px;
+        }
+        #left,#right{
+            width: 10px;
+            height: 10px;
+            float: left;
+            border-radius: 50%;
+            background: gray;
+            margin: 10px;
+            position: absolute;
+        }
+        #left{
+            margin-left: 45%;
+        }
+        #right{
+            margin-left: 50%;
+        }
+
+
+        #advertise{
+            width: 100%;
+            height: 608px;
+            background: black;
+        }
+        #advertise-container{
+            width: 86%;
+            margin:0 auto;
+        }
+        #advertise #sub-advertise{
+            width: 50%;
+            padding-top: 44px;
+            float: left;
+        }
+        #advertise #description{
+            width: 50%;
+            height: 528px;
+            padding-top: 44px;
+            float: left;
+            display: table;
+            background: black;
+        }
+        #advertise #description #sub-description{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        #advertise #description h3{
+            font-weight: 900;
+            font-size: 13px;
+            line-height: 22px;
+            text-transform: uppercase;
+            color: #a98e67;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+        #advertise #description p{
+            font-size: 26px;
+            line-height: 40px;
+            color: #3d3d3d;
+        }
+        #advertise #description div{
+           width: 100%;
+            text-align: center;
+            margin-top: -3px;
+        }
+        #advertise #description a{
+            color: #ffffff;
+            background-color: black;
+            padding: 20px 40px;
+            border: 2px solid #a98e67;
+            display: inline-block;
+            margin: 10px;
+
+        }
+
+
+        #manifest{
+            width: 100%;
+            height: 139px;
+            background: #292929;
+        }
+        #manifest #sub-manifest{
+            width: 82%;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        #manifest #sub-manifest h3{
+            color: #A3A3A3;
+            font-size: 13px;
+            line-height: 18px;
+        }
+        #manifest #sub-manifest img{
+           float: left;
+        }
+
+
+        @media (max-width: 760px) {
+            #header2 #span1{
+                float: right;
+                margin-top: 33px;
+                font-size: 12px;
+                line-height: 20px;
+            }
+            #header2 #header2-div #span2{
+                float: right;
+                font-size: 12px;
+            }
+            #header2-div a{
+                float: right;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            /*#header{*/
+                /*width: 97%;*/
+                /*height: 97px;*/
+                /*margin: 0 auto;*/
+                /*position: relative;*/
+            /*}*/
+            #header-img{
+               /*position: absolute;*/
+                /*width: 100%;*/
+                /*margin-top: -50%;*/
+                /*padding: 10%;*/
+            }
+        }
+
+        @media (max-width: 997px) {
+            #big-img #big-img1{
+                width: 100%;
+                float: left;
+                display: none;
+            }
+            #big-img #big-img2{
+                width: 100%;
+                float: left;
+                display: block;
+            }
+        }
+
+        @media (max-width: 770px) {
+            #small-img{
+                overflow: hidden;
+            }
+            #small-img1{
+                display: block;  /*为了解决一点点的空白问题*/
+                height: 135px;
+                width: auto;
+            }
+
+            #log #sub-log{
+                width: 100%;
+                /*height: 390px;*/
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                padding: 20px;
+                margin-top: 20px;
+            }
+            #log #log-btn{
+                width: 100%;
+                height: 140px;
+                margin-top: 20px;
+            }
+            #log #log-btn button{
+                width: 97%;
+                height: 50px;
+                margin: 10px;
+                border: 2px solid gold;
+                background: black;
+                color: white;
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 769px) {
+            #two-pic{
+                width: 100%;
+                height: 0;
+            }
+            #two-pic #two-pic1{
+                width: 100%;
+                float: none;
+            }
+            #two-pic #two-pic2{
+                width: 100%;
+                float: none;
+            }
+            #tip{
+                clear: both;
+            }
+            #advertise{
+                clear: both;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            #advertise-container{
+                width: 100%;
+                padding: 10px 0 10px 0;
+            }
+            #advertise #description{
+                width: 45%;
+                height: 528px;
+                padding-top: 30px;
+                float: left;
+                display: table;
+            }
+        }
+        @media (max-width: 990px) {
+            #advertise #description{
+                width: 39%;
+                height: 528px;
+                padding-top: 52px;
+                float: left;
+                display: table;
+            }
+        }
+
+        @media (max-width: 770px) {
+            #advertise-container{
+                width: 100%;
+            }
+            #advertise #sub-advertise{
+                width: 100%;
+                padding-top:0;
+                float: none;
+                margin-left: 0px;
+            }
+            #advertise-container img{
+                width:72%;
+                margin: 0 auto;
+            }
+            #advertise #description{
+                width: 100%;
+                height: 528px;
+                /*float: none;*/
+                display: table;
+            }
+            #advertise #description h3{
+                padding-left: 82px;
+                font-weight: 800;
+                font-size: 24px;
+                line-height: 48px;
+                letter-spacing: 4px;
+
+            }
+            #advertise #description div{
+                margin-top: 27px;
+                width: 100%;
+            }
+            #advertise #description p{
+                padding: 30px 5px 0 82px;
+            }
+            #advertise #description a{
+                width: 100%;
+                padding: 2px;
+            }
+            #advertise #description #sub-description{
+                padding-right: 28px;
+            }
+            #manifest{
+                clear: both;
+            }
+        }
+
+
+        @media (max-width: 1200px){
+            #sub-app{
+                width:918px;
+            }
+        }
+        @media (max-width: 991px){
+            #sub-app{
+                width:720px;
+            }
+        }
+        @media (max-width: 767px){
+            #app{
+                padding: 0 30px 80px 30px;
+            }
+            #sub-app{
+                width: 100%;
+            }
+            #app-content{
+                padding: 80px 0 0;
+                width: 100%;
+            }
+            #app-content p{
+                margin-bottom: 10px;
+            }
+            #app-btn{
+                display: none;
+            }
+            #sub-app img{
+                position: static;
+                float: right;
+                width: 90%;
+            }
+            #app-load{
+                display: block;
+                clear: both;
+            }
+            #app-load a{
+                width: 30%;
+                border:2px solid #a98e67;
+                height: 43px;
+                line-height: 43px;
+                text-align: center;
+                display: block;
+                color:#a98e67;
+            }
+            #app-load a:hover{
+                color:#fffffe;
+                background: #a98e67;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!--头-->
+<div id="header">
+    <div id="header1">
+        <p>菜单</p>
+    </div>
+    <div  id="header-img">
+        <img src="starbuckimg/logo.png" alt=""/>
+    </div>
+    <div id="header2">
+        <span id="span1">星享俱乐部</span>
+        <div id="header2-div">
+            <a href="">登陆</a>
+            <span id="span2">或</span>
+            <a href="">注册</a>
+        </div>
+    </div>
+</div>
+
+<!--第一张大图-->
+<div id="big-img">
+    <img id="big-img1" src="starbuckimg/8.jpg" alt=""/>
+    <img id="big-img2" src="starbuckimg/9.jpg" alt=""/>
+</div>
+
+<!--第二张大图-->
+<div id="small-img">
+    <img id="small-img1" src="starbuckimg/rewards.jpg" alt=""/>
+</div>
+
+<!--登陆和注册-->
+<div id="log">
+    <div id="sub-log">
+        <h2>星享俱乐部</h2>
+        <p>开启您的星享之旅，星星越多、会员等级越高、好礼越丰富</p>
+        <div id="log-btn">
+            <button>注册</button>
+            <button>登陆</button>
+        </div>
+    </div>
+</div>
+
+<!--应用下载-->
+<div id="app">
+    <div id="sub-app">
+        <div id="app-content">
+            <!--<div id="sub-app-content">-->
+                <h3>星巴克中国官方应用</h3>
+                <p>更新或下载全新星巴克中国官方APP，开启更便捷的星巴克体验。将新购买的星礼卡轻松关联至您的账户，即时通过手机进行移动支付，查看消费记录，管理卡片。</p>
+                <div id="app-btn">
+                    <a href="">IOS下载</a>
+                    <a href="">ANDROID下载</a>
+                </div>
+            <!--</div>-->
+        </div>
+        <img id="a-img" src="starbuckimg/10.jpg" alt=""/>
+        <div id="app-load">
+            <a href="">下载应用</a>
+        </div>
+    </div>
+</div>
+
+<!--两张并排的图片-->
+<div id="two-pic">
+    <div id="two-pic1">
+        <a href="">
+            <img src="starbuckimg/1.jpg" alt=""/>
+            <div id="two-pic-content1">
+                <h3>星巴克每天限量供应</h3>
+                <h2>随时随地来一杯手冲心意</h2>
+            </div>
+        </a>
+    </div>
+    <div id="two-pic2">
+        <a href="">
+            <img src="starbuckimg/4.jpg" alt=""/>
+            <div id="two-pic-content2">
+                <h3>圣诞送出你的心意</h3>
+                <h2>点击了解更多</h2>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!--提示-->
+<div id="tip">
+    <div id="sub-tip">
+        <div id="tip-container">
+            <h3>星巴克经典</h3>
+            <h2>咖啡师的最爱</h2>
+            <div id="sub-tip-line"></div>
+            <p>回溯多年历史，星巴克的技巧纯熟的咖啡师一直用心制作星巴克的经典与饮品。</p>
+        </div>
+    </div>
+
+    <div id="tip-pic">
+        <div class="sub-tip-pic">
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/3.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/5.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/6.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/7.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/11.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/11.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/11.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+            <a class="tip-pic-pics" href="">
+                <img src="starbuckimg/11.jpg" alt=""/>
+                <div class="tip-pic-div">
+                    <h3>手工调制浓缩咖啡</h3>
+                    <p>馥芮白TM</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div id="tip-line">
+        <div id="tip-child-line">
+            <span id="left"></span>
+            <span id="right"></span>
+        </div>
+    </div>
+</div>
+
+<!--广告-->
+<div id="advertise">
+    <div id="advertise-container">
+        <div id="sub-advertise">
+            <img src="starbuckimg/13.jpg" alt=""/>
+        </div>
+        <div id="description">
+            <div id="sub-description">
+                <h3>我们优质的咖啡产品</h3>
+                <p>我们持续在全世界各地寻找优质而稀少的咖啡豆，我们喜爱与您分享我们的新发现。我们在星巴克位于总部西雅图的星巴克臻选™咖啡烘焙工坊及品鉴馆为您精心烘焙星巴克臻选™咖啡。</p>
+                <div>
+                    <a href="">了解更多</a>
+                    <a href="">在这里购买</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--最后-->
+<div id="manifest">
+    <div id="sub-manifest">
+        <h3>© 2016 Starbucks Corporation.</h3>
+        <h3>All rights reserved. 沪ICP备09020061号 </h3>
+        <a href="">
+            <img src="starbuckimg/icpicon.jpg" alt=""/>
+            <h3>沪公网安备 31010402000253号</h3>
+        </a>
+    </div>
+</div>
+</body>
+</html>
