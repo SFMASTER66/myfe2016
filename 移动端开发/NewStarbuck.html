@@ -30,6 +30,7 @@
         #header1 p{
             font-size: 15px;
             margin-top: 33px;
+            cursor: pointer;
         }
         #header-img{
             width: 20%;
@@ -40,12 +41,13 @@
             width: 60px;
             height: 60px;
             margin:20px auto;
-            display: block;
+            display: block;        /*这个可以让一个图片在一个框内居中。*/
         }
         #header2{
             width: 40%;
             height: 97px;
             float: left;
+            /*text-align: right;*/
         }
         #header2 #span1{
             float: right;
@@ -53,7 +55,8 @@
         }
         #header2 #header2-div{
             width: 100%;
-            float: right;
+            /*float: right;*/
+            overflow: hidden;   /*这个是为了解决他的子元素浮动了，父元素空间释放了，然后加上这个的    上面这个方法也能实现。*/
         }
         #header2 #header2-div #span2{
             float: right;
@@ -155,12 +158,12 @@
         }
         #sub-app img{
             width: 47%;
-            position: absolute;
+            position: absolute;  /*图片相对于整个容器定位。*/
             right: 0;
             bottom: 80px;
         }
         #app-btn a{
-            padding:12px 40px; ;
+            padding:12px 40px;
             margin: 0 30px 0 0;
         }
         #app-btn{
@@ -185,16 +188,16 @@
 
         #two-pic{
             width: 100%;
-            height: 674px;
+            /*height: 674px;*/       /*不给高，然后高由图片撑开。但是实际上这个容器的高还是为零。*/
         }
         #two-pic #two-pic1{
             width: 50%;
-            height: 100%;
+            /*height: 100%;*/     /*这个可以不写，由内容撑开。*/
             float: left;
         }
         #two-pic #two-pic2{
             width: 50%;
-            height: 100%;
+            /*height: 100%;*/
             float: left;
         }
         #two-pic #two-pic1 a{
@@ -261,6 +264,7 @@
             width: 100%;
             height: 745px;
             background: lightgrey;
+            clear: both;      /*上面的浮动导致这个会上去，所求让他清除浮动。*/
         }
         #tip #sub-tip{
             width: 97%;
@@ -309,9 +313,6 @@
         #tip-pic a{
             float: left;
         }
-        /*#tip-pic #last-tip-pic{*/
-            /*position: absolute;*/
-        /*}*/
         #tip-pic .tip-pic-div{
             position: absolute;
             bottom: 10%;
@@ -333,35 +334,35 @@
             line-height: 30px;
         }
         #tip-line{
-            width: 100%;
+            width: 96%;
             height: 20px;
             margin: 10px;
         }
         #tip-child-line{
-            width: 50%;
+            width: 100%;
             height: 20px;
             margin: 0 auto;
-            position: relative;
+            text-align: center;
         }
         #tip-pic .sub-tip-pic{
-            width: 3000px;
+            width: 2320px;
+            position: relative;
         }
-        #left,#right{
+        #tip-child-line span{
             width: 10px;
             height: 10px;
-            float: left;
             border-radius: 50%;
             background: gray;
-            margin: 10px;
-            position: absolute;
+            margin: 6px;
+            cursor: pointer;
+            display: inline-block;
         }
-        #left{
-            margin-left: 45%;
+        #tip-child-line .tip3{
+            display: none;
         }
-        #right{
-            margin-left: 50%;
+        #tip-child-line .tip4{
+            display: none;
         }
-
 
         #advertise{
             width: 100%;
@@ -440,6 +441,91 @@
         }
 
 
+        #menu{
+            width: 270px;
+            /*height: 100%;*/
+            height: auto;
+            background: #292929;
+            position: absolute;
+            top:0;
+            display: none;
+        }
+        #menu a{
+            display: block;
+            padding:15px;
+            font-size: 15px;
+            color: #fff;
+        }
+        #div1{
+            border-bottom: 1px solid grey;
+        }
+        #div1 a{
+            color: #b89f7a;
+        }
+        #div1 a:hover{
+            color: #aaaaaa;
+        }
+        #menu .menu-div{
+            padding-left: 15px;
+            display: none;
+        }
+        #menu .menu-div a{
+            color: #aaaaaa;
+        }
+        #div2 a:hover{
+            color: #b89f7a;
+
+        }
+        #div3 a:hover{
+            color: #b89f7a;
+        }
+        #div4 a:hover{
+            color: #b89f7a;
+        }
+        #div5 a:hover{
+            color: #b89f7a;
+        }
+        #div6 a:hover{
+            color: #b89f7a;
+        }
+        #div7 a:hover{
+            color: #b89f7a;
+        }
+        #div8 a:hover{
+            color: #b89f7a;
+        }
+        #div9 a:hover{
+            color: #b89f7a;
+        }
+        #div10 a:hover{
+            color: #b89f7a;
+        }
+
+
+        #mask{
+            width: 100%;
+            height: 662px;
+            opacity: 0.5;
+            background: #6c6464;
+            position: absolute;
+            display: none;
+        }
+        #div3,#div7,#div8,#div9,#div10{
+            position: relative;
+        }
+        #menu span{
+            border-width: 4px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            position: absolute;
+            right: 15px;
+            top: 23px;
+            display: none;
+        }
+        #menu #div3:hover{
+            border-top-color: #b89f7a;
+        }          /*不好使  为啥？？*/
+
         @media (max-width: 760px) {
             #header2 #span1{
                 float: right;
@@ -458,17 +544,9 @@
         }
 
         @media (max-width: 430px) {
-            /*#header{*/
-                /*width: 97%;*/
-                /*height: 97px;*/
-                /*margin: 0 auto;*/
-                /*position: relative;*/
-            /*}*/
-            #header-img{
-               /*position: absolute;*/
-                /*width: 100%;*/
-                /*margin-top: -50%;*/
-                /*padding: 10%;*/
+            #header-img img{
+                width: 76%;
+                height: auto;
             }
         }
 
@@ -611,7 +689,6 @@
             }
         }
 
-
         @media (max-width: 1200px){
             #sub-app{
                 width:918px;
@@ -649,7 +726,7 @@
                 clear: both;
             }
             #app-load a{
-                width: 30%;
+                width: 38%;
                 border:2px solid #a98e67;
                 height: 43px;
                 line-height: 43px;
@@ -662,9 +739,30 @@
                 background: #a98e67;
             }
         }
+
+        @media (max-width: 1179px) {
+            #tip-child-line .tip3{
+                display: inline-block;
+            }
+        }
+        @media (max-width: 888px) {
+            #tip-child-line .tip4{
+                display: inline-block;
+            }
+        }
+        @media (max-width: 597px) {
+            #tip-child-line{
+                margin-left: -57px;
+            }
+
+        }
     </style>
 </head>
 <body>
+
+
+<!--半透明遮罩-->
+<div id="mask"></div>
 
 <!--头-->
 <div id="header">
@@ -711,14 +809,12 @@
 <div id="app">
     <div id="sub-app">
         <div id="app-content">
-            <!--<div id="sub-app-content">-->
                 <h3>星巴克中国官方应用</h3>
                 <p>更新或下载全新星巴克中国官方APP，开启更便捷的星巴克体验。将新购买的星礼卡轻松关联至您的账户，即时通过手机进行移动支付，查看消费记录，管理卡片。</p>
                 <div id="app-btn">
                     <a href="">IOS下载</a>
                     <a href="">ANDROID下载</a>
                 </div>
-            <!--</div>-->
         </div>
         <img id="a-img" src="starbuckimg/10.jpg" alt=""/>
         <div id="app-load">
@@ -823,8 +919,10 @@
 
     <div id="tip-line">
         <div id="tip-child-line">
-            <span id="left"></span>
-            <span id="right"></span>
+            <span class="tip1 sub-tip1"></span>
+            <span class="tip2 sub-tip2"></span>
+            <span class="tip3"></span>
+            <span class="tip4"></span>
         </div>
     </div>
 </div>
@@ -859,5 +957,156 @@
         </a>
     </div>
 </div>
+
+<!--菜单-->
+<div id="menu">
+    <div id="div1">
+        <a href="">English</a>
+        <a href="">星巴克门店</a>
+    </div>
+    <div id="div2">
+        <a href="">首页</a>
+    </div>
+   <div id="div3" class="div3">
+       <a href="">新品推荐<span></span></a>
+       <div class="menu-div">
+           <a href="">星巴克焕新食</a>
+           <a href="">当季新品</a>
+       </div>
+   </div>
+    <div id="div4">
+        <a href="">星享俱乐部</a>
+    </div>
+    <div id="div5">
+        <a href="">星巴克移动应用</a>
+    </div>
+   <div id="div6">
+       <a href="">星礼卡</a>
+   </div>
+   <div id="div7" class="div3">
+       <a href="">咖啡文化<span></span></a>
+       <div class="menu-div">
+           <a href="">咖啡文化</a>
+           <a href="">星巴克臻选™咖啡</a>
+           <a href="">咖啡文化</a>
+       </div>
+   </div>
+    <div id="div8" class="div3">
+        <a href="">饮品美食<span></span></a>
+        <div class="menu-div">
+            <a href="">饮品</a>
+            <a href="">星巴克美食</a>
+            <a href="">星巴克咖啡</a>
+            <a href="">星巴克VIA@免煮咖啡</a>
+            <a href="">茶瓦纳™</a>
+        </div>
+    </div>
+   <div id="div9" class="div3">
+       <a href="">关于我们<span></span></a>
+       <div class="menu-div">
+           <a href="">企业新闻</a>
+           <a href="">我们的使命和价值观</a>
+           <a href="">星巴克责任</a>
+           <a href="">工作在星巴克中国</a>
+           <a href="">加入星巴克</a>
+           <a href="">星巴克在中国</a>
+           <a href="">历史回顾</a>
+       </div>
+   </div>
+    <div id="div10" class="div3">
+        <a href="">帮助中心<span></span></a>
+        <div class="menu-div">
+            <a href="">常见问题</a>
+            <a href="">联系我们</a>
+            <a href="">使用条款</a>
+            <a href="">隐私权政策</a>
+        </div>
+    </div>
+</div>
+
+<script src="../jquery-1.12.4.js"></script>
+<script src="zepto.min.js"></script>
+<!--从浏览器左边出来的JQ-->
+<script type="text/javascript">  
+    jQuery.fn.slideLeftHide = function( speed, callback ) {  
+        this.animate({  
+            width : "hide",  
+            paddingLeft : "hide",  
+            paddingRight : "hide",  
+            marginLeft : "hide",  
+            marginRight : "hide"  
+        }, speed, callback );  
+    };  
+    jQuery.fn.slideLeftShow = function( speed, callback ) {  
+        this.animate({  
+            width : "show",  
+            paddingLeft : "show",  
+            paddingRight : "show",  
+            marginLeft : "show",  
+            marginRight : "show"  
+        }, speed, callback );  
+    };  
+</script>
+<script>
+//    轮播图
+    $("#tip-child-line span").on("click",function(){
+        var $index=$(this).index();
+        var iWidth=$("#tip-pic .tip-pic-pics").innerWidth();
+        console.log(iWidth);
+        var spanNum=$("#tip-child-line span:visible").size();
+        var aNum=$("#tip-pic .tip-pic-pics").size();
+        var moveLength=Math.ceil(aNum/spanNum);
+        console.log(moveLength);
+        var iLeft=-moveLength*iWidth*$index;
+        console.log(iLeft);
+        $("#tip-pic .sub-tip-pic").animate({
+            left:iLeft
+        })
+    })
+
+//点击菜单显示菜单
+    $("#header1").on("click",function(){
+        $("#menu").slideLeftShow(900);
+        $("#mask").css("display","block");
+        $("#menu span").fadeIn(2000);
+    })
+
+//点击mask消失
+    $("#mask").on("click",function(){
+        $("#menu").slideLeftHide(300);
+        $("#menu span").fadeOut(20);
+        $("#mask").css("display","none");
+    })
+
+//在mask上mousewheel
+    $("#mask").on("mousewheel",function(){
+        $("#menu").slideLeftHide(300);
+        $("#menu span").fadeOut(20);
+        $("#mask").css("display","none");
+    })
+
+//点击具体的菜单显示隐藏
+    var flag=0;
+    $("#menu div").on("click",function(){
+        flag++;
+        if(flag==1&&$(this).children("div:hidden")){
+            $(this).children("div").stop(true,false).slideDown("slow");
+        }else{
+            $(this).children("div").stop(true,false).slideUp("slow");
+            flag=0;
+        }
+        return false;
+    })
+
+
+//点击小三角形出现颜色  有问题
+    $(".div3 span").on("mouseenter",function(){
+        $(this).css("border-top-color","#b89f7a");
+    }).on("mouseleave",function(){
+        $(this).css("border-top-color","#aaaaaa");
+    })
+
+
+</script>
 </body>
 </html>
