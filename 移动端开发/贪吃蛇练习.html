@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 1000px;
+            height: 550px;
+            border: 1px solid gray;
+            margin: 50px auto;
+        }
+        #ground{
+            width: 1000px;
+            height: 500px;
+            position: relative;
+            /*background: cornflowerblue;*/
+        }
+        #footer{
+            width: 1000px;
+            height: 50px;
+            line-height: 50px;
+        }
+        #ads{
+            float: left;
+        }
+        #button{
+            float: right;
+        }
+        .block{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: cornflowerblue;
+        }
+        .snake-block{
+            background: orangered;
+            position: absolute;
+        }
+        .food-block{
+            background: pink;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="ground"></div>
+    <div id="footer">
+        <div id="ads">贪吃蛇</div>
+        <div id="button">
+            <button id="start">start</button>
+            <button id="pause">pause</button>
+        </div>
+    </div>
+</div>
+<script>
+    var oGround=document.getElementById("ground");
+    var oStart=document.getElementById("start");
+    var oPause=document.getElementById("pause");
+    var direction="right";
+    var bStart=0;
+    var bStop=0;
+    oPause.onclick=function(){
+//        bStop++;
+        if(bStop==0){
+            clearInterval(timer);
+        }
+    }
+    oStart.onclick=function(){
+        if(bStart==0&&bStop==0){
+            timer=setInterval(move,200);
+            bStart=1;
+        }
+        if(bStart==1&&bStop==2){
+            timer=setInterval(move,200);
+
+        }
+        if(bStart==1&&bStop==0){
+            clearInterval(timer);
+            oGround.removeChild(foodDiv);
+            for(var i=0;i<3;i++){
+                oGround.removeChild(snakeBody[i]);
+            }
+            direction="right";
+            snakeBody=[];
+            createFood();
+            createSnake();
+            timer=setInterval(move,200);
+             }
+        }
+
+
+
+    //创建的操场的颜色。
+    for(var i=0;i<50*25;i++){
+        var oDiv=document.createElement("div");
+        oDiv.className="block";
+        oGround.appendChild(oDiv);
+    }
+
+    //创建蛇
+//    createSnake();
+    var snakeBody=[];
+//    var snakeDiv;
+    createSnake();
+    function createSnake(){
+        for(var i=0;i<3;i++){
+            var snakeDiv=document.createElement("div");
+            snakeDiv.className="block snake-block";
+            snakeDiv.style.left=(60-i*20)+"px";
+            snakeDiv.style.top=60+"px";
+            snakeBody.push(snakeDiv);
+            oGround.appendChild(snakeDiv);
+        }
+    }
+
+
+
+    //创建食物
+    createFood();
+    var foodDiv;
+//    createFood();
+    function createFood(){
+        var flag=false;
+        var iLeft;
+        var iTop;
+        do{
+            flag=false;
+            iLeft=parseInt(Math.random()*49)*20;
+            iTop=parseInt(Math.random()*24)*20;
+            for(var i=0;i<snakeBody.length;i++){
+                if(snakeBody[i].offsetLeft==iLeft&&snakeBody[i].offsetTop==iTop){
+                    flag=true;
+                }
+            }
+
+        }while(flag)
+        foodDiv=document.createElement("div");
+        foodDiv.className="block food-block";
+        foodDiv.style.left=iLeft+"px";
+        foodDiv.style.top=iTop+"px";
+        oGround.appendChild(foodDiv);
+    }
+
+
+
+
+    //贪吃蛇移动
+    var next=null;
+    var snakeHead;
+    function move(){
+        snakeHead=snakeBody[0];
+        if(direction=="right"){
+            next={
+                left:snakeHead.offsetLeft+20,
+                top:snakeHead.offsetTop
+            }
+        }
+        if(direction=="left"){
+            next={
+                left:snakeHead.offsetLeft-20,
+                top:snakeHead.offsetTop
+            }
+        }
+        if(direction=="top"){
+            next={
+                left:snakeHead.offsetLeft,
+                top:snakeHead.offsetTop-20
+            }
+        }
+        if(direction=="down"){
+            next={
+                left:snakeHead.offsetLeft,
+                top:snakeHead.offsetTop+20
+            }
+        }
+        if(foodDiv.offsetLeft==next.left&&foodDiv.offsetTop==next.top){
+            snakeBody.unshift(foodDiv);
+            createFood();
+        }else{
+            //使得贪吃蛇最后一个div跑到蛇头
+            var lastSnakeDiv=snakeBody.pop();
+            lastSnakeDiv.style.left=next.left+"px";
+            lastSnakeDiv.style.top=next.top+"px";
+            snakeBody.unshift(lastSnakeDiv);
+        }
+        //判断是否撞墙 然后死。
+        if(snakeHead.offsetLeft>980||snakeHead.offsetLeft<0||snakeHead.offsetTop>480||snakeHead.offsetTop<0){
+//            bFlag++;
+            bFlag=2;
+//            if(bFlag==1){
+                clearInterval(timer);
+                alert("Game Over");
+//            }
+//           bFlag=0;
+        }
+
+        //判断是否撞自己，然后死
+        for(var i=2;i<snakeBody.length;i++){
+            snakeHead=snakeBody[0];
+            if(snakeHead.offsetLeft==snakeBody[i].offsetLeft&&snakeHead.offsetTop==snakeBody[i].offsetTop){
+                bFlag=2;
+//                if(bFlag==1){
+                    clearInterval(timer);
+                    alert("Game Over");
+//                }
+//                bFlag=0;
+            }
+        }
+
+
+    }
+//    var timer=setInterval(move,200);
+
+    //点击键盘移动贪吃蛇
+    document.onkeydown=function(e){
+        e= e|| window.event;
+        var kb= e.which|| e.keyCode;
+        if(kb==37&&direction!="right"){
+            direction="left";
+        }else if(kb==38&&direction!="down"){
+            direction="top";
+        }else if(kb==39&&direction!="left"){
+            direction="right";
+        }else if(kb==40&&direction!="top"){
+            direction="down";
+        }
+    }
+</script>
+</body>
+</html>
