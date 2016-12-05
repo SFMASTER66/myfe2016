@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 1000px;
+            height: 550px;
+            background: red;
+            margin: 50px auto;
+        }
+        #ground{
+            width: 1000px;
+            height: 500px;
+            background: green;
+            position: relative;
+        }
+        #footer{
+            width: 1000px;
+            height: 50px;
+            background: pink;
+            line-height: 50px;
+        }
+        #ads{
+            float: left;
+        }
+        #button{
+            float: right;
+        }
+        .block{
+            /*position: absolute;*/
+            float: left;
+            background: orangered;
+        }
+        .snake-block{
+            background: green;
+            position: absolute;
+        }
+        .food-block{
+            background: green;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="ground"></div>
+    <div id="footer">
+        <div id="ads">贪吃蛇</div>
+        <div id="button">
+            <button id="start">start</button>
+            <button id="pause">pause</button>
+            <button id="restart">restart</button>
+        </div>
+    </div>
+</div>
+<script>
+    var oGround=document.getElementById("ground");
+    var oStart=document.getElementById("start");
+    var oPause=document.getElementById("pause");
+    var oRestart=document.getElementById("restart");
+    var direction="right";
+    var timer;
+    oPause.onclick=function(){
+        clearInterval(timer);
+    }
+    oStart.onclick=function(){
+
+        clearInterval(timer);
+        timer=setInterval(move,200);
+    }
+    oRestart.onclick=function(){
+        clearInterval(timer);
+        oGround.removeChild(fDiv);
+        for(var i=0;i<3;i++){
+            oGround.removeChild(snakeBody[i]);
+        }
+        snakeBody=[];
+//        console.log(123);
+//        fDiv=null;
+        createFood();
+//        console.log(123);
+        createSnake();
+        timer=setInterval(move,200);
+    }
+    for(var i=0;i<50*25;i++){
+        var oDiv=document.createElement("div");
+        oDiv.className="block";
+        oDiv.style.width=20+"px";
+        oDiv.style.height=20+"px";
+        oGround.appendChild(oDiv);
+    }
+
+    var snakeBody=[];
+    createSnake();
+    function createSnake(){
+        for(var i=0;i<3;i++){
+            var oSnake=document.createElement("div");
+            oSnake.className="snake-block";
+            oSnake.style.width=20+"px";
+            oSnake.style.height=20+"px";
+            oSnake.style.left=60-i*20+"px";
+            oSnake.style.top=60+"px";
+            snakeBody.push(oSnake);
+            oGround.appendChild(oSnake);
+        }
+    }
+
+
+    createFood();
+    var fDiv;
+    function createFood(){
+        var fBlag=false;
+        var iLeft;
+        var iTop;
+        do{
+            fBlag=false;
+            iLeft=parseInt((Math.random()*50))*20;
+            iTop=parseInt((Math.random()*25))*20;
+            for(var i=0;i<snakeBody.length;i++){    //为了不让食物与三个贪吃蛇的div重合
+                if(snakeBody[i].offsetLeft==iLeft&&snakeBody[i].offsetTop==iTop){
+                    fBlag=true;
+                }
+            }
+        }while(fBlag);
+        fDiv=document.createElement("div");
+        fDiv.className="food-block";
+        fDiv.style.width=20+"px";
+        fDiv.style.height=20+"px";
+        fDiv.style.left=iLeft+"px";
+        fDiv.style.top=iTop+"px";
+        oGround.appendChild(fDiv);
+    }
+
+
+    var next=null;
+    function move(){
+        var head=snakeBody[0];
+        if(direction=="right"){
+            next={
+                left:head.offsetLeft+20,
+                top:head.offsetTop
+            }
+        }
+        if(direction=="left"){
+            next={
+                left:head.offsetLeft-20,
+                top:head.offsetTop
+            }
+        }
+        if(direction=="top"){
+            next={
+                left:head.offsetLeft,
+                top:head.offsetTop-20
+            }
+        }
+        if(direction=="down"){
+            next={
+                left:head.offsetLeft,
+                top:head.offsetTop+20
+            }
+        }
+        if(fDiv.offsetLeft==next.left&&fDiv.offsetTop==next.top){
+//            fDiv.className="food-block";
+            fDiv.style.width=20+"px";
+            fDiv.style.height=20+"px";
+            snakeBody.unshift(fDiv);
+            createFood();
+        }else{             //假如不加else，就不会一吃食物贪吃蛇的长度就变长，因为假如没有else，就会直接执行else里面的代码，然后最后贪吃蛇的最后一个DIV加到了食物上，所以一开始不会变长
+            var lastDiv=snakeBody.pop();     /*取出尾部*/
+            lastDiv.style.left=next.left+"px";
+            lastDiv.style.top=next.top+"px";
+            snakeBody.unshift(lastDiv);        /*上面取出尾部之后，把尾部加入到整个snakeBody的头部*/
+        }
+
+        //判断贪吃蛇是否吃到了自己。吃到了自己就死。
+        for(var i=1;i<snakeBody.length;i++){
+            head=snakeBody[0];
+            if(head.offsetLeft==snakeBody[i].offsetLeft&&head.offsetTop==snakeBody[i].offsetTop){
+                clearInterval(timer);
+                alert("GO");
+            }
+        }
+        //判断贪吃蛇是否撞墙，撞到了自己就死。
+        if(head.offsetLeft>980||head.offsetLeft<0||head.offsetTop<0||head.offsetTop>480){
+            clearInterval(timer);
+            alert("GO");
+        }
+    }
+
+
+//    var timer=setInterval(move,200);
+
+    document.onkeydown=function(e){
+        e=e||window.event;
+        var kb= e.which|| e.keyCode;
+        if(kb==37){
+            direction="left";
+        }else if(kb==38){
+            direction="top";
+        }else if(kb==39){
+            direction="right";
+        }else if(kb==40){
+            direction="down";
+        }
+    }
+</script>
+</body>
+</html>
