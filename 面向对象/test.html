@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function People(){       /*这个就是构造函数*/
+        this.name="zhangsan";
+        this.age=18;
+                this.showName=function(){
+                    alert(22222);
+                }
+    }
+    People.prototype.showName=function(){    /*构造函数里的方法写在原型里面，属性写在构造函数里*/
+        alert(1111);
+    }
+    var p=new People();
+//    p.showName();     /*走的是构造函数里面的showName，假如搞构造函数里面没有方法，然后构造函数外面有一个原型方法，就会调用原型里面的方法，从里面一直往外面找，找最接近的方法，就好像就近原则*/
+//    alert(p.name);
+    console.log(People.prototype);       /*类.prototype*/
+    console.log(p.__proto__);                /*对象.__proto__*/
+
+
+    function Animal(name){
+        this.name=name;
+        this.age=19;
+        this.eat=function(){
+            alert("eat food");
+        }
+
+    }
+
+    function Cat(name){
+        Animal.apply(this,[name]);       /*这个方法也行   这里的this就是指向cat，然后在调用了Animal这个方法* /
+        Animal.call(this,name);            /*这个方法也行*/
+   /*call和apply的第一个参数是改变this的指向的位置的。谁谁.call或者apply其实也就是调用继承方法，加了call和apply只是为了改变this的指向。*/
+    }
+    var cat=new Cat("mimi")
+//    cat.eat();
+    alert(cat.name)
+</script>
+</body>
+</html>
