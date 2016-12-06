@@ -63,27 +63,27 @@
     var oStart=document.getElementById("start");
     var oPause=document.getElementById("pause");
     var direction="right";
-    var bStart=0;
-    var bStop=0;
+    var begin=0;
+    var stop=0;
+    var foodDiv;
+
     oPause.onclick=function(){
-//        bStop++;
-        if(bStop==0){
+        if(stop==0){
             clearInterval(timer);
+            stop=1;
+            begin=2;
         }
     }
     oStart.onclick=function(){
-        if(bStart==0&&bStop==0){
+        if(begin == 0 && stop == 0){
             timer=setInterval(move,200);
-            bStart=1;
+            begin = 1;
         }
-        if(bStart==1&&bStop==2){
-            timer=setInterval(move,200);
-
-        }
-        if(bStart==1&&bStop==0){
+        if(begin == 1 && stop == 0){
+            console.log(999);
             clearInterval(timer);
             oGround.removeChild(foodDiv);
-            for(var i=0;i<3;i++){
+            for(var i=0;i<snakeBody.length;i++){
                 oGround.removeChild(snakeBody[i]);
             }
             direction="right";
@@ -91,10 +91,14 @@
             createFood();
             createSnake();
             timer=setInterval(move,200);
-             }
         }
-
-
+        if(begin == 2 && stop == 1){
+            console.log(789);
+            begin = 1;
+            stop = 0;
+            timer=setInterval(move,200);
+        }
+    }
 
     //创建的操场的颜色。
     for(var i=0;i<50*25;i++){
@@ -104,9 +108,7 @@
     }
 
     //创建蛇
-//    createSnake();
-    var snakeBody=[];
-//    var snakeDiv;
+    var snakeBody=[];  /*要先写这个才行*/
     createSnake();
     function createSnake(){
         for(var i=0;i<3;i++){
@@ -119,12 +121,8 @@
         }
     }
 
-
-
     //创建食物
     createFood();
-    var foodDiv;
-//    createFood();
     function createFood(){
         var flag=false;
         var iLeft;
@@ -134,6 +132,7 @@
             iLeft=parseInt(Math.random()*49)*20;
             iTop=parseInt(Math.random()*24)*20;
             for(var i=0;i<snakeBody.length;i++){
+                console.log(snakeBody);
                 if(snakeBody[i].offsetLeft==iLeft&&snakeBody[i].offsetTop==iTop){
                     flag=true;
                 }
@@ -146,9 +145,6 @@
         foodDiv.style.top=iTop+"px";
         oGround.appendChild(foodDiv);
     }
-
-
-
 
     //贪吃蛇移动
     var next=null;
@@ -181,6 +177,7 @@
         }
         if(foodDiv.offsetLeft==next.left&&foodDiv.offsetTop==next.top){
             snakeBody.unshift(foodDiv);
+            foodDiv = null;
             createFood();
         }else{
             //使得贪吃蛇最后一个div跑到蛇头
@@ -191,31 +188,29 @@
         }
         //判断是否撞墙 然后死。
         if(snakeHead.offsetLeft>980||snakeHead.offsetLeft<0||snakeHead.offsetTop>480||snakeHead.offsetTop<0){
-//            bFlag++;
-            bFlag=2;
-//            if(bFlag==1){
+            begin=1;
+            stop = 0;
                 clearInterval(timer);
                 alert("Game Over");
-//            }
-//           bFlag=0;
         }
 
         //判断是否撞自己，然后死
         for(var i=2;i<snakeBody.length;i++){
             snakeHead=snakeBody[0];
             if(snakeHead.offsetLeft==snakeBody[i].offsetLeft&&snakeHead.offsetTop==snakeBody[i].offsetTop){
-                bFlag=2;
-//                if(bFlag==1){
+                begin=1;
+                stop = 0;
                     clearInterval(timer);
                     alert("Game Over");
-//                }
-//                bFlag=0;
+
             }
         }
 
 
     }
 //    var timer=setInterval(move,200);
+      var timer;
+
 
     //点击键盘移动贪吃蛇
     document.onkeydown=function(e){
