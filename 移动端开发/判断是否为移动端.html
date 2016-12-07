@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function isMobile(){
+        if(/mobile|android/ig.test(navigator.userAgent)){
+            return true;
+        }
+        return false;
+    }
+    var script=document.createElement("script");
+    script.onload=function(){
+        var ss=document.createElement("script");
+        ss.src="index.js";
+        document.body.appendChild(ss);
+    }
+
+    script.src=isMobile()?"zepto.min.js":"jquery-1.12.4.js";
+    document.body.appendChild(script);
+
+//    script.src = isMobile()?"zepto.min.js":"jquery-1.12.4.js";
+    //    document.body.appendChild(script);
+</script>
+<!--<script src="index.js"></script>-->
+</body>
+</html>
