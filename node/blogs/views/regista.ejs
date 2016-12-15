@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<form action="/users/confirmRegist" method="post">
+    <p>
+        用户名：<input type="text" name="username" id="username"/>
+    </p>
+    <p>
+        密码: <input type="password" name="psd" id="psd"/>
+    </p>
+    <p>
+        确认密码: <input type="password" name="pwd" id="verifyPsd"/>
+    </p>
+    <p>
+        <input type="submit" value="regist"/>
+    </p>
+</form>
+<script src="/javascripts/jquery-1.12.4.js"></script>
+<script>
+    $("#username").on("blur",function(){
+        var that=this;
+        $("span").remove();
+        $.get("/users/confirmRegist",{username:this.value},  //这个是第二个参数，就是获取这个框下的值，然后通过这个方式纪录下来，然后后台通过这个req.query.username获取。
+                function(data){
+                    if(data=="success"){
+                        if(that.value==""){
+                            $("<span>请输入用户名</span>").insertAfter(that);
+                        }else{
+                            $("<span>该用户名可用</span>").insertAfter(that);
+                        }
+                    }else if(data=="fail"){
+                        $("<span>该用户名被占用了</span>").insertAfter(that);
+                    }
+                },"text"
+        )
+    })
+
+    $("#psd").on("blur",function(){
+        var that=this;
+        $("span").remove();
+        $.get("/users/confirmPsd",{psd:this.value},   //亲身经历，每一个AJAX的地址都是不一样的。
+                function(data){
+                    if(data=="success"){
+                        $("<span>输入密码格式正确</span>").insertAfter(that);
+                    }else if(data=="false"){
+                        $("<span>输入密码格式错误</span>").insertAfter(that);
+                    }
+                },"text"
+        )
+    })
+
+    $("#verifyPsd").on("blur",function(){
+        var that=this;
+        $("span").remove();
+        $.get("/users/verifyPsd",{verifyPsd:this.value},
+                function(data){
+                    if(data=="success"){
+                        $("<span>密码输入正确</span>").insertAfter(that);
+                    }else if(data=="false"){
+                        $("<span>请再次确认密码</span>").insertAfter(that);
+                    }
+                },"text"
+        )
+    })
+</script>
+</body>
+</html>
