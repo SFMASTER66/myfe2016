@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<a id="aaa" href="#">点击查看</a>
+<!--<button id="link" href="#">点击查看</button>-->
+<script>
+    var aa=document.getElementById("aaa");
+    aa.addEventListener("click",function(event){
+        event.preventDefault();         //这个可以阻止默认行为。比如这里的例子就是可以阻止a跳转页面。
+        alert("3333");
+//        return false;
+    },true)        //这个true不是支持捕获吗？但是怎么还会冒泡呢？
+//    aa.onclick=function(event){
+//        alert("1111");
+//        event.stopPropagation();     //这个可以阻止点击这个，然后冒泡到了父元素，例如这个例子就是会冒泡到body
+//    }
+    document.body.onclick=function(){
+        alert("222222");
+    }
+
+
+</script>
+</body>
+</html>
