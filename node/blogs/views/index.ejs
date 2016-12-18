@@ -10,6 +10,8 @@
     <p>Welcome to <%=uname?uname:"游客"%></p>     <!--这里写的意思就是如果uname不为空，就是传过来的uname的值，如果为空，就是为"游客"这个字符串-->
   <p><%= title2 %></p>
     <!--我把跟用户有关的东西都放在了users.js里面，然后写下面的href的时候，就要把users写上-->
+    <!--假如下面这个login的a，跳转的页面直接是/login这个根路径下的login，这时候就在toutes的index.js下xieget的接受，
+    要是写的是/users/login，跳转的页面就是/users/login这个路径下的login，这时候就在toutes下的users.js下写get的接受，-->
     <a href="/users/login">login</a>   |    <a href="/users/regista">regist</a>
   </body>
 </html>
