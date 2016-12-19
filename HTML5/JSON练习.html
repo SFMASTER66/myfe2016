@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var person ={
+        name:"liuliliu",
+        age:15,
+        sex:"male",
+        hobbies:["swimming","singing"],
+        father:{
+            name:"bababa",
+            age:56,
+            sex:"male"
+        }
+    }
+
+//    console.log(person);
+//    person.name="hahaha";
+//    var obj=person;
+//    console.log(obj);
+
+
+//    person.name="hahaha";
+    var obj=clone(person);
+    person.name="hahaha";
+    person.father.name="nanana"   //因为person里面存有属性，还存有对象，比如father就是个对象，当遇到对象的时候，有要仔一次的克隆，这个就是所谓的深克隆了
+    console.log(obj);
+    function clone(a){
+        var arr=[];
+        for(t in a){
+            if(typeof a[t]=="object"){   //深克隆，当对象里面还有对象的时候，再一次克隆循环，
+                arr[t]=clone(a[t]);
+            }else{
+                arr[t]=a[t];
+            }
+        }
+        return arr;
+    }
+
+</script>
+</body>
+</html>
