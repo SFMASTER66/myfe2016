@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="container">
+<p>WO AINI </p>
+</div>
+<script>
+    var oContainer=document.getElementById("container");
+    var oBject=document.createElement("div");
+    oBject.innerHTML="dfsdfdsfdsfdsfsdfsd";
+    oContainer.appendChild(oBject);
+    var a=oContainer.cloneNode(true);//拷贝了oContainer下的两个子节点，  cloneNode不仅把子元素克隆了，也把自己给复制了。
+    oContainer.appendChild(a);
+    for(var i=0;i<oContainer.childNodes.length;i++){   //通过这个检测出，oContainer是第一个，然后childNodes是带空格的，
+        console.log(oContainer.childNodes[i]);
+    }
+    for(var i=0;i<a.childNodes.length;i++){      //这个就是复制出来的那个，
+        console.log(a.childNodes[i]);
+    }
+    for(var i=0;i<oContainer.children.length;i++){   //通过这个检测出，oContainer是第一个，然后children是不带空格的，就只是单纯的包括子节点。
+        console.log(oContainer.children[i]);
+    }
+        for(var i=0;i<a.children.length;i++){      //这个就是复制出来的那个，
+            console.log(a.children[i]);
+        }
+
+
+
+</script>
+</body>
+</html>
