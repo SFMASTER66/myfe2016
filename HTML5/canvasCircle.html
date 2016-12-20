@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: black;
+        }
+        #can{
+            background: white;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="can"></canvas>
+<script>
+    var oCanvas=document.getElementById("can");
+    var oContext=oCanvas.getContext("2d");
+    var x=oCanvas.offsetWidth-100;
+    var y=oCanvas.offsetHeight-200;
+    var radius=50;
+    var startangle=1.1*Math.PI;
+    var endangle=1.9*Math.PI;
+    var anticlockwise=false;
+    oContext.arc(x,y,radius,startangle,endangle,anticlockwise);
+    oContext.strokeStyle="red";
+    oContext.closePath();
+    oContext.stroke();
+</script>
+</body>
+</html>
+</body>
+</html>
