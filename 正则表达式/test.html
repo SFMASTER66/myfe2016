@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input id="text" type="text" value="wo ai ni "/>
+<script>
+//    30CAC0040 取出40
+//    var str="30CAC0040";
+//    console.log(/\d{2}$/.exec(str));
+//    console.log(/\d+$/g .exec(str));
+
+//字符串内如有空格，但是空格的数量可能不一致，通过正则将空格的个数统一变为一个。
+// 例如：蓝 色 理   想
+// 变成：蓝 色 理 想
+
+//    var str="蓝 色 理   想";
+//    var result=str.replace(/\s+/g," ");  /*这里的g就是全局的意思，他的全局指的是已知给的内容是什么，这里给的就是蓝 色 理   想，所以/\s+/后面要加一个g，不然只是找到"蓝 色"的第一个空格，然后后面的空格就不找了。*/
+//    console.log(result);
+
+
+//判断字符串是不是由数字组成
+//    方法一：
+//    var str="aaa123456789";
+//    console.log(/^\d+$/.test(str));        返回false；
+
+//    方法二：
+//    var str="aaa123456789";
+//    console.log(/^\D+/.test(str));             返回true;
+
+
+//正则验证手机号，忽略前面的0，支持130-139，150-159。忽略前面0之后判断它是11位的。
+//    var str="13075847395";
+//    console.log(/^0?(13|15)\d{9}$/.test(str));
+
+
+//使用正则表达式实现删除字符串中的空格：
+//    var str="我  爱 你      啊   啊  啊 啊 啊啊   啊 啊啊 啊啊    啊 啊 啊";
+//    var result=str.replace(/\s+/g,"");
+//    console.log(result);
+
+
+//删除字符串两侧的空白字符。
+//    var str=" 我爱你 啊 啊啊 啊 啊 啊啊 啊啊 ";
+//console.log(str.length);
+//    var result=str.replace(/^\s+|\s+$/g,"")
+//    console.log(result);
+//    console.log(result.length);
+
+//删除字符串左侧的空白字符。
+//    var str="   我爱你";
+//    console.log(str.length);
+//    str=str.replace(/^\s+/g,"");
+//    console.log(str);
+//    console.log(str.length)
+
+//var oText=document.getElementById("text");
+//var aa=oText.value;
+//console.log(aa);
+   //只能输入数字和小数点
+//var str="222323....33";
+//    console.log(/^\d*\.*\d*$/g.test(str));       /*小数点可以用\.或者[.]表示*/  /*这里的小数点可以有0到多个*/
+//    console.log(/^\d*[.]?\d*$/g.test(str));         /*这里的小数点只能有0到1个*/
+
+
+//只能输入小写的英文字母和小数点，和冒号，正反斜杠(：./\)
+//    var str=":dfds//\\ds.:";
+//       \/和\\分别是左右反斜线
+//            console.log(/^[a-z\.:\/\\]+$/.test(str));     /*个人感觉是只要在前面加了^和在后面加了$，就是说里面只能是^和$里面限制的东西，写了别的东西就是不行的，没有加这两个，就是说只要满足这个条件就可以*/
+//
+
+
+//怎么把这个字符串的小数点前面的字符替换为我自定义的字符串啊？ 例如：infomarket.php?id=197 替换为 test.php?id=197
+
+//    var str="infomarket.php?id=197";
+////    var result=str.replace(/\[A-z]+/,"test");     /*为什么这个不使？？*/
+//    var result=str.replace(/\w+/,"test");
+//    console.log(result);
+
+function  execReg(reg,str){    var result =  reg.exec(str);    console.log(result); }
+reg = /[^abc]+/; str='blueidea'; execReg(reg,str);
+
+
+
+</script>
+</body>
+</html>
