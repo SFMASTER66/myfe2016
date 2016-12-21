@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="checkbox" value="1" name="che" />
+<input type="checkbox" value="2" name="che"/>
+<input type="checkbox" value="3" name="che"/>
+<input id="but" type="button"/>
+<script src="jquery-1.12.4.js"></script>
+<script>
+//js的方法
+    var oBut=document.getElementById("but");
+    var aCheck=document.getElementsByName("che");
+    oBut.onclick=function(){
+        var array=new Array();
+        for(var i=0;i<aCheck.length;i++){
+            if(aCheck[i].checked){
+                array.push(aCheck[i].value);
+            }
+        }
+        alert(array.length);
+    };
+
+   //jQuery的方法
+//        $("#but").on("click",function(){
+//            alert($('input[type=checkbox]:checked').size());
+//        });
+</script>
+</body>
+</html>
