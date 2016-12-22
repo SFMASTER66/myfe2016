@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var date=new Date();
+//    date.setDate(25);
+//    document.cookie="name=lisi;expires="+date;
+//    document.cookie="age=17";
+//    console.log(document.cookie);
+
+
+    setCookie("name","aa",25);
+    setCookie("age",17,25);
+    function setCookie(key,value,day){
+        var str=key+"="+value+";";
+        if(day){
+            var date=new Date();
+            date.setDate(date.getDate()+day);
+            str+="expires="+date;
+        }
+        document.cookie=str;
+    }
+
+
+
+console.log(getCookie("name"));
+    function getCookie(key){
+        var str=document.cookie;
+        var arr=str.split("; ");
+        for(var i=0;i<arr.length;i++){
+            var arr1=arr[i].split("=");
+            if(arr1[0]==key){
+                return arr1[1];
+            }
+        }
+    }
+
+    remove("name");
+    function remove(key){
+    setCookie(key,"",-1);  //设置为-1，就是为了在此时间之前，然后就会清空了。
+}
+</script>
+</body>
+</html>
