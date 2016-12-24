@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        #drag{
+            background: lightseagreen;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="drag"></div>
+<script>
+    var oDrag=document.getElementById("drag");
+    oDrag.onmousedown=function(e) {
+        console.log(e);
+        alert(e.clientX + "," + e.clientY);
+        alert(getComputedStyle(oDrag, null).width);  //适合于chrome浏览器，也适合于此电脑的ie浏览器
+        // alert(oDrag.currentStyle.width);  //不适合于chrome浏览器，适合于此电脑的ie浏览器。
+        /* if(this.style.background=="lightseagreen"){     //这么写可以让颜色改变 ，但是在第一次点击不会改变，只有在第一次点击之后才会改变颜色。
+            this.style.background="red";yi
+        }else{
+            this.style.background="lightseagreen";
+        }*/
+
+//    function getStyle(elem,prop){
+//      if(window.getComputedStyle){
+//          return window.getComputedStyle(oDrag,null)["background"];
+//      }else if(elem.currentStyle){
+//          return elem.currentStyle["background"];
+//      }
+    };
+//    getStyle(oDrag,"background");
+
+
+//    function getStyle(elem, prop){
+//        if(window.getComputedStyle){
+//            return window.getComputedStyle(oDrag,null)[prop];
+//        } else if(elem.currentStyle){
+//            return elem.currentStyle[prop];
+//        }
+//    }
+//
+//        if( window.getComputedStyle.(oDrag,null).background==" lightseagreen"){
+//            window.getComputedStyle.(oDrag,null).background="red";
+//        }else{
+//            window.getComputedStyle.(oDrag,null).background=" lightseagreen";
+//        }
+//
+//    getStyle(oDrag,"background");
+//        }
+
+
+</script>
+</body>
+</html>
