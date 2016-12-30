@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #main{
+            position: relative;
+            left: 50px;
+            top: 100px;
+        }
+        #container{
+            position: relative;
+            width: 110px;
+            height: 50px;
+        }
+        #da{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            float: left;
+        }
+        #xiao{
+            width: 50px;
+            height: 50px;
+            background: gray;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            left: 60px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <div id="container">
+        <div id="da">放大</div>
+        <div id="xiao">缩小</div>
+    </div>
+    <textarea name="" id="wenben" cols="30" rows="10">dfsadfsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffdafsdgfsfsdfdsfsdfsdfsdfsdafsdafsdafsdfsdfsdafsdafdsdfsdfsdfdsafdsafsdf</textarea>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+   $(function(){
+        $("#da").on("click",function(){
+           var $h= $("#wenben").height();  //这个取出的值是数值，没有px的
+           // var $h=$("#wenben").css("height");  //这个取出的值是带px的数字。
+            console.log($h);
+            if($h<500) {
+                $("#wenben").height($h + 50);
+            }
+        });
+       $("#xiao").on("click",function(){
+           var $h= $("#wenben").height();
+           if($h>20){
+               $("#wenben").height($h - 20);
+           }
+       });
+    })
+</script>
+</body>
+</html>
