@@ -26,14 +26,28 @@
     <div id="OSC_Slogon">Johnny's Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="#" class="project"><?php
+				if($this->session->userdata("userinfo")){
+					echo $this->session->userdata("userinfo")->mood;
+				}else{
+					echo "心情 here...";
+				}
+				?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 	  <div id="VisitorInfo">
 		当前访客身份：
-				Johnny [ <a href="#">退出</a> ]
+		  <?php
+		  if($this->session->userdata("userinfo")){
+			  echo $this->session->userdata("userinfo")->username;
+		  }else{
+			  echo "游客";
+		  }
+		  ?>
+
+				 [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
@@ -50,7 +64,7 @@
 	<div id="OSC_Content">
 <div id="AdminScreen">
     <div id="AdminPath">
-        <a href="index_logined.htm">返回我的首页</a>&nbsp;»
+        <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
     	<span id="AdminTitle">博客文章管理</span>
     </div>
     <div id="AdminMenu"><ul>
@@ -58,18 +72,18 @@
 		<ol>
 			<li><a href="inbox.htm">站内留言(0/1)</a></li>
 			<li><a href="profile.htm">编辑个人资料</a></li>
-			<li><a href="chpwd.htm">修改登录密码</a></li>
-			<li><a href="userSettings.htm">网页个性设置</a></li>
+			<li><a href="user/chpwd">修改登录密码</a></li>
+			<li><a href="user/userSettings">网页个性设置</a></li>
 		</ol>
 	</li>		
 </ul>
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li><a href="newBlog.htm">发表博客</a></li>
-			<li><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li class="current"><a href="blogs.htm">文章管理</a></li>
-			<li><a href="blogComments.htm">博客评论管理</a></li>
+			<li><a href="blog/show_blogTypeName">发表博客</a></li>
+			<li><a href="blog/showblogTypeName">博客设置/分类管理</a></li>
+			<li><a href="blog/showBlogs">文章管理</a></li>
+			<li><a href="blog/showBlogsOnComments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>
@@ -78,16 +92,17 @@
 <div class="MainForm BlogArticleManage">
   <h3 class="title">共有 3 篇博客，每页显示 40 个，共 1 页</h3>
     <div id="BlogOpts">
-	<a href="javascript:;" onclick="select_all();">全选</a>&nbsp;|
-	<a href="javascript:;" onclick="unselect_all();">取消</a>&nbsp;|
-	<a href="javascript:;" onclick="select_other();">反向选择</a>&nbsp;|
-	<a href="javascript:;" onclick="delete_sel()">删除选中</a>
+	<a href="javascript:;" id="choseAll">全选</a>&nbsp;|
+	<a href="javascript:;" id="cancel">取消</a>&nbsp;|
+	<a href="javascript:;" id="reverseChose">反向选择</a>&nbsp;|
+	<a href="javascript:;" id="deleteAll">删除选中</a>
   </div>
   <ul>
 	  <?php
 	  foreach($blogs as $row){
 		  echo "<li>";
-		  echo "<a>".$row->title."</a>";
+		  echo "<input name='blog' value='$row->blog_id' type='checkbox'>";
+		  echo "<a>".$row->title."---$row->type_name</a>";
 		  echo "<small>".$row->create_time."</small>";
 		  echo "</li>";
 	  }
@@ -99,96 +114,60 @@
 <!--	</li>-->
 	  </ul>
     </div>
-<script type="text/javascript">
-<!--
-function select_all(){
-	$("input[name='blog']").attr("checked", true);
-}
-function unselect_all(){
-	$("input[name='blog']").attr("checked", false); 
-}
-function select_other(){
-	jQuery.each($("input[name='blog']"), function(i, n){
-		n.checked = !n.checked;
-	}); 
-}
-function delete_sel(){
-	var blogids = "";
-	jQuery.each($("input[name='blog']"), function(i, n){
-		if(n.checked){
-			blogids += $(this).val()+",";
-		}
-	});
-	if(blogids.length > 0){
-		if(!confirm("确认要删除选中的文章吗？")) return ;
-		ajax_post("/action/blog/batch_delete","id="+blogids,function(html){
-			location.reload();
-		});
-	}
-	else
-		alert("请选择要删除的文章");
-}
-//-->
-</script></div>
-	<div class="clear"></div>
-</div>
-<script type="text/javascript">
-<!--
-$(document).ready(function() {
-	$('#AdminTitle').text('博客文章管理');
-});
-$('.AutoCommitForm').ajaxForm({
-    success: function(html) {	
-		$('#error_msg').hide();
-		if(html.length>0)
-			$('#error_msg').html("<span class='error_msg'>"+html+"</span>");
-		else
-			$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>")
-		$('#error_msg').show("fast");
-    }
-});
-$('.AutoCommitJSONForm').ajaxForm({
-	dataType: 'json',
-    success: function(json) {	
-		$('#error_msg').hide();
-		if(json.error==0){
-			if(json.msg)
-				$('#error_msg').html("<span class='ok_msg'>"+json.msg+"</span>");
-			else
-				$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>");
-		}
-		else {
-			if(json.msg)
-				$('#error_msg').html("<span class='error_msg'>"+json.msg+"</span>");
-			else
-				$('#error_msg').html("<span class='error_msg'>操作已成功完成</span>");
-		}
-		$('#error_msg').show("fast");
-    }
-});
-//-->
-</script>
 </div>
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-<script type="text/javascript" src="javascript/space.htm" defer="defer"></script>
-<script type="text/javascript">
-<!--
-$(document).ready(function() {
-	$('a.fancybox').fancybox({titleShow:false});
-});
+		<script src="javascript/jquery-1.12.4.js"></script>
+		<script>
 
-function pay_attention(pid,concern_it){
-	if(concern_it){
-		$("#p_attention_count").load("/action/favorite/add?mailnotify=true&type=3&id="+pid);
-		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',false)" style="color:#A00;">取消关注</a>');	
-	}
-	else{
-		$("#p_attention_count").load("/action/favorite/cancel?type=3&id="+pid);
-		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',true)" style="color:#3E62A6;">关注此文章</a>');
-	}
-}
-//-->
-</script>
+			$(function(){
+				$("#deleteAll").on("click",function(){
+					var blogId="";
+					$(":checked").each(function(index,elem){
+						blogId+=elem.value+",";
+					})
+					blogId=blogId.slice(0,-1);
+					console.log(typeof blogId);
+					$.get("blog/deleteBlogs",{blogId:blogId},function(data){
+						if(data=="success"){
+							$(":checked").parent().remove();
+						}else if(data=="fail"){
+							alert("删除失败");
+						}
+					})
+				})
+
+				$("#choseAll").on("click",function(){
+					console.log("lalalala");
+					$("input[name=blog]").prop("checked",true);
+				})
+
+				$("#cancel").on("click",function(){
+					$("input[name=blog]").prop("checked",false);
+				})
+
+				$("#reverseChose").on("click",function(){
+					$("input[name=blog]").each(function(index,elem){
+						if($(this).prop("checked")){
+							$(this).prop("checked",false);
+						}else{
+							$(this).prop("checked",true);
+						}
+					})
+				})
+
+
+
+
+
+
+			})
+
+
+
+
+		</script>
+
+
 </body></html>

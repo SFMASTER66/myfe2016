@@ -26,14 +26,27 @@
     <div id="OSC_Slogon">Johnny's Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project">心情 here...</a></li>
+        <li><a href="#" class="project"><?php
+				if($this->session->userdata("userinfo")){
+					echo $this->session->userdata("userinfo")->mood;
+				}else{
+					echo "心情 here...";
+				}
+				?></a></li>
         </ul>
     </div>
     <div class="clear"></div>
 </div><!-- #EndLibraryItem --><div id="OSC_Topbar">
 <div id="VisitorInfo">
 		当前访客身份：
-				Johnny [ <a href="#">退出</a> ]
+	<?php
+	if($this->session->userdata("userinfo")){
+		echo $this->session->userdata("userinfo")->username;
+	}else{
+		echo "游客";
+	}
+	?>
+				 [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
 																				</span>
@@ -50,7 +63,7 @@
 	<div id="OSC_Content">
 <div id="AdminScreen">
     <div id="AdminPath">
-        <a href="index_logined.htm">返回我的首页</a>&nbsp;»
+        <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
     	<span id="AdminTitle">发表博客</span>
     </div>
     <div id="AdminMenu"><ul>
@@ -58,18 +71,18 @@
 		<ol>
 			<li><a href="inbox.htm">站内留言(0/1)</a></li>
 			<li><a href="profile.htm">编辑个人资料</a></li>
-			<li><a href="chpwd.htm">修改登录密码</a></li>
-			<li><a href="userSettings.htm">网页个性设置</a></li>
+			<li><a href="user/chpwd">修改登录密码</a></li>
+			<li><a href="user/userSettings">网页个性设置</a></li>
 		</ol>
 	</li>		
 </ul>
 <ul>
 	<li class="caption">博客管理	
 		<ol>
-			<li class="current"><a href="newBlog.htm">发表博客</a></li>
-			<li><a href="blogCatalogs.htm">博客设置/分类管理</a></li>
-			<li><a href="blogs.htm">文章管理</a></li>
-			<li><a href="blogComments.htm">博客评论管理</a></li>
+			<li><a href="blog/show_blogTypeName">发表博客</a></li>
+			<li><a href="blog/showblogTypeName">博客设置/分类管理</a></li>
+			<li><a href="blog/showBlogs">文章管理</a></li>
+			<li><a href="blog/showBlogsOnComments">博客评论管理</a></li>
 		</ol>
 	</li>
 </ul>

@@ -3,7 +3,7 @@
   class user_model extends CI_Model{
 
       public function getusersByUsernameandPwd($username,$pwd){
-         return  $this->db->get_where("tt_user",array(  //除了差是返回一个row（），然后可以这么写return，别的增删改都不行
+         return  $this->db->get_where("tt_user",array(  //除了查是返回一个row（），然后可以这么写return，别的增删改都不行
               "username"=>$username,
               "password"=>$pwd
           ))->row(); //一个数据返回row（），多个数据返回result（）。
@@ -50,6 +50,31 @@
           $this->db->update("t_user",array(
               "username"=>$username,
               "password"=>$password
+          ));
+          return $this->db->affected_rows();
+      }
+
+
+      public function checkOldPwd($userid,$oldpwd){
+          return $this->db->get_where("tt_user",array(
+             "user_id"=>$userid,
+              "password"=>$oldpwd
+          ))->row();
+      }
+
+      public function changePassword($userid,$newpwd,$newpwd2){
+          $this->db->where("user_id",$userid);
+          $this->db->update("tt_user",array(
+              "password"=>$newpwd,
+              "repassword"=>$newpwd2
+          ));
+          return $this->db->affected_rows();
+      }
+
+      public function moodSetting($userId,$mood){
+          $this->db->where("user_id",$userId);
+          $this->db->update("tt_user",array(
+              "mood"=>$mood
           ));
           return $this->db->affected_rows();
       }
