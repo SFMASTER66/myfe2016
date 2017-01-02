@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 750px;
+            height: 500px;
+            background: red;
+            margin: 20px auto;
+            position: relative;
+        }
+        #button{
+            width: 73px;
+            height: 20px;
+            position: absolute;
+            bottom: 0;
+            left:50% ;
+            margin-left: -50px;
+        }
+        #img{
+            width: 750px;
+            height: 500px;
+            background-image: url(imgs/1.jpg);
+            position: relative;
+        }
+        #img div{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="img"></div>
+    <div id="button">
+        <button id="click">click</button>
+        <button id="bomb">bomb</button>
+    </div>
+</div>
+<script>
+    var oImg=document.getElementById("img");
+    var oClick=document.getElementById("click");
+    var oBomb=document.getElementById("bomb");
+    var iNow=0;
+    oClick.onclick=function(){
+        oImg.innerHTML="";
+        iNow++;
+        oImg.style.background="url(imgs/"+(iNow)+".jpg)";
+        if(iNow==5){
+            iNow=0;
+        }
+        for(var i=0;i<4;i++){
+            for(var j=0;j<6;j++){
+                var oDiv=document.createElement("div");
+                oDiv.style.width=125+"px";
+                oDiv.style.height=125+"px";
+                oDiv.style.left=j*125+"px";
+                oDiv.style.top=i*125+"px";
+                oDiv.style.background="url(imgs/"+(iNow+1)+".jpg)"+ (-j*125)+"px "+(-i*125)+"px";
+                oDiv.style.transform="rotateY(-180deg)";   //让一开始的oDiv的就反过来，
+                oDiv.style.transition="all 1s ease";
+                oDiv.style.WebkitBackfaceVisibility ='hidden';   //然后旋转的时候，看不见背面。
+                oImg.appendChild(oDiv);
+            }
+        }
+        var index=0;
+        var aDiv=oImg.getElementsByTagName("div");
+        var timer1=setInterval(function(){
+                aDiv[index].style.transform="rotateY(0deg)";
+                if(index==23){
+                    clearInterval(timer1);
+                }
+            index++;
+        },30)
+    }
+
+
+    oBomb.onclick=function(){
+        oImg.innerHTML="";
+        iNow++;
+
+        for(var i=0;i<4;i++){
+            for(var j=0;j<6;j++){
+                var oDiv=document.createElement("div");
+                oDiv.style.width=125+"px";
+                oDiv.style.height=125+"px";
+                oDiv.style.position = 'absolute';
+                oDiv.style.left=j*125+"px";
+                oDiv.style.top=i*125+"px";
+                oDiv.style.background="url(imgs/"+(iNow)+".jpg)"+ (-j*125)+"px "+(-i*125)+"px";
+                oDiv.style.transition="all 1s ease";
+                oImg.appendChild(oDiv);
+            }
+        }
+        if(iNow==5){
+            iNow=0;
+        }
+        oImg.style.background="url(imgs/"+(iNow+1)+".jpg)";
+
+        var index=0;
+        var aDiv=oImg.getElementsByTagName("div");
+        var timer2=setInterval(function(){
+            aDiv[index].style.left=random(-500,1000)+"px";
+            aDiv[index].style.top=random(-500,1000)+"px";
+            aDiv[index].style.WebkitTransform="rotateY("+360+"deg) scale("+2+")";
+            aDiv[index].style.opacity=0;
+            index++;
+            if(index==24){
+                clearInterval(timer2);
+            }
+        },30)
+    }
+
+    function random(x,y){
+        return Math.ceil(Math.random()*(y-x)+x);
+    }
+
+</script>
+</body>
+</html>
