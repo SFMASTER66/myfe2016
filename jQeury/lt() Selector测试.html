@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+<table border="1">
+
+    <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+    <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+
+    <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+<script>
+    $("td:lt(4)").css("color", "red");     //跟gt一样，都是从索引0开始，这里是索引4，是小于索引4，不包括4，所以是前4个显示红色。
+</script>
+
+</body>
+</html>
