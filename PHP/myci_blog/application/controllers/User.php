@@ -12,6 +12,9 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$this->session->unset_userdata("userinfo");   //删除session
+		$this->session->unset_userdata("messageNum");
+		$this->session->unset_userdata("usermood");
+		$this->session->unset_userdata("NewProfile");
 		$this->load->view('index');
 	}
 
@@ -109,12 +112,50 @@ class User extends CI_Controller {
 		$mood=$this->input->post("mood");
 //		echo "$userId";
 //		die();
-		$row=$this->user_model->moodSetting($userId,$mood);
+		$row=$this->user_model->moodSetting($userId,$mood);    //改完之后，下面重新取session
 //		var_dump($row);
 //		die();
 		if($row){
-//			redirect("user/userSettings");
-			redirect("blog/indexShowBlogs");
+			$mood=$this->user_model->queryMood($userId);
+			if($mood){
+				$this->session->set_userdata(array(     //再次存一次session，假如不写这个，修改完了不会马上显示，要推出才能显示修改后的内容，但是再次session之后，就可以立马显示了
+					"usermood"=>$mood
+				));
+				redirect("blog/indexShowBlogs");
+			}
+
+		}else{
+			echo "fail";
+		}
+	}
+
+
+	public function profile(){
+		$this->load->view("profile");
+	}
+
+
+	public function editProfile(){
+		$userId=$this->session->userdata("userinfo")->user_id;
+		$realName=$this->input->post("realName");
+		$gender=$this->input->post("gender");
+//		var_dump($realName);
+//		var_dump($gender);
+//		die();
+
+		$row=$this->user_model->updateProfile($userId,$realName,$gender);
+//		var_dump($row);
+//		die();
+		if($row){
+			$NewProfile=$this->user_model->queryNewProfile($userId);
+//			var_dump($NewProfile);
+//			die();
+			if($NewProfile){
+				$this->session->set_userdata(array(
+					"NewProfile"=>$NewProfile
+				));
+				redirect("blog/indexShowBlogs");
+			}
 		}else{
 			echo "fail";
 		}

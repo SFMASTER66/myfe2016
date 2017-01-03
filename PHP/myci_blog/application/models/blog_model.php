@@ -100,19 +100,79 @@ where blog.blog_id=comment.blog_id and comment.user_id=user.user_id";
         return $this->db->affected_rows();
     }
 
-    public function indexShowBlogs(){
-        $sql="select count(tt_blog.blog_id) num,tt_blog.*,tt_blog_type.type_name
-from tt_blog , tt_comment  ,tt_blog_type
-WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id
-GROUP BY tt_blog.blog_id";
-        return $this->db->query($sql)->result();
+//    public function indexHasBlogs($userid){    //有文章，也有评论
+//        $sql="select count(tt_blog.blog_id) num,tt_blog.*,tt_blog_type.type_name
+//from tt_blog , tt_comment  ,tt_blog_type
+//WHERE tt_blog.type_id=tt_blog_type.type_id and tt_blog.user_id=?
+//GROUP BY tt_blog.blog_id";
+//        return $this->db->query($sql,array(
+//            "user_id"=>$userid
+//        ))->result();
+//    }
+
+//    public function indexShowBlogs($userid){    //有文章，也有评论
+//        $sql="select count(tt_blog.blog_id) num,tt_blog.*,tt_blog_type.type_name
+//from tt_blog , tt_comment  ,tt_blog_type
+//WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id and tt_blog.user_id=?
+//GROUP BY tt_blog.blog_id";
+//        return $this->db->query($sql,array(
+//            "user_id"=>$userid
+//        ))->result();
+//    }
+
+    public function indexShowBlogs($userid){    //有文章，也有评论
+        $sql="select tt_blog.*, tt_blog_type.*,(select count(*) from tt_comment comm where tt_blog.blog_id=comm.blog_id) num
+from tt_blog,tt_blog_type
+where tt_blog.user_id = ? and tt_blog.type_id = tt_blog_type.type_id";
+        return $this->db->query($sql,array(
+            "user_id"=>$userid
+        ))->result();
     }
 
-    public function indexShowComments(){
+    public function indexShowPureBlogs($userid){
+        $sql="select tt_blog.*
+from tt_blog
+where tt_blog.user_id=?";
+        return $this->db->query($sql,array(
+           "user_id"=> $userid
+        ))->result();
+    }
+
+    public function indexShowNoCommentsBlogs($userid){   //没有评论，但有文章
+        $sql="select count(tt_blog.blog_id) num,tt_blog.*,tt_blog_type.type_name
+from tt_blog , tt_comment  ,tt_blog_type
+WHERE tt_blog.type_id=tt_blog_type.type_id and tt_blog.user_id=?
+GROUP BY tt_blog.blog_id";
+        return $this->db->query($sql,array(
+            "user_id"=>$userid
+        ))->result();
+    }
+
+    public function indexShowComments($userid){     //有文章，也有评论
         $sql="select tt_blog.blog_id,tt_blog.title,tt_blog.user_id,tt_blog.type_id,tt_blog_type.type_name,tt_comment.create_time,tt_user.username ,tt_comment.content
 from tt_blog , tt_comment  ,tt_blog_type,tt_user
-WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id and tt_comment.user_id=tt_user.user_id";
-        return $this->db->query($sql)->result();
+WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id and tt_comment.user_id=tt_user.user_id and tt_blog.user_id=?";
+        return $this->db->query($sql,array(
+            "user_id"=>$userid
+        ))->result();
+    }
+    public function indexShowrespectivelyComments($userid,$blogId){     //有文章，也有评论
+        $sql="select tt_blog.blog_id,tt_blog.title,tt_blog.user_id,tt_blog.type_id,tt_blog_type.type_name,tt_comment.create_time,tt_user.username ,tt_comment.content
+from tt_blog , tt_comment  ,tt_blog_type,tt_user
+WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id and tt_comment.user_id=tt_user.user_id and tt_blog.user_id=?  and tt_blog.blog_id=?";
+        return $this->db->query($sql,array(
+            "user_id"=>$userid,
+            "blog_id"=>$blogId
+        ))->result();
+    }
+
+    public function indexShowGroupByComments($userid){     //有文章，也有评论
+        $sql="select tt_blog.blog_id,tt_blog.title,tt_blog.user_id,tt_blog.type_id,tt_blog_type.type_name,tt_comment.create_time,tt_user.username ,tt_comment.content
+from tt_blog , tt_comment  ,tt_blog_type,tt_user
+WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_id and tt_comment.user_id=tt_user.user_id and tt_blog.user_id=? GROUP BY tt_blog.blog_id";
+        return $this->db->query($sql,array(
+            "user_id"=>$userid
+        ))->result();
     }
 
     public function updateblogs($userid,$blogtitle,$blogTypeid,$content,$blogId){
@@ -126,12 +186,9 @@ WHERE tt_blog.blog_id=tt_comment.blog_id and tt_blog.type_id=tt_blog_type.type_i
         return $this->db->affected_rows();
     }
 
-    public function deleteIndexBlogs($blog_id){
-        $sql="delete tt_blog
-from tt_blog , tt_comment
-where tt_blog.blog_id=tt_comment.blog_id and tt_blog.blog_id=?";
-        $this->db->delete($sql,array(
-            $blog_id
+    public function deleteIndexBlogs($blog_id){   //可以级联删除跟博客相关的评论
+        $this->db->delete("tt_blog",array(
+            "blog_id"=>$blog_id
         ));
         return $this->db->affected_rows();
     }

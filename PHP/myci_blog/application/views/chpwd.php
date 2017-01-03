@@ -2,8 +2,8 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-	<base href="<?php echo site_url()?>">
-  <title>博客文章管理 Johnny的博客 - SYSIT个人博客</title>
+	<base href="<?php echo site_url() ?>">
+  <title>修改登录密码 Johnny的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="css/jquery.css" media="screen">
   <script type="text/javascript" src="javascript/jquery-1.js"></script>
@@ -56,8 +56,7 @@
 			  echo "游客";
 		  }
 		  ?>
-
-				 [ <a href="user/index">退出</a> ]
+		  [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>
 					<?php
@@ -83,7 +82,7 @@
 <div id="AdminScreen">
     <div id="AdminPath">
         <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
-    	<span id="AdminTitle">博客文章管理</span>
+    	<span id="AdminTitle">修改登录密码</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
@@ -107,85 +106,123 @@
 </ul>
 </div>
     <div id="AdminContent">
-<div class="MainForm BlogArticleManage">
-  <h3 class="title">共有 3 篇博客，每页显示 40 个，共 1 页</h3>
-    <div id="BlogOpts">
-	<a href="javascript:;" id="choseAll">全选</a>&nbsp;|
-	<a href="javascript:;" id="cancel">取消</a>&nbsp;|
-	<a href="javascript:;" id="reverseChose">反向选择</a>&nbsp;|
-	<a href="javascript:;" id="deleteAll">删除选中</a>
-  </div>
-  <ul>
-	  <?php
-	  foreach($blogs as $row){
-		  echo "<li>";
-		  echo "<input name='blog' value='$row->blog_id' type='checkbox'>";
-		  echo "<a>".$row->title."---$row->type_name</a>";
-		  echo "<small>".$row->create_time."</small>";
-		  echo "</li>";
-	  }
-	  ?>
-<!--		<li class="row_1">-->
-<!--		<input name="blog" value="24027" type="checkbox">-->
-<!--		<a href="viewPost_comment.htm" target="_blank">测试文章3</a>-->
-<!--		<small>2011-06-18 00:34</small>-->
-<!--	</li>-->
-	  </ul>
-    </div>
+
+<div class="MainForm">
+<form class="AutoCommitJSONForm" action="user/changePassword" method="POST">
+<h2>修改我的登录密码</h2>
+<table width="100%">
+	<tbody><tr>
+		<th width="110">旧的登录密码</th>		
+		<td>
+			<input id="oldpwd" name="oldpwd" size="20" class="TEXT" tabindex="1" type="password">&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="#" target="_blank">忘记登录密码</a>
+			<span id="span1"></span>
+		</td>    		
+	</tr>
+	<tr>
+		<th>新密码</th>		
+		<td><input id="newpwd" name="newpwd" size="20" class="TEXT" tabindex="2" type="password">
+			<span id="span2"></span>
+		</td>
+	</tr>
+	<tr>
+		<th>再次输入新密码</th>		
+		<td><input id="newpwd2" name="newpwd2" size="20" class="TEXT" tabindex="3" type="password">
+			<span id="span3"></span>
+		</td>
+	</tr>
+	<tr><th colspan="2"></th></tr>
+	<tr class="submit">
+		<th></th>
+		<td>
+		<input id="submitNewPassword" value="修改密码" class="BUTTON SUBMIT" tabindex="4" type="submit">
+		<span id="error_msg" style="display:none"></span>
+		</td>
+	</tr>
+</tbody></table>
+</form>
+</div></div>
+	<div class="clear"></div>
+</div>
 </div>
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-		<script src="javascript/jquery-1.12.4.js"></script>
-		<script>
 
-			$(function(){
-				$("#deleteAll").on("click",function(){
-					var blogId="";
-					$(":checked").each(function(index,elem){
-						blogId+=elem.value+",";
-					})
-					blogId=blogId.slice(0,-1);
-					console.log(typeof blogId);
-					$.get("blog/deleteBlogs",{blogId:blogId},function(data){
-						if(data=="success"){
-							$(":checked").parent().remove();
-						}else if(data=="fail"){
-							alert("删除失败");
-						}
-					})
-				})
+<script src="javascript/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+		$("input[name=oldpwd]").on("blur",function(){
+			$.get("user/checkOldPwd",{oldpwd:this.value},function(data){
+				if(data=="success"){
+					$("#span1").html("旧密码输入成功");
 
-				$("#choseAll").on("click",function(){
-					console.log("lalalala");
-					$("input[name=blog]").prop("checked",true);
-				})
-
-				$("#cancel").on("click",function(){
-					$("input[name=blog]").prop("checked",false);
-				})
-
-				$("#reverseChose").on("click",function(){
-					$("input[name=blog]").each(function(index,elem){
-						if($(this).prop("checked")){
-							$(this).prop("checked",false);
-						}else{
-							$(this).prop("checked",true);
-						}
-					})
-				})
-
-
-
-
-
-
+					if($("#span3").html()=="请再次确认新密码"){
+						$("#submitNewPassword").attr("disabled",true);
+					}else{
+						$("#submitNewPassword").removeAttr("disabled");
+					}
+//					$("#newpwd").removeAttr("disabled");
+					submit();
+				}else if(data=="fail"){
+					$("#span1").html("请重新输入旧密码");
+					$("#submitNewPassword").attr("disabled",true);
+//					$("#newpwd").attr("disabled",true);
+//					$("#newpwd2").attr("disabled",true);
+				}
 			})
+		})
+
+		$("#newpwd").on("blur",function(){
+			var $newpwd=this.value;
+			if($newpwd!=""){
+				if($newpwd!=$("#newpwd2").val()){
+//					$("#newpwd2").removeAttr("disabled");
+					$("#span2").html("新密码有效");
+					$("#submitNewPassword").attr("disabled",true);
+				}else if($newpwd==$("#newpwd2").val()){
+					$("#newpwd2").removeAttr("disabled");
+					$("#span2").html("新密码有效");
+				}
+
+			}else if($newpwd==""){
+				$("#span2").html("新密码不能为空");
+//				$("#newpwd2").attr("disabled",true);
+				$("#submitNewPassword").attr("disabled",true);
+			}
+		})
+
+		$("#newpwd2").on("blur",function(){
+			var $newpwd2=this.value;
+			if($newpwd2==$("#newpwd").val()){
+				$("#span3").html("密码正确");
+//				$("#submitNewPassword").removeAttr("disabled");
+				console.log($("#span3").html());
+				if($("#span1").html()=="旧密码输入成功"){
+					if($newpwd2==""){
+						$("#span3").html("新密码不能为空");
+						$("#submitNewPassword").attr("disabled",true);
+					}else{
+						$("#submitNewPassword").removeAttr("disabled");
+					}
+
+				}
+			}else if($newpwd2!=$("#newpwd").val()){
+				$("#span3").html("请再次确认新密码");
+				$("#submitNewPassword").attr("disabled",true);
+			}
+		})
+        submit();
+		function submit(){
+			if($("#oldpwd").val()==""||$("#newpwd").val()==""||$("#newpwd2").val()==""){
+				$("#submitNewPassword").attr("disabled",true);
+			}
+		}
+
+	})
 
 
 
-
-		</script>
-
+</script>
 
 </body></html>

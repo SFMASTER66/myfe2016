@@ -23,7 +23,7 @@
 <![endif]-->
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
-    <div id="OSC_Slogon">Johnny's Blog</div>
+    <div id="OSC_Slogon">Who's Blog</div>
     <div id="OSC_Channels">
         <ul>
         <li><a href="javascript:;" class="project">心情 here...</a></li>

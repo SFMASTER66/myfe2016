@@ -10,7 +10,7 @@
       }
 
       //查询返回的是对象或者数组，其他的增删改返回的是一个影响的行数。
-      public function getAllUser($username){
+      public function getAllUser($username){    //这样找的是一个数组  后面前台用的时候要用foreach循环
           return $this->db->get_where("tt_user",array(
               "username"=>$username
           ))->result();  //get查询所有数据，然后get_where根据具体的东西查询我要的东西。
@@ -77,5 +77,28 @@
               "mood"=>$mood
           ));
           return $this->db->affected_rows();
+      }
+
+      public function queryMood($userId){
+          return $this->db->get_where("tt_user",array(   //这个这样找的是一条对象，
+              "user_id"=>$userId
+          ))->row();
+      }
+
+
+      public function updateProfile($userId,$realName,$gender){
+          $this->db->where("user_id",$userId);
+          $this->db->update("tt_user",array(
+              "realName"=>$realName,
+              "sex"=>$gender
+          ));
+          return $this->db->affected_rows();
+      }
+
+
+      public function queryNewProfile($userId){
+          return $this->db->get_where("tt_user",array(
+              "user_id"=>$userId
+          ))->row();
       }
   }

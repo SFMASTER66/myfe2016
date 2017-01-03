@@ -26,14 +26,24 @@
 <![endif]-->
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
-    <div id="OSC_Slogon">Johnny's Blog</div>
+    <div id="OSC_Slogon"><?php
+		if($this->session->userdata("NewProfile")){
+			echo $this->session->userdata("NewProfile")->realName;
+		}else if($this->session->userdata("userinfo")){
+			echo $this->session->userdata("userinfo")->realName;
+		}else{
+			echo " Who";
+		}
+		?>'s Blog</div>
     <div id="OSC_Channels">
         <ul>
-        <li><a href="#" class="project"><?php
-				if($this->session->userdata("userinfo")){
-					echo $this->session->userdata("userinfo")->mood;
-				}else{
+        <li><a href="user/userSettings" class="project"><?php
+				if($this->session->userdata("usermood")){
+					echo $this->session->userdata("usermood")->mood;
+				}else if($this->session->userdata("userinfo")->mood==""){
 					echo "心情 here...";
+				}else if($this->session->userdata("userinfo")->mood!=""){
+					echo $this->session->userdata("userinfo")->mood;
 				}
 				?></a></li>
         </ul>
@@ -51,7 +61,15 @@
 		  ?>
 		  [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
-			<a href="#" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>
+			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>
+					<?php
+					if($this->session->userdata("messageNum")){
+						echo $this->session->userdata("messageNum")->num;
+					}else{
+						echo "0";
+					}
+					?>
+				</em>新留言</a>
 																				</span>
     </div>
 		<div id="SearchBar">
@@ -72,8 +90,8 @@
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
 		<ol>
-			<li><a href="inbox.htm">站内留言(0/1)</a></li>
-			<li><a href="profile.htm">编辑个人资料</a></li>
+			<li><a href="message/showResMessage">站内留言(0/1)</a></li>
+			<li><a href="user/profile">编辑个人资料</a></li>
 			<li><a href="user/chpwd">修改登录密码</a></li>
 			<li><a href="user/userSettings">网页个性设置</a></li>
 		</ol>

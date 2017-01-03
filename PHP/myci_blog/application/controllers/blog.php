@@ -7,6 +7,8 @@ class blog extends CI_Controller{
     {
         parent::__construct();
         $this -> load -> model("blog_model");
+        $this -> load -> model("message_model");
+
     }
     public function blogCatalogs(){
         $this->load->view("blogCatalogs");
@@ -175,22 +177,91 @@ class blog extends CI_Controller{
     }
 
 
-    public function indexShowBlogs(){
+//    public function indexShowBlogs(){
 //        $userid=$this->session->userdata("userinfo")->user_id;
-//        $mood=$this->session->userdata("userinfo")->mood;
-        $row=$this->blog_model->indexShowBlogs();
+////        var_dump($userid);
+////        die();
+////        $mood=$this->session->userdata("userinfo")->mood;
+//            $row=$this->blog_model->indexShowBlogs($userid);  //有文章，也有评论
+////        var_dump($row);
+////        die();
+//            if($row){     //有文章，也有评论
+//                $rerow=$this->blog_model->indexShowComments($userid);
+////            var_dump($rerow);
+////            die();
+//                $NoComments=$this->blog_model->indexShowNoCommentsBlogs($userid);
+//                $num=$this->message_model->countMessageNum();
+//                foreach($num as $value){
+//                    $this->load->view("index_logined",array(
+//                        "NoCommentsblogs"=>$NoComments,
+//                        "blogs"=>$row,
+//                        "comment"=>$rerow,
+//                        "num"=>$value
+//                    ));
+//                }
+//
+//            }else{
+//                $NoComments=$this->blog_model->indexShowNoCommentsBlogs($userid);  //没有评论，但有文章
+////            var_dump($NoComments);
+////            die();
+//                if($NoComments){     //没有评论，但有文章
+//                    $num=$this->message_model->countMessageNum();
+//                    foreach($num as $value){
+//                        $this->load->view("index_logined",array(
+//                            "NoCommentsblogs"=>$NoComments,
+//                            "blogs"=>$row,
+//                            "comment"=>"",
+//                            "num"=>$value
+//                        ));
+//                    }
+//                }else{       //没有文章 也没有评论
+//                    $num=$this->message_model->countMessageNum();
+//                    foreach($num as $value){
+//                        $this->load->view("index_logined",array(
+//                            "NoCommentsblogs"=>$NoComments,
+//                            "blogs"=>$row,
+//                            "comment"=>"",
+//                            "num"=>$value
+//                        ));
+//                    }
+//
+//                }
+//
+//            }
+//    }
+
+
+    public function indexShowBlogs(){
+        $userId=$this->session->userdata("userinfo")->user_id;
+        $row=$this->blog_model->indexShowBlogs($userId);   //这个是关键啊，可以用数字显示博客是否有评论数量。
+        $rerow=$this->blog_model->indexShowGroupByComments($userId);
 //        var_dump($row);
 //        die();
+        $num=$this->message_model->countMessageNum();
         if($row){
-            $rerow=$this->blog_model->indexShowComments();
-//            var_dump($rerow);
-//            die();
-            $this->load->view("index_logined",array(
-                "blogs"=>$row,
-                "comment"=>$rerow
-            ));
+            foreach($num as $value){
+                $this->load->view("index_logined",array(
+                    "blogs"=>$row,
+                    "num"=>$value,
+                    "comment"=>$rerow
+                ));
+            }
+        }else{
+            foreach($num as $value){
+                $this->load->view("index_logined",array(
+                    "blogs"=>"",
+                    "num"=>$value,
+                    "comment"=>""
+                ));
+            }
         }
     }
+
+
+
+
+
+
 
 
     public function updateblogs(){
@@ -224,15 +295,21 @@ class blog extends CI_Controller{
 //}
 
     public function viewPost_logined(){
-//        $userid=$this->session->userdata("userinfo")->user_id;
+        $userid=$this->session->userdata("userinfo")->user_id;
         $title=$this->input->get("title");
         $createtime=$this->input->get("createtime");
         $username=$this->input->get("username");
         $content=$this->input->get("content");
         $blogId=$this->input->get("blogId");
-        $row=$this->blog_model->indexShowBlogs();
+        $row=$this->blog_model->indexShowBlogs($userid);
+        $index=$this->input->get("keyarray");   //$index是一个字符串，然后要通过intval转换成数字
+        $realIndex=intval($index);
+//        var_dump($row);
+//        die();
         if($row){
-            $rerow=$this->blog_model->indexShowComments();
+            $rerow=$this->blog_model->indexShowGroupByComments($userid);
+            $lotsOfComment=$this->blog_model->indexShowrespectivelyComments($userid,$blogId);
+            $PureBlogs=$this->blog_model->indexShowPureBlogs($userid);  //这个只是单纯地搜索有哪些博客  跟$rerow这个可以对应，$rerow只是带有评论的博客
             if($rerow){
                 $num=$this->blog_model->indexShowCommentsNum($blogId);
                 foreach($num as $realNum){
@@ -243,7 +320,10 @@ class blog extends CI_Controller{
                         "createtime"=>$createtime,
                         "username"=>$username,
                         "content"=>$content,
-                        "num"=>$realNum
+                        "num"=>$realNum,
+                        "index"=>$realIndex,
+                        "lotsOfComment"=>$lotsOfComment,
+                        "PureBlogs"=>$PureBlogs
                     ));
                 }
 

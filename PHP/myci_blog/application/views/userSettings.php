@@ -2,8 +2,8 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-	<base href="<?php echo site_url()?>">
-  <title>博客文章管理 Johnny的博客 - SYSIT个人博客</title>
+	<base href="<?php echo site_url() ?>">
+  <title>Johnny的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="css/jquery.css" media="screen">
   <script type="text/javascript" src="javascript/jquery-1.js"></script>
@@ -56,8 +56,8 @@
 			  echo "游客";
 		  }
 		  ?>
+		  [ <a href="user/index">退出</a> ]
 
-				 [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>
 					<?php
@@ -83,7 +83,7 @@
 <div id="AdminScreen">
     <div id="AdminPath">
         <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
-    	<span id="AdminTitle">博客文章管理</span>
+    	<span id="AdminTitle">管理首页</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
@@ -106,86 +106,108 @@
 	</li>
 </ul>
 </div>
-    <div id="AdminContent">
-<div class="MainForm BlogArticleManage">
-  <h3 class="title">共有 3 篇博客，每页显示 40 个，共 1 页</h3>
-    <div id="BlogOpts">
-	<a href="javascript:;" id="choseAll">全选</a>&nbsp;|
-	<a href="javascript:;" id="cancel">取消</a>&nbsp;|
-	<a href="javascript:;" id="reverseChose">反向选择</a>&nbsp;|
-	<a href="javascript:;" id="deleteAll">删除选中</a>
-  </div>
-  <ul>
-	  <?php
-	  foreach($blogs as $row){
-		  echo "<li>";
-		  echo "<input name='blog' value='$row->blog_id' type='checkbox'>";
-		  echo "<a>".$row->title."---$row->type_name</a>";
-		  echo "<small>".$row->create_time."</small>";
-		  echo "</li>";
-	  }
-	  ?>
-<!--		<li class="row_1">-->
-<!--		<input name="blog" value="24027" type="checkbox">-->
-<!--		<a href="viewPost_comment.htm" target="_blank">测试文章3</a>-->
-<!--		<small>2011-06-18 00:34</small>-->
-<!--	</li>-->
-	  </ul>
-    </div>
+    <div id="AdminContent"><div class="MainForm">
+<form id="style_form" action="user/moodSetting" method="POST">
+<h2 class="title">网页个性化设置</h2>
+<table>
+	<tbody>
+		<tr>
+		<th>我的心情</th>		
+		<td><input name="mood" size="40" maxlength="40" class="TEXT" value="<?php
+			if($this->session->userdata("usermood")){
+				echo $this->session->userdata("usermood")->mood;
+			}else if($this->session->userdata("userinfo")){
+				echo $this->session->userdata("userinfo")->mood;
+			}else{
+				echo "心情 here...";
+			}
+			?>" type="text"></td>
+<!--			<input value="保存修改" class="BUTTON SUBMIT" type="submit">-->
+		</tr>
+	<tr><th></th><td></td></tr>
+	<tr class="submit">
+		<th></th>	
+		<td>
+		<input value="保存修改" class="BUTTON SUBMIT" type="submit">
+		<span id="error_msg" style="display:none"></span>
+		</td>
+	</tr>
+</tbody></table>
+</form>
+</div>
+<script language="javascript">
+<!--
+//$('#style_form').ajaxForm({
+//    success: function(html) {
+//		$('#error_msg').hide();
+//    	if(html.length>0)
+//    		$('#error_msg').html("<span class='error_msg'>"+html+"</span>");
+//    	else
+//    		$('#error_msg').html("<span class='ok_msg'>个性化设置保存成功，请<a href='javascript:location.reload()'>刷新</a>页面查看效果</span>");
+//		$('#error_msg').show("fast");
+//    }
+//});
+//-->
+</script></div>
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+	$('#AdminTitle').text('管理首页');
+});
+$('.AutoCommitForm').ajaxForm({
+    success: function(html) {
+		$('#error_msg').hide();
+		if(html.length>0)
+			$('#error_msg').html("<span class='error_msg'>"+html+"</span>");
+		else
+			$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>")
+		$('#error_msg').show("fast");
+    }
+});
+$('.AutoCommitJSONForm').ajaxForm({
+	dataType: 'json',
+    success: function(json) {
+		$('#error_msg').hide();
+		if(json.error==0){
+			if(json.msg)
+				$('#error_msg').html("<span class='ok_msg'>"+json.msg+"</span>");
+			else
+				$('#error_msg').html("<span class='ok_msg'>操作已成功完成</span>");
+		}
+		else {
+			if(json.msg)
+				$('#error_msg').html("<span class='error_msg'>"+json.msg+"</span>");
+			else
+				$('#error_msg').html("<span class='error_msg'>操作已成功完成</span>");
+		}
+		$('#error_msg').show("fast");
+    }
+});
+//-->
+</script>
 </div>
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-		<script src="javascript/jquery-1.12.4.js"></script>
-		<script>
+<script type="text/javascript" src="javascript/space.htm" defer="defer"></script>
+<script type="text/javascript">
+<!--
+$(document).ready(function() {
+	$('a.fancybox').fancybox({titleShow:false});
+});
 
-			$(function(){
-				$("#deleteAll").on("click",function(){
-					var blogId="";
-					$(":checked").each(function(index,elem){
-						blogId+=elem.value+",";
-					})
-					blogId=blogId.slice(0,-1);
-					console.log(typeof blogId);
-					$.get("blog/deleteBlogs",{blogId:blogId},function(data){
-						if(data=="success"){
-							$(":checked").parent().remove();
-						}else if(data=="fail"){
-							alert("删除失败");
-						}
-					})
-				})
-
-				$("#choseAll").on("click",function(){
-					console.log("lalalala");
-					$("input[name=blog]").prop("checked",true);
-				})
-
-				$("#cancel").on("click",function(){
-					$("input[name=blog]").prop("checked",false);
-				})
-
-				$("#reverseChose").on("click",function(){
-					$("input[name=blog]").each(function(index,elem){
-						if($(this).prop("checked")){
-							$(this).prop("checked",false);
-						}else{
-							$(this).prop("checked",true);
-						}
-					})
-				})
-
-
-
-
-
-
-			})
-
-
-
-
-		</script>
-
-
+function pay_attention(pid,concern_it){
+	if(concern_it){
+		$("#p_attention_count").load("/action/favorite/add?mailnotify=true&type=3&id="+pid);
+		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',false)" style="color:#A00;">取消关注</a>');
+	}
+	else{
+		$("#p_attention_count").load("/action/favorite/cancel?type=3&id="+pid);
+		$('#attention_it').html('<a href="javascript:pay_attention('+pid+',true)" style="color:#3E62A6;">关注此文章</a>');
+	}
+}
+//-->
+</script>
 </body></html>

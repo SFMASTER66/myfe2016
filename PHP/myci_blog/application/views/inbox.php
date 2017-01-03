@@ -2,8 +2,8 @@
 <html xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="Content-Language" content="zh-CN">
-	<base href="<?php echo site_url()?>">
-  <title>博客文章管理 Johnny的博客 - SYSIT个人博客</title>
+	<base href="<?php echo site_url() ?>">
+  <title>我的留言箱 Johnny的博客 - SYSIT个人博客</title>
       <link rel="stylesheet" href="css/space2011.css" type="text/css" media="screen">
   <link rel="stylesheet" type="text/css" href="css/jquery.css" media="screen">
   <script type="text/javascript" src="javascript/jquery-1.js"></script>
@@ -56,8 +56,8 @@
 			  echo "游客";
 		  }
 		  ?>
+		  [ <a href="user/index">退出</a> ]
 
-				 [ <a href="user/index">退出</a> ]
 				<span id="OSC_Notification">
 			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>
 					<?php
@@ -69,7 +69,7 @@
 					?>
 				</em>新留言</a>
 																				</span>
-    </div>
+</div>
 		<div id="SearchBar">
     		<form action="#">
 								<input name="user" value="154693" type="hidden">
@@ -83,7 +83,7 @@
 <div id="AdminScreen">
     <div id="AdminPath">
         <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
-    	<span id="AdminTitle">博客文章管理</span>
+    	<span id="AdminTitle">我的留言箱</span>
     </div>
     <div id="AdminMenu"><ul>
 	<li class="caption">个人信息管理		
@@ -107,85 +107,65 @@
 </ul>
 </div>
     <div id="AdminContent">
-<div class="MainForm BlogArticleManage">
-  <h3 class="title">共有 3 篇博客，每页显示 40 个，共 1 页</h3>
-    <div id="BlogOpts">
-	<a href="javascript:;" id="choseAll">全选</a>&nbsp;|
-	<a href="javascript:;" id="cancel">取消</a>&nbsp;|
-	<a href="javascript:;" id="reverseChose">反向选择</a>&nbsp;|
-	<a href="javascript:;" id="deleteAll">删除选中</a>
-  </div>
-  <ul>
-	  <?php
-	  foreach($blogs as $row){
-		  echo "<li>";
-		  echo "<input name='blog' value='$row->blog_id' type='checkbox'>";
-		  echo "<a>".$row->title."---$row->type_name</a>";
-		  echo "<small>".$row->create_time."</small>";
-		  echo "</li>";
-	  }
-	  ?>
-<!--		<li class="row_1">-->
-<!--		<input name="blog" value="24027" type="checkbox">-->
-<!--		<a href="viewPost_comment.htm" target="_blank">测试文章3</a>-->
-<!--		<small>2011-06-18 00:34</small>-->
-<!--	</li>-->
-	  </ul>
-    </div>
+<ul class="tabnav"> 
+	<li class="tab1 current"><a href="inbox.htm">所有留言<em><?php
+//				foreach($num as $value){
+					echo $num->num;
+//				}
+				?></em></a></li>
+	<li class="tab4"><a href="outbox.htm">已发送留言<em>(0)</em></a></li>
+    </ul>
+<div class="MsgList">
+<ul>
+	<?php
+	foreach($message as $value){
+		echo "<li>";
+		echo "<span class=\"sender\"><a href=''><img src='images/12_50.jpg' alt='' class=\"SmallPortrait\" align=\"absmiddle\" ></a></span>";
+		echo "<span class=\"msg\">";
+		echo "<div class=\"outline\">";
+		echo "<a href=\"#\" target=\"user\">$value->username</a>";
+		echo "发送于 $value->create_time &nbsp;&nbsp;";
+		echo "<a href=\"javascript:delete_in_msg(186720)\">删除</a>";
+		echo "</div>";
+		echo "<div class=\"content\">";
+		echo "<div class=\"c\">$value->message</div>";
+		echo "<div>$value->res_message</div>";
+		echo "</div>";
+		echo "<div class=\"opts\">";
+		echo "<a href=\"message/resMessage?messageId=$value->message_id\">回复留言</a>";
+		echo "</div>";
+		echo "</span>";
+		echo "<div class=\"clear\"></div>";
+		echo "</li>";
+	}
+	?>
+<!--    <li id="msg_186720">-->
+<!--	<span class="sender"><a href="#"><img src="images/12_50.jpg" alt="红薯" title="红薯" class="SmallPortrait" user="12" align="absmiddle"></a></span>-->
+<!--	<span class="msg">-->
+<!--		<div class="outline">-->
+<!--			<a href="#" target="user">红薯</a>-->
+<!--			发送于 昨天(23:00) (2011-06-17 23:00)				-->
+<!--			&nbsp;&nbsp;<a href="javascript:delete_in_msg(186720)">删除</a>-->
+<!--		</div>-->
+<!--		<div class="content">-->
+<!--		  <div class="c">您好，欢迎使用SYSIT Blog。</div>-->
+<!--		</div>-->
+<!--		<div class="opts">-->
+<!--<!--			<a href="javascript:sendmsg(12,186720)">回复留言</a>-->
+<!--			<a href="message/resMessage">回复留言</a>-->
+<!--		</div>-->
+<!--	</span>-->
+<!--	<div class="clear"></div>-->
+<!--  </li>-->
+  </ul>
+</div>
+
+</div>
+	<div class="clear"></div>
+</div>
+
 </div>
 	<div class="clear"></div>
 	<div id="OSC_Footer">© 赛斯特(WWW.SYSIT.ORG)</div>
 </div>
-		<script src="javascript/jquery-1.12.4.js"></script>
-		<script>
-
-			$(function(){
-				$("#deleteAll").on("click",function(){
-					var blogId="";
-					$(":checked").each(function(index,elem){
-						blogId+=elem.value+",";
-					})
-					blogId=blogId.slice(0,-1);
-					console.log(typeof blogId);
-					$.get("blog/deleteBlogs",{blogId:blogId},function(data){
-						if(data=="success"){
-							$(":checked").parent().remove();
-						}else if(data=="fail"){
-							alert("删除失败");
-						}
-					})
-				})
-
-				$("#choseAll").on("click",function(){
-					console.log("lalalala");
-					$("input[name=blog]").prop("checked",true);
-				})
-
-				$("#cancel").on("click",function(){
-					$("input[name=blog]").prop("checked",false);
-				})
-
-				$("#reverseChose").on("click",function(){
-					$("input[name=blog]").each(function(index,elem){
-						if($(this).prop("checked")){
-							$(this).prop("checked",false);
-						}else{
-							$(this).prop("checked",true);
-						}
-					})
-				})
-
-
-
-
-
-
-			})
-
-
-
-
-		</script>
-
-
 </body></html>
