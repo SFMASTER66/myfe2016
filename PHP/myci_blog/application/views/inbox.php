@@ -108,12 +108,17 @@
 </div>
     <div id="AdminContent">
 <ul class="tabnav"> 
-	<li class="tab1 current"><a href="inbox.htm">所有留言<em><?php
+	<li class="tab1 current"><a href="message/showResMessage">所有留言<em><?php
 //				foreach($num as $value){
 					echo $num->num;
 //				}
 				?></em></a></li>
-	<li class="tab4"><a href="outbox.htm">已发送留言<em>(0)</em></a></li>
+	<li class="tab4"><a href="message/sendMsgOK?messageNum=<?php echo$num->num ?>">已发送留言<em>
+				<?php
+
+				echo $MyOwnMessageNum->num;
+				?>
+			</em></a></li>
     </ul>
 <div class="MsgList">
 <ul>

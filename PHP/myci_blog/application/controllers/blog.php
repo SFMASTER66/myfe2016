@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class blog extends CI_Controller{
 
-    public function __construct()  //写这个构造函数就是为了少些第8行代码。
+    public function __construct()  //写这个构造函数就是为了少写加载model的代码。
     {
         parent::__construct();
         $this -> load -> model("blog_model");
@@ -30,9 +30,16 @@ class blog extends CI_Controller{
 //        var_dump($row);
 //        die();
 //        if($row){
+        $TypeBlogNum=$this->blog_model->showTypeBlogNum($userid);
+//        var_dump($TypeBlogNum);
+//        die();
+//        foreach($TypeBlogNum as $num){
             $this->load->view("blogCatalogs",array(
-                "blogTypeName"=>$row
+                "blogTypeName"=>$row,
+                "TypeBlogNum"=>$TypeBlogNum
             ));
+//        }
+
 //        }else{
 ////            echo "fail";
 //            redirect("blog/blogCatalogs");
@@ -240,11 +247,14 @@ class blog extends CI_Controller{
         $num=$this->message_model->countMessageNum();
         if($row){
             foreach($num as $value){
-                $this->load->view("index_logined",array(
-                    "blogs"=>$row,
-                    "num"=>$value,
-                    "comment"=>$rerow
-                ));
+                    $this->load->view("index_logined",array(
+                        "blogs"=>$row,
+                        "num"=>$value,
+                        "comment"=>$rerow,
+
+                    ));
+
+
             }
         }else{
             foreach($num as $value){
@@ -310,6 +320,8 @@ class blog extends CI_Controller{
             $rerow=$this->blog_model->indexShowGroupByComments($userid);
             $lotsOfComment=$this->blog_model->indexShowrespectivelyComments($userid,$blogId);
             $PureBlogs=$this->blog_model->indexShowPureBlogs($userid);  //这个只是单纯地搜索有哪些博客  跟$rerow这个可以对应，$rerow只是带有评论的博客
+//            var_dump(count($PureBlogs));  //拥有博客的个数
+//            die();
             if($rerow){
                 $num=$this->blog_model->indexShowCommentsNum($blogId);
                 foreach($num as $realNum){

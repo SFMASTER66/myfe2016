@@ -130,11 +130,19 @@
 	<ul>
           <li>上篇 <span>(1小时前)</span>：<a href="#" class="prev"><?php
 				  if(($index-1)==-1){
-					  echo $PureBlogs[$index]->title;
+//					  echo $PureBlogs[$index]->title;
+					  echo "当前页面就是第一篇文章";
 				  }else{
 					  echo $PureBlogs[$index-1]->title;
 				  }
-				   ?></a></li><li>下篇 <span>(11小时前)</span>：<a href="viewPost_comment.htm" class="next"><?php  echo $PureBlogs[$index+1]->title; ?></a></li>            	</ul>
+				   ?></a></li><li>下篇 <span>(11小时前)</span>：<a href="viewPost_comment.htm" class="next"><?php
+                                                                                                         if(($index+1)>(count($PureBlogs)-1)){
+																											 echo "当前文章就是最后的文章";
+																										 }else{
+																											 echo $PureBlogs[$index+1]->title;
+																										 }
+
+				                                                                                    ?></a></li>            	</ul>
   </div>
     <div class="BlogComments">
     <h2><a name="comments" href="#postform" class="opts">发表评论»</a>共有 <?php  echo $num->num ?>条网友评论</h2>

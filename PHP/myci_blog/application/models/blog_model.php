@@ -204,4 +204,15 @@ GROUP BY tt_blog.blog_id";
 
     }
 
+
+    public function showTypeBlogNum($userid){
+        $sql="select blog_type.*,(select count(*) from tt_blog blog where blog.type_id=blog_type.type_id) num
+from tt_blog_type blog_type, tt_blog blog
+where blog_type.user_id=blog.user_id and blog.user_id=?
+GROUP BY blog_type.type_id";
+        return $this->db->query($sql,array(
+            $userid
+        ))->result();
+    }
+
 }

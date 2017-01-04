@@ -131,21 +131,22 @@
 	<?php
 //	var_dump($blogTypeName);
 //	die();
-	if($blogTypeName){
-		foreach($blogTypeName as $typeName){
+	if($TypeBlogNum){
+		foreach($TypeBlogNum as $typeName){
+
 			$a=(int)$typeName->type_id;
 //			$b = $a + 1;
 //			$c=$b+1;
 //			var_dump($b);
 //			die();
-			echo "<tr id='$typeName->type_id'>";
-			echo "<td>".$typeName->type_id."</td>";
-			echo "<td><span id='a$a"."b"."'>".$typeName->type_name."</span></br><input  name='changeTypeName' class='changeType'type='text' value='$typeName->type_name'id='a$a'></td>";
-			echo "<td>"."22"."</td>";
-			echo "<td><a href='javascript:;' value='a$a' class='change'>修改</a>
+				echo "<tr id='$typeName->type_id'>";
+				echo "<td>".$typeName->type_id."</td>";
+				echo "<td><span id='a$a"."b"."'>".$typeName->type_name."</span></br><input  name='changeTypeName' class='changeType'type='text' value='$typeName->type_name'id='a$a'></td>";
+				echo "<td>".$typeName->num."</td>";
+				echo "<td><a href='javascript:;' value='a$a' class='change'>修改</a>
                            <a href='javascript:;' value='$typeName->type_id' class='delete'>删除</a>
                            </td>";
-			echo "</tr>";
+				echo "</tr>";
 		}
 	}else{
 		echo "<tr>";

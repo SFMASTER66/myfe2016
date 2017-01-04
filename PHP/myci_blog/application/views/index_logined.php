@@ -11,7 +11,28 @@
   <script type="text/javascript" src="javascript/jquery_002.js"></script>
   <script type="text/javascript" src="javascript/oschina.js"></script>
   <style type="text/css">
-    body,table,input,textarea,select {font-family:Verdana,sans-serif,宋体;}	
+    body,table,input,textarea,select {font-family:Verdana,sans-serif,宋体;}
+	  #mask{
+		  background: darkgray;
+		  height: 100%;
+		  width: 100%;
+		  position: fixed;
+		  opacity: 0.5;
+		  display: none;
+	  }
+	  #showBlog{
+		  background: white;
+		  position: fixed;
+		  height: 500px;
+		  width: 534px;
+		  top: 52px;
+		  left: 382px;
+		  margin: 0 auto;
+		  display: none;
+		  color: greenyellow;
+		  line-height: 250px;
+		  /*text-align: right;*/
+	  }
   </style>
 </head>
 <body>
@@ -21,6 +42,11 @@
 <!--[if IE 9]>
 <style>ul.tabnav {padding: 3px 10px 4px 10px;}</style>
 <![endif]-->
+<div id="mask"></div>
+
+<div id="showBlog"></div>
+
+
 <div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
 <div id="OSC_Banner">
     <div id="OSC_Slogon"><?php
@@ -84,9 +110,9 @@
 	<div id="OSC_Content"><div class="SpaceChannel">
 	<div id="portrait"><a href="adminIndex.htm"><img src="images/portrait.gif" alt="Johnny" title="Johnny" class="SmallPortrait" user="154693" align="absmiddle"></a></div>
     <div id="lnks">
-		<strong>Johnny的博客</strong>
+		<strong><?php echo $this->session->userdata("userinfo")->username;?>的博客</strong>
 		<div><a href="index_logined.htm">TA的博客列表</a>&nbsp;|
-			<a href="sendMsg.htm">发送留言</a></div>
+			<a href="message/sendMsg">发送留言</a></div>
 	</div>
 	<div class="clear"></div>
 </div>
@@ -96,7 +122,7 @@
 	if($blogs){
 		foreach($blogs as $row){
 			echo "<li class=\"Blog\">";
-			echo "<h2 class=\"BlogAccess_true BlogTop_0\"><a href=''>$row->title</a></h2>";
+			echo "<h2 class=\"BlogAccess_true BlogTop_0\"><a class='blogTitle'  href='javascript:;' value='$row->content'>$row->title</a></h2>";
 			echo "<div class=\"outline\">";
 			echo "<span class=\"time\">发表于$row->create_time </span>";
 			echo "<span class=\"catalog\">分类: ".$row->type_name." <a href=''></a></span>";
@@ -104,7 +130,7 @@
 			echo "<span class=\"blog_admin\">(<a href='blog/show_changeblogTypeName?content=$row->content&title=$row->title&type_name=$row->type_name'>修改</a> | <a class='deleteIndexBlogs' href='blog/deleteIndexBlogs?blog_id=$row->blog_id' value='$row->blog_id'>删除</a>)</span>";
 			echo "</div>";
 			echo "<div class=\"TextContent\">$row->content";
-			echo "<div class=\"fullcontent\"><a href=''>阅读全文...</a></div>";
+			echo "<div class=\"fullcontent\"><a class='theWholeBlog' value='$row->content' href='javascript:;'>阅读全文...</a></div>";
 			echo "</div>";
 			echo "</li>";
 		}
@@ -209,6 +235,26 @@
 //			console.log("1111");
 //		})
 //	})
+
+
+
+	$(".blogTitle").on("click",function(){
+		var $value=$(this).attr("value");
+		$("#mask").css("display","block");
+		$("#showBlog").css("display","block").html($value);
+	})
+
+	$(".theWholeBlog").on("click",function(){
+		var $value=$(this).attr("value");
+		$("#mask").css("display","block");
+		$("#showBlog").css("display","block").html($value);
+	})
+
+	$("#mask").on("click",function(){
+		$("#mask").css("display","none");
+		$("#showBlog").css("display","none");
+	})
+
 
 
 </script>
