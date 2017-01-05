@@ -10,8 +10,8 @@ class blog_model extends CI_Model{
     }
 
     public function getblogTypeName($userid){
-        return $this->db->get_where("tt_blog_type",array(
-            "user_id"=>$userid
+        return $this->db->get_where("tt_blog_type",array(    //tt_blog_type这个要跟数据库的表名相同
+            "user_id"=>$userid        //user_id这个也要跟数据库的字段名相同，而$userid是从控制器里传过来的值。
         ))->result();
     }
 
@@ -212,6 +212,13 @@ where blog_type.user_id=blog.user_id and blog.user_id=?
 GROUP BY blog_type.type_id";
         return $this->db->query($sql,array(
             $userid
+        ))->result();
+    }
+
+    public function blogSearchBlogByTitle($userid,$blogTitle){
+       return $this->db->get_where("tt_blog",array(
+            "user_id"=>$userid,
+            "title"=>$blogTitle
         ))->result();
     }
 

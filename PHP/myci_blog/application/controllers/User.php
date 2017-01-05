@@ -142,7 +142,6 @@ class User extends CI_Controller {
 //		var_dump($realName);
 //		var_dump($gender);
 //		die();
-
 		$row=$this->user_model->updateProfile($userId,$realName,$gender);
 //		var_dump($row);
 //		die();

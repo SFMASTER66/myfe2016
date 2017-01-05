@@ -24,90 +24,98 @@
 <!--[if IE 9]>
 <style>ul.tabnav {padding: 3px 10px 4px 10px;}</style>
 <![endif]-->
-<div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
-<div id="OSC_Banner">
-    <div id="OSC_Slogon"><?php
-		if($this->session->userdata("NewProfile")){
-			echo $this->session->userdata("NewProfile")->realName;
-		}else if($this->session->userdata("userinfo")){
-			echo $this->session->userdata("userinfo")->realName;
-		}else{
-			echo " Who";
-		}
-		?>'s Blog</div>
-    <div id="OSC_Channels">
-        <ul>
-        <li><a href="user/userSettings" class="project"><?php
-				if($this->session->userdata("usermood")){
-					echo $this->session->userdata("usermood")->mood;
-				}else if($this->session->userdata("userinfo")->mood==""){
-					echo "心情 here...";
-				}else if($this->session->userdata("userinfo")->mood!=""){
-					echo $this->session->userdata("userinfo")->mood;
-				}
-				?></a></li>
-        </ul>
-    </div>
-    <div class="clear"></div>
-</div><!-- #EndLibraryItem --><div id="OSC_Topbar">
-	  <div id="VisitorInfo">
-		当前访客身份：
-		  <?php
-		  if($this->session->userdata("userinfo")){
-			  echo $this->session->userdata("userinfo")->username;
-		  }else{
-			  echo "游客";
-		  }
-		  ?>
-		  [ <a href="user/index">退出</a> ]
-				<span id="OSC_Notification">
-			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>
-					<?php
-					if($this->session->userdata("messageNum")){
-						echo $this->session->userdata("messageNum")->num;
-					}else{
-						echo "0";
-					}
-					?>
-				</em>新留言</a>
-																				</span>
-    </div>
-		<div id="SearchBar">
-    		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
-				<input class="SUBMIT" value="搜索" type="submit">
-    		</form>
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div id="OSC_Content">
-<div id="AdminScreen">
-    <div id="AdminPath">
-        <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»
-    	<span id="AdminTitle"d>博客设置/分类管理</span>
-    </div>
-    <div id="AdminMenu"><ul>
-	<li class="caption">个人信息管理		
-		<ol>
-			<li><a href="message/showResMessage">站内留言(0/1)</a></li>
-			<li><a href="user/profile">编辑个人资料</a></li>
-			<li><a href="user/chpwd">修改登录密码</a></li>
-			<li><a href="user/userSettings">网页个性设置</a></li>
-		</ol>
-	</li>		
-</ul>
-<ul>
-	<li class="caption">博客管理	
-		<ol>
-			<li><a href="blog/show_blogTypeName">发表博客</a></li>
-			<li><a href="blog/showblogTypeName">博客设置/分类管理</a></li>
-			<li><a href="blog/showBlogs">文章管理</a></li>
-			<li><a href="blog/showBlogsOnComments">博客评论管理</a></li>
-		</ol>
-	</li>
-</ul>
-</div>
+
+<!--<div id="OSC_Screen"><!-- #BeginLibraryItem "/Library/OSC_Banner.lbi" -->
+<!--<div id="OSC_Banner">-->
+<!--    <div id="OSC_Slogon">--><?php
+//		if($this->session->userdata("NewProfile")){
+//			echo $this->session->userdata("NewProfile")->realName;
+//		}else if($this->session->userdata("userinfo")){
+//			echo $this->session->userdata("userinfo")->realName;
+//		}else{
+//			echo " Who";
+//		}
+//		?><!--'s Blog</div>-->
+<!--    <div id="OSC_Channels">-->
+<!--        <ul>-->
+<!--        <li><a href="user/userSettings" class="project">--><?php
+//				if($this->session->userdata("usermood")){
+//					echo $this->session->userdata("usermood")->mood;
+//				}else if($this->session->userdata("userinfo")->mood==""){
+//					echo "心情 here...";
+//				}else if($this->session->userdata("userinfo")->mood!=""){
+//					echo $this->session->userdata("userinfo")->mood;
+//				}
+//				?><!--</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="clear"></div>-->
+<!--</div><!-- #EndLibraryItem --><div id="OSC_Topbar">
+<!--	  <div id="VisitorInfo">-->
+<!--		当前访客身份：-->
+<!--		  --><?php
+//		  if($this->session->userdata("userinfo")){
+//			  echo $this->session->userdata("userinfo")->username;
+//		  }else{
+//			  echo "游客";
+//		  }
+//		  ?>
+<!--		  [ <a href="user/index">退出</a> ]-->
+<!--				<span id="OSC_Notification">-->
+<!--			<a href="message/showResMessage" class="msgbox" title="进入我的留言箱">你有<em>-->
+<!--					--><?php
+//					if($this->session->userdata("messageNum")){
+//						echo $this->session->userdata("messageNum")->num;
+//					}else{
+//						echo "0";
+//					}
+//					?>
+<!--				</em>新留言</a>-->
+<!--																				</span>-->
+<!--    </div>-->
+<!--		<div id="SearchBar">-->
+<!--    		<form action="#">-->
+<!--								<input name="user" value="154693" type="hidden">-->
+<!--																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">-->
+<!--				<input class="SUBMIT" value="搜索" type="submit">-->
+<!--    		</form>-->
+<!--		</div>-->
+<!--		<div class="clear"></div>-->
+<!--	</div>-->
+<!--	<div id="OSC_Content">-->
+<!--<div id="AdminScreen">-->
+<!--    <div id="AdminPath">-->
+<!--        <a href="blog/indexShowBlogs">返回我的首页</a>&nbsp;»-->
+<!--    	<span id="AdminTitle"d>博客设置/分类管理</span>-->
+<!--    </div>-->
+<!--    <div id="AdminMenu"><ul>-->
+<!--	<li class="caption">个人信息管理		-->
+<!--		<ol>-->
+<!--			<li><a href="message/showResMessage">站内留言(0/1)</a></li>-->
+<!--			<li><a href="user/profile">编辑个人资料</a></li>-->
+<!--			<li><a href="user/chpwd">修改登录密码</a></li>-->
+<!--			<li><a href="user/userSettings">网页个性设置</a></li>-->
+<!--		</ol>-->
+<!--	</li>		-->
+<!--</ul>-->
+<!--<ul>-->
+<!--	<li class="caption">博客管理	-->
+<!--		<ol>-->
+<!--			<li><a href="blog/show_blogTypeName">发表博客</a></li>-->
+<!--			<li><a href="blog/showblogTypeName">博客设置/分类管理</a></li>-->
+<!--			<li><a href="blog/showBlogs">文章管理</a></li>-->
+<!--			<li><a href="blog/showBlogsOnComments">博客评论管理</a></li>-->
+<!--		</ol>-->
+<!--	</li>-->
+<!--</ul>-->
+<!--</div>-->
+
+
+	<?php include "same.php" ?>
+
+
+
+
     <div id="AdminContent">
 <div class="MainForm BlogCatalogManage">
 <form id="CatalogForm" action="blog/addBlogCatalog" method="post">
@@ -128,17 +136,12 @@
 		<th>文章</th>
 		<th>操作</th>
 	</tr>
-	<?php
-//	var_dump($blogTypeName);
-//	die();
-	if($TypeBlogNum){
-		foreach($TypeBlogNum as $typeName){
 
+
+	<?php
+	if($blogTypeName){
+		foreach($blogTypeName as $typeName){
 			$a=(int)$typeName->type_id;
-//			$b = $a + 1;
-//			$c=$b+1;
-//			var_dump($b);
-//			die();
 				echo "<tr id='$typeName->type_id'>";
 				echo "<td>".$typeName->type_id."</td>";
 				echo "<td><span id='a$a"."b"."'>".$typeName->type_name."</span></br><input  name='changeTypeName' class='changeType'type='text' value='$typeName->type_name'id='a$a'></td>";
@@ -159,6 +162,38 @@
 		echo "</tr>";
 	}
 	?>
+
+
+
+<!--	--><?php
+//	if($TypeBlogNum){
+//		foreach($TypeBlogNum as $typeName){
+//			$a=(int)$typeName->type_id;
+//			echo "<tr id='$typeName->type_id'>";
+//			echo "<td>".$typeName->type_id."</td>";
+//			echo "<td><span id='a$a"."b"."'>".$typeName->type_name."</span></br><input  name='changeTypeName' class='changeType'type='text' value='$typeName->type_name'id='a$a'></td>";
+//			echo "<td>".$typeName->num."</td>";
+//			echo "<td><a href='javascript:;' value='a$a' class='change'>修改</a>
+//                           <a href='javascript:;' value='$typeName->type_id' class='delete'>删除</a>
+//                           </td>";
+//			echo "</tr>";
+//		}
+//	}else{
+//		echo "<tr>";
+//		echo "<td></td>";
+//		echo "<td></td>";
+//		echo "<td></td>";
+//		echo "<td><a href=''>修改</a>
+//                           <a href=''>删除</a>
+//                           </td>";
+//		echo "</tr>";
+//	}
+//	?>
+
+
+
+
+
 <!--	<tr id="catalog_92334">-->
 <!--		<td class="idx">1</td>-->
 <!--		<td class="name"><a href="editCatalog.htm" title="点击修改博客分类">工作日志</a></td>-->

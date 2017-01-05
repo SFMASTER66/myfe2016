@@ -24,27 +24,49 @@ class blog extends CI_Controller{
             echo "fail";
         }
     }
+
+
+    //这个有两种写法
     public function showblogTypeName(){
         $userid=$this->session->userdata("userinfo")->user_id;
         $row=$this->blog_model->getblogTypeName($userid);
-//        var_dump($row);
+//        var_dump($row);     //这个$row是没有num字段的
 //        die();
-//        if($row){
         $TypeBlogNum=$this->blog_model->showTypeBlogNum($userid);
 //        var_dump($TypeBlogNum);
 //        die();
-//        foreach($TypeBlogNum as $num){
+        //上面有两个数组（$row，$TypeBlogNum），然后想两个数组合并成一个数组，就用下面的方法即可。
+        for($i=0;$i<count($row);$i++){
+            for($j=0;$j<count($TypeBlogNum);$j++){
+                if($row[$i]->type_id == $TypeBlogNum[$j]->type_id){
+                    $row[$i]->num = $TypeBlogNum[$j]->num;   //把等号右边的值添加到等号左边，然后等号左边的$row数组的对象新添加一个字段叫num
+                    break;
+                }
+            }
+        }
             $this->load->view("blogCatalogs",array(
-                "blogTypeName"=>$row,
-                "TypeBlogNum"=>$TypeBlogNum
+                "blogTypeName"=>$row    //现在的这个$row是有$TypeBlogNum的num字段的值
             ));
-//        }
+//                var_dump($row);      //这个$row是有num字段的
+//        die();
 
-//        }else{
-////            echo "fail";
-//            redirect("blog/blogCatalogs");
-//        }
+
     }
+
+
+//    public function showblogTypeName(){
+//        $userid=$this->session->userdata("userinfo")->user_id;
+//        $TypeBlogNum=$this->blog_model->showTypeBlogNum($userid);   //这个查询可以直接查询到一个类别有几篇的文章
+////        var_dump($TypeBlogNum);
+////        die();
+//        $this->load->view("blogCatalogs",array(
+//                "TypeBlogNum"=>$TypeBlogNum
+//        ));
+//    }
+    //这个有两种写法
+
+
+
 
     public function show_blogTypeName(){
         $userid=$this->session->userdata("userinfo")->user_id;
@@ -184,60 +206,6 @@ class blog extends CI_Controller{
     }
 
 
-//    public function indexShowBlogs(){
-//        $userid=$this->session->userdata("userinfo")->user_id;
-////        var_dump($userid);
-////        die();
-////        $mood=$this->session->userdata("userinfo")->mood;
-//            $row=$this->blog_model->indexShowBlogs($userid);  //有文章，也有评论
-////        var_dump($row);
-////        die();
-//            if($row){     //有文章，也有评论
-//                $rerow=$this->blog_model->indexShowComments($userid);
-////            var_dump($rerow);
-////            die();
-//                $NoComments=$this->blog_model->indexShowNoCommentsBlogs($userid);
-//                $num=$this->message_model->countMessageNum();
-//                foreach($num as $value){
-//                    $this->load->view("index_logined",array(
-//                        "NoCommentsblogs"=>$NoComments,
-//                        "blogs"=>$row,
-//                        "comment"=>$rerow,
-//                        "num"=>$value
-//                    ));
-//                }
-//
-//            }else{
-//                $NoComments=$this->blog_model->indexShowNoCommentsBlogs($userid);  //没有评论，但有文章
-////            var_dump($NoComments);
-////            die();
-//                if($NoComments){     //没有评论，但有文章
-//                    $num=$this->message_model->countMessageNum();
-//                    foreach($num as $value){
-//                        $this->load->view("index_logined",array(
-//                            "NoCommentsblogs"=>$NoComments,
-//                            "blogs"=>$row,
-//                            "comment"=>"",
-//                            "num"=>$value
-//                        ));
-//                    }
-//                }else{       //没有文章 也没有评论
-//                    $num=$this->message_model->countMessageNum();
-//                    foreach($num as $value){
-//                        $this->load->view("index_logined",array(
-//                            "NoCommentsblogs"=>$NoComments,
-//                            "blogs"=>$row,
-//                            "comment"=>"",
-//                            "num"=>$value
-//                        ));
-//                    }
-//
-//                }
-//
-//            }
-//    }
-
-
     public function indexShowBlogs(){
         $userId=$this->session->userdata("userinfo")->user_id;
         $row=$this->blog_model->indexShowBlogs($userId);   //这个是关键啊，可以用数字显示博客是否有评论数量。
@@ -246,15 +214,13 @@ class blog extends CI_Controller{
 //        die();
         $num=$this->message_model->countMessageNum();
         if($row){
-            foreach($num as $value){
+            foreach($num as $value){     //返回值数组里要是只有一个内容的收可以这么写，要是数组有多个内容，就不要这么写了。
                     $this->load->view("index_logined",array(
-                        "blogs"=>$row,
+                        "blogs"=>$row,       //blogs是自己取得名字，$row是也是上面自己取得名字。
                         "num"=>$value,
                         "comment"=>$rerow,
 
                     ));
-
-
             }
         }else{
             foreach($num as $value){
@@ -266,12 +232,6 @@ class blog extends CI_Controller{
             }
         }
     }
-
-
-
-
-
-
 
 
     public function updateblogs(){
@@ -300,9 +260,6 @@ class blog extends CI_Controller{
         }
     }
 
-//    public function viewPost_logined(){
-//    $this->load->view("viewPost_logined");
-//}
 
     public function viewPost_logined(){
         $userid=$this->session->userdata("userinfo")->user_id;
@@ -338,12 +295,46 @@ class blog extends CI_Controller{
                         "PureBlogs"=>$PureBlogs
                     ));
                 }
-
             }
-
-
-
         }
     }
+
+
+
+    public function showblogSearchBlogByTitle(){
+        $userid=$this->session->userdata("userinfo")->user_id;
+        $blogTitle=$this->input->post("blogTitle");
+        $TypeBlogNum=$this->blog_model->showTypeBlogNum($userid);   //这个查询可以直接查询到一个类别有几篇的文章
+//        var_dump($TypeBlogNum);
+//        die();
+        $row=$this->blog_model->blogSearchBlogByTitle($userid,$blogTitle);
+        $indexBlogs=$this->blog_model->indexShowBlogs($userid);
+        $rerow=$this->blog_model->indexShowGroupByComments($userid);
+        $num=$this->message_model->countMessageNum();
+        for($i=0;$i<count($row);$i++){
+            for($j=0;$j<count($TypeBlogNum);$j++){
+                for($k=0;$k<count($indexBlogs);$k++){
+                    if($row[$i]->user_id==$TypeBlogNum[$j]->user_id){
+                        if($row[$i]->user_id==$indexBlogs[$k]->user_id){
+                            $row[$i]->num=$TypeBlogNum[$j]->num;
+                            $row[$i]->type_name=$indexBlogs[$k]->type_name;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+//        var_dump($row);      //新添加融合的$row
+//        die();
+        foreach($num as $value){
+            $this->load->view("index_logined",array(
+                "TypeBlogNum"=>$row,
+                "blogs"=>"",
+                "num"=>$value,
+                "comment"=>$rerow
+            ));
+        }
+    }
+
 
 }

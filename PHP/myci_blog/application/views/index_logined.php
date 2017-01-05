@@ -99,11 +99,11 @@
 																				</span>
 </div>
 		<div id="SearchBar">
-    		<form action="#">
-								<input name="user" value="154693" type="hidden">
-																								<input id="txt_q" name="q" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
+			<form action="blog/showblogSearchBlogByTitle" method="post">
+				<input name="user" value="154693" type="hidden">
+				<input id="searchBlog" name="blogTitle" class="SERACH" value="在此空间的博客中搜索" onblur="(this.value=='')?this.value='在此空间的博客中搜索':this.value" onfocus="if(this.value=='在此空间的博客中搜索'){this.value='';};this.select();" type="text">
 				<input class="SUBMIT" value="搜索" type="submit">
-    		</form>
+			</form>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -119,8 +119,53 @@
 <div class="BlogList">
 <ul>
 	<?php
+	date_default_timezone_set("Asia/Shanghai");
+	$this->session->set_userdata(array(
+		"time"=>date('Y-m-d H:i:s')
+	));
+	$nowTime=$this->session->userdata("time");
 	if($blogs){
 		foreach($blogs as $row){
+			$time=$row->create_time;
+			$minusTime=strtotime($nowTime)-strtotime($time);
+			$day=round($minusTime/86400);
+			$hour=round($minusTime%86400/3600);
+			$minute=round($minusTime%86400/60);
+			$second=round($minusTime%86400%60);
+//			var_dump($second);
+//			var_dump($minute);
+//			var_dump($hour);
+//			var_dump($day);
+//			die();
+			echo "<li class=\"Blog\">";
+			echo "<h2 class=\"BlogAccess_true BlogTop_0\"><a class='blogTitle'  href='javascript:;' value='$row->content'>$row->title</a></h2>";
+			echo "<div class=\"outline\">";
+			echo "<span class=\"time\">发表于："?>
+	<?php
+			if($day>2){
+				echo $time;
+			}else
+				if($day>1){
+				echo $day."天前";
+			}else if($hour>6||$minute>60){
+				echo $hour."小时前";
+			}else if( $minute<=1){
+					echo $second ."秒前";
+			}else if($minute>=30||$minute<30||$second>60){
+					echo $minute."分钟前";
+			}
+	 echo "</span>";
+			echo "<span class=\"catalog\"> 分类: ".$row->type_name." <a href=''></a></span>";
+			echo "<span class=\"stat\">统计: ".$row->num."评/4阅</span>";
+			echo "<span class=\"blog_admin\">(<a href='blog/show_changeblogTypeName?content=$row->content&title=$row->title&type_name=$row->type_name'>修改</a> | <a class='deleteIndexBlogs' href='blog/deleteIndexBlogs?blog_id=$row->blog_id' value='$row->blog_id'>删除</a>)</span>";
+			echo "</div>";
+			echo "<div class=\"TextContent\">$row->content";
+			echo "<div class=\"fullcontent\"><a class='theWholeBlog' value='$row->content' href='javascript:;'>阅读全文...</a></div>";
+			echo "</div>";
+			echo "</li>";
+		}
+	}else if($TypeBlogNum){
+		foreach($TypeBlogNum as $row){
 			echo "<li class=\"Blog\">";
 			echo "<h2 class=\"BlogAccess_true BlogTop_0\"><a class='blogTitle'  href='javascript:;' value='$row->content'>$row->title</a></h2>";
 			echo "<div class=\"outline\">";
@@ -176,17 +221,45 @@
   <strong>最新网友评论</strong>
       <ul>
 		  <?php
+
+		  date_default_timezone_set("Asia/Shanghai");
+		  $this->session->set_userdata(array(
+			  "timeComment"=>date('Y-m-d H:i:s')
+		  ));
+		  $NowTime=$this->session->userdata("timeComment");
 		  if($comment){
 			  foreach($comment as $key=>$prop){
 //				  $keyarray = array_keys($comment);
 //				  print_r($keyarray);
 //				  die();
 //					  echo $key;
+				  $time=$prop->create_time;
+				  $minusTime=strtotime($NowTime)-strtotime($time);
+				  $day=round($minusTime/86400);
+				  $hour=round($minusTime%86400/3600);
+				  $minute=round($minusTime%86400/60);
+				  $second=round($minusTime%86400%60);
 					  echo "<li>";
 					  echo "<span class=\"u\"><a href=''><img src='images/portrait.gif' alt=''class=\"SmallPortrait\" align=\"absmiddle\"></a></span>";
 					  echo "<span>$prop->content";
-					  echo "<span class=\"t\">发布于$prop->create_time <a href='blog/viewPost_logined?title=$prop->title&createtime=$prop->create_time&username=$prop->username&content=$prop->content&blogId=$prop->blog_id&keyarray= $key'>查看»</a></span>";
-					  echo "</span>";
+					  echo "<span class=\"t\">发布于"
+				  ?>
+
+				  <?php
+				  if($day>2){
+					  echo $time;
+				  }else
+					  if($day>1){
+						  echo $day."天前";
+					  }else if($hour>6||$minute>60){
+						  echo $hour."小时前";
+					  }else if( $minute<=1){
+						  echo $second ."秒前";
+					  }else if($minute>=30||$minute<30||$second>60){
+						  echo $minute."分钟前";
+					  }
+				  echo "<a href='blog/viewPost_logined?title=$prop->title&createtime=$prop->create_time&username=$prop->username&content=$prop->content&blogId=$prop->blog_id&keyarray= $key'>&nbsp;&nbsp;查看»</a></span>";
+				      echo "</span>";
 					  echo "<div class=\"clear\"></div>";
 					  echo "</li>";
 
@@ -194,6 +267,12 @@
 		  }else{
 			  echo "你还没有网友评论哦";
 		  }
+
+
+
+
+
+
 
 		  ?>
 <!--		<li>-->
@@ -227,6 +306,10 @@
 <script src="javascript/jquery-1.12.4.js"></script>
 <script>
 
+
+
+
+
 //	$(function(){
 //		var $tag=$(".deleteIndexBlogs");
 //		$(".deleteIndexBlogs").on("click",function(){
@@ -235,9 +318,6 @@
 //			console.log("1111");
 //		})
 //	})
-
-
-
 	$(".blogTitle").on("click",function(){
 		var $value=$(this).attr("value");
 		$("#mask").css("display","block");
@@ -254,6 +334,24 @@
 		$("#mask").css("display","none");
 		$("#showBlog").css("display","none");
 	})
+
+
+	$("#searchBlog").on("keyup",function(){
+//		var $titleValue=$("#searchBlog").val();
+		var $titleValue=$(this).val();
+		console.log($(".blogTitle").filter(":contains("+$titleValue+")")[0]);
+		if($(".blogTitle").filter(":contains("+$titleValue+")").get(0)){
+			console.log("22222");
+			$(".Blog").hide();
+			$(".blogTitle").filter(":contains("+$titleValue+")").parents("li").show();
+		}else{
+			console.log("111111");
+			$(".Blog").show();
+//			alert("你还没有此标题的文章哦");   //用keyup，就不要写alert了，因为会不好使用。
+		}
+	})
+
+
 
 
 
