@@ -1,0 +1,15 @@
+用php，得开启Apache还有连接数据库。 要有application，system，index.php这三个关键的东西。另外， .htaccess这个是
+只有后缀的文件，要有，新建文件夹的时候都要在.htaccess这个地方配。system不用动。
+
+在application里面，autoload.php的61行要配置，92行要配置。config.php的26行和38行要配置。database要配置。
+
+
+然后就是真正的php代码了。
+
+在application的controllers写控制器，然后控制器里面写的是方法，并且控制器的名字不区分大小写。
+在application的models写数据库的东西，就是增删改查。除了查是可以直接return直接写的，其余的三个都是要另外return的。
+在application的view里写前段的页面，记住！！在每一个页面里的head标签里面，都要写<base href="<?php echo site_url()?>">这句代码。
+想在前段页面写php代码，就<?php?>这样，在尖括号里面写。
+
+在控制器里，写上index的方法，在输入地址栏的时候，假如只写控制器的名字，不写方法，就会直接找index方法，然后加载index方法里面的
+页面。
