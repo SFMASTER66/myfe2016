@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+
+//    const a=1;
+//    a=2;
+//    console.log(a);
+
+
+    const aa={a:3,b:4};
+
+    Object.freeze(aa);       //正常来说，aa是常量，是不能改变的，但是假如不写这个，然后添加下面的操作，就会改变aa的对象。但是加了这个freeze，就可以让aa的赋值的对象也不动。
+    aa.a=6;
+    aa.c=3;        //其实aa的地址一直没变，只是改变了赋值给aa的对象的值。
+    console.log(aa);
+
+//  const 跟let一样，变量不提升，不能重复命名。
+
+
+</script>
+
+</body>
+</html>

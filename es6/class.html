@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+
+    //js原来的类的用法
+//    function User(name){    //类名开头大写。
+//        this.name=name;
+//        this.say=function(){
+//            console.log(name+" say hello");    //这里不用thi.name，直接写name就可以得到传过来的值。
+//        }
+//    }
+//
+//    var user=new User("lisi");   //  传参数要家字符串     记住！！！上面定义的类，要用的时候，一定要new啊！！！！！
+//    user.say();
+//
+//
+//    function Son(){
+//
+//    };
+//
+//    Son.prototype=new User("wwwww");     //这个是js里的继承。
+//    var son=new Son();
+//    son.say();
+    //js原来的类的用法
+
+
+
+//    var user=new User("lisi");    //这个写在class之前，就不好使，就会报User is not defined。
+//    user.say();
+    class User{
+        constructor(name){
+            this.name=name;
+        }
+        say(){
+            console.log(this.name+" say hello!");    //这里必须写this.name才能得到传过来的值。
+        }
+
+        static fn(){
+            console.log("aaaaaaa");   //他的生命周期跟他的类User是一起的，出了这个类，就只能通过User.fn才能调用。
+        }
+    }
+    User.fn();
+
+    var user=new User("lisi");
+    user.say();
+
+    class Son extends User{             //子类继承父类
+        constructor(name,food){    //food是自己新增加的东西
+            super(name);      //这个要写啊,继承父类的构造函数啊。
+            this.food=food;       //新增加的东西就要加这个。
+        }
+        eat(){
+            console.log(this.name+" eat "+this.food);
+        }
+
+    }
+
+    var son=new Son("ww","hamburger");
+    son.say();
+    son.eat();
+
+
+</script>
+</body>
+</html>
