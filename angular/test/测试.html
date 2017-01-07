@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="">
+
+<div ng-controller="test">
+    <!--用了test的控制器，然后用了test控制器下的name属性。那么ng-model就会覆盖了value值,并且在input里面输入东西的时候，也会实时的改变控制器里面的数据-->
+    <input type="text"     value="name" ng-model="name"/>{{name}}</br></br></br>
+<!--在下面的input里面输入东西，也会改变控制器的数据-->
+    <input type="text"     value="{{name}}"/> {{name}}
+
+</div>
+
+<script src="angular-1.2.18/angular.js"></script>    <!--写angular要引入这个文件-->
+<script src="test.js"></script>
+</body>
+</html>
