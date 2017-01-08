@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+
+//    var name="zs";
+//    var zsid = 'aaaaa';
+//    var obj={
+//        name,     //也可以把name放在外面定义好，然后在里面直接用就可以了。
+//        age:12,   //age可以加括号，也可以不加括号。
+//        [name+"id"]:"www"
+//    }
+//
+//    console.log(obj.age);
+//    console.log(obj.name);
+//    console.log(obj.zsid);
+
+
+
+
+//           console.log(-0 === +0);
+//            console.log(NaN === NaN);
+//
+//            console.log(Object.is(-0,+0));    //新版本的修复
+//            console.log(Object.is(NaN,NaN));
+
+
+   //判断是否数组是否有我要的值
+//        var arr = [1,2,3,NaN,4,5];
+//        console.log(arr.indexOf(NaN));     //返回-1，表示找不到。
+//
+//       var index=arr.findIndex(function(value,index){
+//            return Object.is(NaN,value);      //再次情调啊，返回的是索引
+//       })
+//    console.log(index);      //返回索引3，表示找到了。
+//
+//
+//arr.forEach(function(value){    //foreach也是可以判断数组里是否有要的值。
+//            return Object.is(NaN,value);
+//        });
+//        console.log(index);
+//判断是否数组是否有我要的值
+
+
+
+
+        //Object.assign
+
+        var o = {a:1,b:"ox"};
+        var oo = {b:{c:3,d:4}};  //如果o和oo合并了，oo的b就会覆盖o的b。
+        var ooo = {c:{c:3,d:4}};   //如果o和ooo合并了，ooo的c就会新添加到o。
+        Object.assign(o,oo);     //assign会合并两个对象。全部合并到第一个对象，然后其他的对象不变。
+//        oo.b.c = 5;
+        console.log(o);
+        console.log(oo);
+
+
+
+</script>
+
+
+</body>
+</html>
