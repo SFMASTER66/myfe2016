@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    var set=new Set();       //这个相当于一个类数组
+//    var set=new Set([1,2,3,2,4,2]);    //set自带去重功能。
+////    set.add(1);
+////    set.add(2);
+////    var newArray=Array.from(set);       //这个就把类数组转换成数组
+//var arr=[];
+//     for(var p of set){     //of把这个对象的值取出来了。然后放到新的数组里。
+//         arr.push(p);
+//}
+//console.log(arr);
+//    console.log(set);
+//
+//    var obj={"0":1,"1":2,2:"wangwu",length:3};//  当想用Array把对象变成数组的时候，对象必须这么写，要写出长度，并且长度要与对象里的属性个数对应上，写多了长度没对应上就会undefined。而且属性名必须是数字，而且数字必须从0开始，而且数组要从0开始连续，不然也会undefined。数字可以直接写数字，也可以在里面写数字
+//    var array1=Array.from(obj);
+//    console.log(array1);
+//
+//
+//
+//
+//    var map=new Map([[1,2],[[2,3],[5,4]]]);
+//    var array2=Array.from(map);
+//    console.log(array2);
+
+
+//    var arr=["sss",2,3,2,1,2,1,3,4,3,"eee","sss"];
+//    var set=new Set(arr);
+//    console.log(set);
+//    var newArray=Array.from(set);
+//    console.log(newArray);
+
+
+//    var arr1=[1,2,3];//这个叫做数组直接量。
+//    var arr2=new Array(1,2,3);   //这个是最官方的声明数组的方法。与上面是一样的效果。
+//    console.log(arr1);
+//    console.log(arr2);
+
+
+//        var arr = [3];                 //这种新的方法创建的数组不为空。
+//        var arr1 = new Array(3);    //这种情况下创建一个数组，数组为空
+//        var arr2 = Array.of(3);     //这种新的方法创建的数组不为空。
+//        var arr3 = Array.of(3,3,4,5);
+//        console.log(arr);
+//        console.log(arr1);
+//        console.log(arr2);
+//        console.log(arr3);
+
+
+//
+//    var arr=[1,2,3,2,3,4,2,5,5];
+//    arr.copyWithin(3,5,7);     //都是从索引零开始，第一个参数是从哪里开始，第二个参数是换数字的开始，第三个参数是换数字的结束（不包括结束的数字）
+//    console.log(arr);
+
+
+
+
+    var arr=[1,2,3,2,1,2,4,6];
+//var a =arr.indexOf(3);//indexOf也是可以判断数组里是否有该值的方法。
+//console.log(a);
+;     //可以通过findIndex的方法判断一个数组里是否有该值。
+//    var a=arr.findIndex(function(value,index,arr){
+//        return value>4;      //返回的是相对应的索引。没有就返回-1.
+//    })
+
+//var a=arr.findIndex(function(value,index){   //可以没有第三个参数。
+//    return index>6;      //返回的是相对应的索引。没有就返回-1.
+//})
+//    console.log(a);
+
+arr.fill(10,2,5);      //fill的功能：用10替换arr里的数字，从索引2开始替换，一直替换到索引5（但是不包括5）.
+    console.log(arr);
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
