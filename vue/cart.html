@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .span4{
+            float: right;
+            color: black;
+        }
+      .span3{
+          color: black;
+      }
+    </style>
+</head>
+<body>
+<div id="cart" v-bind:style="cartObject">
+    <h2 v-bind:style="h2">services</h2>
+    <div v-bind:style="item.commodity" v-for="item in items"  v-on:click="changeColor(item)"> <!--v-for是循环-->
+        <span v-bind:style="span1">{{item.name}}</span>
+        <span v-bind:style="span2">{{item.price}}</span>
+    </div>
+    <hr/>
+    <span class="span3">total:</span>
+    <span class="span4">{{totalPrice()}}</span>
+</div>
+<script src="vue.js"></script>
+<script>
+
+    var vm=new Vue({
+        el:"#cart",
+        data:{
+            cartObject:{
+                width:"400px",
+                height:"500px",
+                margin:"0 auto"
+            },
+            commodity:{
+                width:"400px",
+                height:"50px",
+                background:"green",
+                "border":"20px",
+                'line-height':"50px",
+                "margin-bottom":"40px"
+            },
+            span1:{
+                "padding-left":"30px"
+            },
+            span2:{
+                float:"right",
+                "padding-right":"30px"
+            },
+            h2:{
+                "text-align":"center",
+                color:"red"
+            },
+            items:[
+                {name:"aaa",price:333,commodity:{    //本来这个commodity是写在外面的，然后为了让点击每一个div的时候，都会自己变自己的，而不是点击一个，然后全部改变，所以把本来这个commodity写在了每一个数据的里面。
+                    width:"400px",
+                    height:"50px",
+                    background:"green",
+                    "border":"20px",
+                    'line-height':"50px",
+                    "margin-bottom":"40px"
+                },flag:true},
+                {name:"bbb",price:444,commodity:{
+                    width:"400px",
+                    height:"50px",
+                    background:"green",
+                    "border":"20px",
+                    'line-height':"50px",
+                    "margin-bottom":"40px"
+                },flag:true},
+                {name:"ccc",price:555,commodity:{
+                    width:"400px",
+                    height:"50px",
+                    background:"green",
+                    "border":"20px",
+                    'line-height':"50px",
+                    "margin-bottom":"40px"
+                },flag:true},
+                {name:"ddd",price:666,commodity:{
+                    width:"400px",
+                    height:"50px",
+                    background:"green",
+                    "border":"20px",
+                    'line-height':"50px",
+                    "margin-bottom":"40px"
+                },flag:true},
+                {name:"eee",price:777,commodity:{
+                    width:"400px",
+                    height:"50px",
+                    background:"green",
+                    "border":"20px",
+                    'line-height':"50px",
+                    "margin-bottom":"40px"
+                },flag:true}
+            ]
+        },
+
+        methods:{
+            changeColor:function(item){
+                if(item.flag){
+                    item.commodity.background="red";
+                    console.log(item.price);
+                }else{
+                    item.commodity.background="green"
+                }
+                item.flag=!item.flag;
+            },
+
+            totalPrice:function(){
+                var totalPrice=0;
+                this.items.forEach(function(value){
+                    if(!value.flag){
+                        totalPrice+=value.price;
+                    }
+                });
+                return totalPrice;
+            }
+        }
+    });
+</script>
+</body>
+</html>
