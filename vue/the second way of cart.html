@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #cart{
+            width: 400px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        h2{
+            color:red;
+            text-align: center;
+        }
+        .commodity{
+            width: 400px;
+            height: 50px;
+            /*background: green;*/
+            margin-top: 20px;
+            line-height: 50px;
+        }
+        .span1{
+            float: right;
+            padding-right:10px;
+        }
+        .red{
+            background: red;
+        }
+        .green{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="cart">
+    <h2>services</h2>
+    <div class="commodity" v-bind:class="{red:!item.status,green:item.status}" v-for="item in items"  v-on:click="changeColor(item)"> <!--v-for是循环-->
+        {{item.name}}
+        <span class="span1">{{item.price}}</span>
+    </div>
+    &nbsp;
+    <hr/>
+    total:
+    <span class="span1">{{total()}}</span>
+</div>
+<script src="vue.js"></script>
+<script>
+
+    var vm=new Vue({
+        el:"#cart",
+        data:{
+            items:[
+                {name:"aaa",price:222,status:true},
+                {name:"aaa",price:222,status:true},
+                {name:"aaa",price:222,status:true},
+                {name:"aaa",price:222,status:true},
+                {name:"aaa",price:222,status:true}
+            ]
+        },
+        methods:{
+            changeColor:function(item){
+                    item.status=!item.status;
+            },
+            total:function(){
+                var totalPrice=0;
+                this.items.forEach(function(value){
+                    if(!value.status){
+                        totalPrice+=value.price;
+                    }
+                });
+                return totalPrice;
+            }
+        }
+
+
+
+
+    });
+
+
+
+
+</script>
+</body>
+</html>
