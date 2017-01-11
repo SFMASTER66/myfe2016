@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <p v-bind:class="[redClass,blueClass]">eeeeeeeeeeeeeee</p>
+    <!--<p v-bind:class="{red:isred,blue:isblue}">eeeeeeeeeeeeeee</p>-->
+    <!--<p v-bind:class="objectClass">eeeeeeeeeeeeeee</p>-->
+
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        //数组的形式
+        data:{
+            redClass:"red",       //这里的名字red就是css样式里面的类的名字。
+            blueClass:"blue"
+        }
+        //数组的形式
+
+
+        //对象的形式
+//        data:{
+//            isred:true,
+//            isblue:true
+//        }
+        //对象的形式
+
+
+
+        //类似于直接在style里写的形式
+//        data:{
+//            objectClass:{
+//                red:true,
+//                blue:true
+//            }
+//        }
+        //类似于直接在style里写的形式
+
+    });
+
+
+
+</script>
+</body>
+</html>
