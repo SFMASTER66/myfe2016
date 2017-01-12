@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app" >
+    <!--<firstcomponent v-bind:my-component="msg"></firstcomponent>   &lt;!&ndash;   要是想用下面的myComponent，这里不能写大写的C，而且要有空格，用v-bind &ndash;&gt;-->
+    <secondcomponent></secondcomponent>         <!--这个是全局的组件的写法。-->
+</div>
+
+<script src="vue.js"></script>
+<script>
+
+
+    //这个是全局的组件
+    Vue.component("secondcomponent",{
+        template:"<div>lalallalal{{msg}}llla</div>",
+        data:function(){
+            return {
+                msg:"aaaaaaa"
+            }
+        }
+    })
+    //这个是全局的组件
+
+
+
+    var vm =new Vue({
+        el:"#app",
+        data:{
+            msg:11
+        },
+        components:{         //这个是局部的组件
+            "firstcomponent":{         //这里不能有大写。
+                template:"<p>I am a good boy  {{myComponent}}</p>",
+                props:["myComponent"]
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>
