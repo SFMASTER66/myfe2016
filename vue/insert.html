@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="app">
+    <input id="aa" type="text" value="" v-model="message" v-on:keyup="filters"/>
+    <button v-on:click="fn">click</button>
+
+    <template v-for="item in showItems">
+        <ul id="list" v-show="qqq">
+            <li v-bind:style="item.colorful" v-on:click="changeColor(item)">{{item.value}}</li>
+        </ul>
+    </template>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script src="vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+              message:"",
+            items:[],
+            showItems:[],
+            qqq:true
+        },
+        methods:{
+            fn:function(){
+                var aa=document.getElementsByTagName("input")[0];  //要是用
+                console.log(typeof aa);
+//                var aa=document.getElementById("aa");
+                console.log(aa.value);
+//                var flag=true;
+                var value=this.message;
+                    if(value){
+                        this.items.push({
+                            value:value,
+                            status:true,
+                            colorful:{
+                                color:"black"
+                            }
+                        });
+                        this.items.sort(function(a,b){
+                            return a.value- b.value;
+                        })
+                        this.showItems=this.items;
+                    }
+                    this.flag=!this.flag;
+                this.message="";
+                this.items.sort();
+            },
+
+            changeColor:function(item){
+                    if(item.status){
+                        item.colorful.color="red";
+                    }else{
+                        item.colorful.color="black"
+                    }
+                item.status=!item.status;
+            },
+
+            filters:function(){
+                vm.showItems=vm.items.filter(function(value){
+                    return value.value.includes(vm.message);
+//                    return value.value.indexOf(vm.message)>-1;
+
+                })
+
+            }
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+    });
+</script>
+
+
+</body>
+</html>
