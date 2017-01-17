@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--<html>-->
+<!--<head>-->
+    <!--<style>-->
+
+        <!--div { border:2px blue solid; margin:2px; padding:2px; }-->
+        <!--p { background:yellow; margin:2px; padding:2px; }-->
+        <!--strong { color:red; }-->
+    <!--</style>-->
+    <!--<script src="jquery-1.12.4.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<span>Span Text</span>-->
+<!--<strong>What about me?</strong>-->
+<!--<span>Another One</span>-->
+<!--<script>$("span").wrapAll("<div><div><p><em><b></b></em></p></div></div>");</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+<html>
+<head>
+    <style>
+
+        div { border: 2px solid blue; margin:2px; padding:2px; }
+        .doublediv { border-color:red; }
+        p { background:yellow; margin:4px; font-size:14px; }
+    </style>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+<p>Hello</p>
+<p>cruel</p>
+<p>World</p>
+<div class="doublediv"><div></div></div>
+<script>$("p").wrapAll($(".doublediv"));</script>
+
+</body>
+</html>
