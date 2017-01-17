@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .a{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script src="react-15.3.1/build/react.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+
+<script type="text/babel">
+    var Message=React.createClass({
+       render:function(){
+           return (
+                   <h2>lololololollo</h2>
+           )
+       }
+    });
+
+
+    ReactDOM.render(
+            <div>                        //必须是以一个闭合的dom元素暴露出去
+                <Message/>
+                <h1 className="a">lolololo</h1>         <!--写的是className-->
+            </div>,
+            document.getElementById("container")
+    )
+
+
+</script>
+
+</body>
+</html>
