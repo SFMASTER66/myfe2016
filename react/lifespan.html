@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="react-15.3.1/build/react-with-addons.min.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+<script type="text/babel">
+    var Count=React.createClass({
+        getInitialState:function(){
+            return {
+                count:0
+            }
+        },
+        componentDidMount:function(){
+            this.timer=setInterval(function(){
+                this.setState({
+                    count:this.state.count+1
+                })
+            }.bind(this),1000)
+        },
+        shouldComponentUpdate:function(){            //这个只能返回布尔值
+            if(this.state.count>10){
+                return false;
+            }else{
+                return true;
+            }
+        },
+        clickHandler:function(){
+            ReactDOM.unmountComponentAtNode(document.getElementById("container"))      //销毁container里面的内容。
+        },
+        render:function(){
+            return (
+                    <div>
+                        <button onClick={this.clickHandler}>点我加一啊</button>
+                        <h1>{this.state.count}</h1>
+                    </div>
+
+            )
+        }
+    });
+
+
+
+    ReactDOM.render(
+            <Count/>,
+            document.getElementById("container")
+    )
+
+
+
+</script>
+
+
+</body>
+</html>
