@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="react-15.3.1/build/react.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+<script type="text/babel">
+    var Message=React.createClass({
+        getDefaultProps:function(){
+            return {
+                str1:""
+            }
+        },
+       render:function(){
+           return (
+               <h1>
+                   lalalalala
+           {this.props.str}
+           {this.props.str1}
+                   </h1>
+           )
+       }
+    });
+
+    var Text=React.createClass({
+        render:function(){
+            var data="12345rerere";
+            return (
+                <Message str={data}/>
+            )
+        }
+    });
+
+
+    var Text1=React.createClass({
+        render:function(){
+            var data1="love";
+            return (
+                    <Message/>
+            )
+        }
+    })
+
+
+    ReactDOM.render(
+            <div>
+                <Text/>
+                <Text1/>
+            </div>,
+            document.getElementById("container")
+    )
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
