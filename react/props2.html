@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="container"></div>
+<script src="react-15.3.1/build/react.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+
+<script type="text/babel">
+    var Message=React.createClass({
+        getDefaultProps:function(){
+          return {
+              str:[]
+          }
+        },
+        render:function(){
+            var main=[];
+            this.props.str.forEach(function(value,index){
+                main.push(<h1 key={index}>{value}</h1>);
+            });
+            return (
+                    <div>{main}</div>
+            )
+        }
+    });
+    var Box=React.createClass({
+        render:function(){
+            var arr=[1,2,3,4];
+            return (
+                    <Message str={arr}/>
+            )
+        }
+    });
+    ReactDOM.render(
+        <Box/>,
+            document.getElementById("container")
+    )
+
+
+
+</script>
+
+
+</body>
+</html>
