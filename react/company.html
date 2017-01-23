@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="react-15.3.1/build/react.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+<script type="text/babel">
+//    var Select=React.createClass({
+//       render:function(){
+//           var newArr=[];
+//           this.props.arr1.forEach(function(value,index){
+//               newArr.push( <label>
+//               <h1>{value}</h1>
+//               <input type="checkbox"/>
+//                       </label>);
+//           });
+//           return (
+//                   <div>{newArr}<div/>
+//           );
+//       }
+//    });
+
+    var Select=React.createClass({
+        render:function(){
+            var msg=[];
+            this.props.arr1.forEach(function(value,index){
+                msg.push( <label key={index}>
+                <span>{value}</span>
+                <input type="checkbox"/>
+                        </label>)
+            })
+            return (
+                   <div>{msg}</div>
+            )
+        }
+    })
+
+
+   var Count=React.createClass({
+        getInitialState:function(){
+                    return {
+                        count:0,
+                        arr:["百度","阿里","腾讯"]
+                    }
+        },
+        render:function(){
+            return (
+                    <div>
+                        <h1>你一共选择的公司数目:{this.state.count}</h1>
+                        <Select arr1={this.state.arr}/>
+                    </div>
+            )
+        }
+    });
+
+    ReactDOM.render(
+            <Count/>,
+            document.getElementById("container")
+    )
+
+
+</script>
+
+
+</body>
+</html>
