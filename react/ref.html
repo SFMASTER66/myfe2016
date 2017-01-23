@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="react-15.3.1/build/react-with-addons.min.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+
+<script type="text/babel">
+    var Value=React.createClass({
+        componentDidMount:function(){           //componentDidMount在render之后执行
+          console.log(this.refs.username);        //这个可以获取真实的dom结构
+//            this.refs.username.focus();
+        },
+        render:function(){
+            return (
+                    <input type="text" ref="username"/>     //ref就是为了得到真实的dom结构
+            )
+        }
+    });
+
+
+    ReactDOM.render(
+            <Value/>,
+            document.getElementById("container")
+    )
+
+
+</script>
+
+
+
+</body>
+</html>
