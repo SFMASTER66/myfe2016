@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="app">
+    <!--<button v-on:click="greet">click</button>-->
+    <!--<button v-on:click="say">click</button>      &lt;!&ndash;假如方法里面没有参数，或者参数是event，这里就可以不写括号&ndash;&gt;-->
+    <!--<button v-on:click="message+=1">click</button>-->
+    <button v-on:click="speak('uuuu')">click</button>    <!--传字符串要加引号-->
+    你点击了{{message}}次！！！
+</div>
+
+
+<script src="vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            message:0,
+
+            greet:function(){
+                console.log("111111111");
+            },
+
+            say:function(event){
+                console.log(event.target.tagName);
+            },
+            speak:function(thing){
+                console.log(thing)
+            }
+
+
+        }
+    });
+
+
+</script>
+</body>
+</html>
