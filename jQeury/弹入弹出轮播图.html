@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var iNow=0;
+    var timer1=setInterval(function(){
+        iNow++;
+        if(iNow==5){
+            iNow=0;
+        }
+        change(iNow);
+    },800);
+    function change(index){
+        a++;
+        $("#l-lunbotu img").eq(index).css("z-index",a).css("opacity",0).animate({opacity:1},800);
+    }
+    var a=5;
+    var $index;
+    $("#l-explain em").hover(function(){
+        $index=$(this).index();
+        iNow=$index;
+        change($index);
+        $(this).addClass("selected").siblings().removeClass("selected");
+        $(this).addClass("c").siblings().removeClass("c");
+    },function(){
+        timer1=setInterval(function(){
+            iNow++;
+            if(iNow==5){
+                iNow=0;
+            }
+            change(iNow);
+        },800);
+    });
+    $("#lunbotu").hover(function(){
+        clearInterval(timer1);
+    },function(){
+        timer1=setInterval(function(){
+            iNow++;
+            if(iNow==5){
+                iNow=0;
+            }
+            change(iNow);
+        },800);
+    })
+</script>
+
+</body>
+</html>
