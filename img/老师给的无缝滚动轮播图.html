@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+
+		#container{
+			width:680px;
+			height: 344px;
+			position: relative;
+			margin:50px auto;
+			overflow: hidden;
+		}
+		#content{
+			position: absolute;
+			left:0;
+		}
+		#content img{
+			float: left;
+		}
+		#tab{
+			position: absolute;
+			right: 5px;
+			bottom: 10px;
+		}
+		#tab li{
+			float:left;
+			width: 20px;
+			height: 20px;
+			background: #ccc;
+			color:#000;
+			line-height: 20px;
+			text-align: center;
+			margin-right:5px;
+			cursor:pointer;
+		}
+		#tab li.selected{
+			background: orange;
+			color:#fff;
+		}
+		#arrow{
+			position: absolute;
+			left: 5px;
+			bottom: 10px;
+		}
+		#arrow span{
+			width:20px;
+			height: 20px;
+			float: left;
+			background: #ccc;
+			color:#000;
+			margin-right: 5px;
+			text-align: center;
+			line-height: 20px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="content">
+			<img src="1.jpg" alt="">
+			<img src="2.jpg" alt="">
+			<img src="3.jpg" alt="">
+			<img src="4.jpg" alt="">
+		</div>
+		<ul id="tab">
+			<li class="selected">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="arrow">
+			<span id="prev">&lt;</span>
+			<span id="next">&gt;</span>
+		</div>
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		window.onload = function(){
+			var oContainer = document.getElementById('container'),
+				oContent = document.getElementById('content'),
+				aImg = oContent.getElementsByTagName('img'),
+				aLi = oContainer.getElementsByTagName('li'),
+				oNext = document.getElementById('next'),
+				oPrev = document.getElementById('prev'),
+				iNow = 0,
+				iWidth = aImg[0].offsetWidth;
+			oContent.style.width = iWidth * (aLi.length+1) +"px";
+			oContent.appendChild(aImg[0].cloneNode());
+			for(var i =0; i<aLi.length; i++){
+				aLi[i].index = i;
+				aLi[i].onmouseover = function(){
+					changeImg(this.index);
+				}
+			}
+			function changeImg(index){
+				for(var i=0; i<aLi.length; i++){
+					aLi[i].className = '';
+				}
+				aLi[index == aLi.length?0: index].className = 'selected';
+				animate(oContent,{left:-iWidth*index});
+			}
+			oNext.onclick = oPrev.onclick = function(){
+				if(this == oNext){
+					iNow++;
+
+					if(iNow == aLi.length){
+						oContent.style.left = 0;
+						iNow = 1;
+					}
+
+					changeImg(iNow);
+
+				}else{
+					iNow--;
+					if(iNow == -1){
+						oContent.style.left = -iWidth * aLi.length +"px";
+						iNow = aLi.length-1;
+					}
+					changeImg(iNow);
+				}
+			}
+
+			var timer = setInterval(function(){
+				oNext.onclick();
+			},1000)
+			oContainer.onmouseover = function(){
+				clearInterval(timer);
+			}
+			oContainer.onmouseout = function(){
+				timer = setInterval(function(){
+					oNext.onclick();
+				},1000)
+			}
+		}
+	</script>
+	
+</body>
+</html>
