@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        button{
+          background:mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+<button id="b">请把我的内容显示出来</button>
+</body>
+<script>
+    var oB=document.getElementById("b")
+    oB.onclick=function(){
+        alert(this.innerHTML);
+    };
+</script>
+</html>
