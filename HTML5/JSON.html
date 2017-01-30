@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={
+        name:"wangwu" ,
+        age:19,
+        sex:"male",
+        friends:[{name:"lili",age:12},{name:"lala",age:13}], //数组
+        father:{           //对象
+            name:"wangliu",
+            age:47
+        }
+    }
+
+//    var obj1=obj;     //这个只是复制一个obj的地址，但是obj1和obj所对应的内容是一样的。所以下面改变obj里的name的时候，obj1里的name也会改变
+//    obj.name="wangba";
+//    console.log(obj1);
+
+
+
+
+    var obj1=clone(obj);   //而这里的克隆不仅地址复制了一个，而且把obj里的内容也复制给obj1，所以改变obj的内容的时候，obj1的内容不会受影响。
+    obj.name="wangba";
+//    obj.father.name="liuliuliu";
+    console.log(obj1);
+    function clone(obj){
+        var a={};
+        for(p in obj){
+            if(typeof (obj[p])=="object"){
+                a[p]=clone(obj[p]);
+            }
+            a[p]=obj[p];
+        }
+        return a;
+    }
+</script>
+</body>
+</html>
