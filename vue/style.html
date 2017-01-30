@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <!--<p v-bind:style="[redStyle,sizeStyle]">2222222222222</p>-->
+    <!--<p v-bind:style="objectStyle">2222222222222</p>-->
+    <p v-bind:style="{color:ispink,'font-size':size}">2222222222222</p>       <!--对象的形式的时候，属性名要跟真正的css的属性名一样。-->
+
+
+</div>
+
+<script src="vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+
+            //数组的形式
+//            redStyle:{
+//              color:"red"
+//            },
+//            sizeStyle:{
+//                "font-size":"40px"
+//            }
+            //数组的形式
+
+
+            //类似于直接在style里写的形式
+//            objectStyle:{
+//                color:"blue",
+//                "font-size":"50px"
+//            }
+            //类似于直接在style里写的形式
+
+
+            //对象的形式。
+            ispink:"pink",
+            size:"20px"
+            //对象的形式。
+
+
+
+
+        }
+    });
+
+
+
+</script>
+</body>
+</html>
