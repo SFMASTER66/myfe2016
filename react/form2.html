@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="container"></div>
+<script src="react-15.3.1/build/react.js"></script>
+<script src="react-15.3.1/build/react-dom.js"></script>
+<script src="react-15.3.1/browser.js"></script>
+
+<script type="text/babel">
+    var Radio=React.createClass({   //把单选单独再做一个组件
+        render:function(){   //子元素用props来接由父元素传过来的值。 在这里写onChange事件。
+            return (
+                    <p>
+                    男:<input type="radio" value="男" name="sex" onChange={this.props.sexHandler}/>
+        女:<input type="radio" value="女" name="sex" onChange={this.props.sexHandler}/>
+    </p>
+            )
+        }
+    });
+    var Select=React.createClass({      //把下拉列表框再做一个组件。
+        render:function(){
+            return (
+                    <p>
+                    interest:
+    <select onChange={this.props.interestHandler}>
+    <option>watch movie</option>
+    <option>shopping</option>
+    <option>hiking</option>
+    </select>
+    </p>
+            )
+        }
+    });
+
+
+    var Form=React.createClass({        //这是一form表单组件，然后在这里面引入前面两个已经做好的组件。
+            getInitialState:function(){
+        return {
+            name:"",
+            sex:"",
+            interest:""
+        }
+    },
+        nameHandler:function(e){
+            this.setState({
+                name: e.target.value
+            })
+        },
+        sexHandler1:function(e){
+            this.setState({
+                sex: e.target.value
+            })
+        },
+        interestHandler1:function(e){
+            this.setState({
+                interest: e.target.value
+            })
+        },
+        submitHandler:function(e){
+            console.log({
+                name:this.state.name,
+                sex:this.state.sex,
+                interest:this.state.interest
+            }),
+                    e.preventDefault()
+        },
+
+    //在这里，相当于父元素给子元素传值，sexHandler是要传过去的变量，然后this.sexHandler1是在自己这个组件里传过去的值。
+    //下面的sexHandler相当于自定义属性
+        render:function(){
+            return (
+                    <form onSubmit={this.submitHandler}>
+                            <p>
+                            <input type="text" onChange={this.nameHandler}/>
+                    </p>
+                <Radio sexHandler={this.sexHandler1}/>
+    <Select interestHandler={this.interestHandler1}/>
+                    <p>
+    <input type="submit"/>
+    </p>
+            </form>
+            )
+        }
+    })
+    ReactDOM.render(
+            <Form/>,
+            document.getElementById("container")
+    )
+</script>
+</body>
+</html>
