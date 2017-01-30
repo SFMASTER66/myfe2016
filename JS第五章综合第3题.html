@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en" >
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<script>
+    var func=function(x){
+      return  x%3==0&&x%5==0&&x%7==0;  //这里一定要有return，因为后面我调用了这个函数，而且还要显示数字，所以要返回。
+    };
+    var y=0;
+    for(var i=1;i<1000;i++){
+//        var y=0;    //要是把y定义在外面，就不会有都逗号的存在，是因为定义在局部的时候，y始终为0吗？
+        if(func(i)){
+            if(y%6>0){
+                document.write(",");
+            }   //为什么不用花括号将if语句后面的内容括起来？
+
+            y++;
+                  //为什么不会出现在第六个的时候换行？
+            console.log(y%6==0);
+            document.write(i);
+             if(y%6==0)
+                 document.write("<br>");  //应该用<br>来替换下面答案代码里的\n才好使用。
+
+
+        }
+    }
+  /*  var n,nb=0;
+    for(n=1;n<1000;n++)
+    {
+        if (func(n))
+        {
+            if (nb%6 > 0) document.write(",");
+            nb++;
+            document.write(n);
+            if (nb%6 == 0) document.write("\n");
+        }
+    }*/
+</script>
+</body>
+</html>
