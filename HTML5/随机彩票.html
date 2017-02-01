@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="button">点我啊</button>
+<div id="div"></div>
+<script>
+    var oButton=document.getElementById("button");
+    var oDiv=document.getElementById("div");
+//    var arr=[]; //假如这个写在外面，就会7个数字7个数字的不停的输出，不会覆盖。
+    var obj=[];   //定义为全局变量。下面的onhashchange可以用。
+    oButton.onclick=function(){
+        var arr=[];   //写在这里，就会每点击一次button，新生成的7个数字就会覆盖前面的7个旧数字。
+        var hash=Math.random();
+        for(var i=0;i<7;i++){
+            var num=Math.ceil(Math.random()*35);
+            arr.push(num);
+        }
+        oDiv.innerHTML=arr;
+        location.hash=hash;
+        obj[hash]=arr;    //每点击一次button，都会生产一个hash和一组7个数字，然后通过这行代码的这个方法，将每一个hash与相对应的一组7个数字结合起来。
+    }
+
+    window.onhashchange=function(){
+        var hash=location.hash;   //获取上面的已经赋值过的hash。
+        var str=obj[hash.substr(1)];
+        if(str){
+            oDiv.innerHTML=str;
+        }else{
+            oDiv.innerHTML="";
+        }
+    }
+</script>
+</body>
+</html>
