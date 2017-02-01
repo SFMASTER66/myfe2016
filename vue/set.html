@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="app">
+    <div v-for="(item,index) in items">
+        {{index}}<div>{{item.name}}</div>
+    </div>
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            items:[
+                {name:11},
+                {name:22},
+                {name:33}
+            ]
+        }
+    });
+
+
+//    var a=Vue.set(vm.items,1,{name:5555});          //这个是变异的，然后会返回一个新的数组。
+//    console.log(a);
+
+
+//    var b=vm.items.splice(1,2,{name:6666},{name:77777});   //这个是变异的，然后会返回一个新的数组。
+//    console.log(b);
+
+
+    var c=vm.items.splice(3);      //把原来的数组变成一个新的长度，然后从后面删除长度，把去掉的数组里的内容整合成一个新的数组
+    console.log(c);
+
+</script>
+</body>
+</html>
