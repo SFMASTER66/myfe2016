@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<span id="p"></span>
+<script>
+    var oP = document.getElementById('p');
+
+    function aa(){
+      var d = new Date();
+        oP.innerHTML = "现在"+d.getFullYear()+"是"+(d.getMonth()+1)+'是'+d.getDate()+"是"+d.getSeconds();
+    };
+    var timer = setInterval(function(){
+        aa();
+    },1000);
+</script>
+</body>
+</html>
