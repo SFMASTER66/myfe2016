@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="">
+    <input type="text" id="shuru" />
+    <select name="" id="xiala">
+        <option value="11111">aaaa</option>
+        <option value="22222">bbbb</option>
+        <option value="33333">cccc</option>
+    </select>
+    <img id="img" src="1.jpg" alt=""/>
+</form>
+<script>
+    var oSelect=document.getElementById("xiala");
+    var aOption=oSelect.getElementsByTagName("option");
+    var oInput=document.getElementById("shuru");
+    var oImg=document.getElementById("img");
+    oSelect.onchange=function(){       // 点击oSelect会改变下面我要改变的文本框的内容
+        for(var i=0;i<aOption.length;i++){
+            if(aOption[i].selected){
+                oImg.src=i+1+".jpg";
+                oInput.value=aOption[i].value;
+
+            }
+        }
+    };
+
+</script>
+</body>
+</html>
