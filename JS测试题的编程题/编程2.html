@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 680px;
+            height: 344px;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+<div id="container">
+    <img  src="1.jpg" alt=""/>
+    <!--<img  src="2.jpg" alt=""/>-->
+</div>
+<script>
+    var oContainer=document.getElementById("container");
+    var aImg=document.getElementsByTagName("img");
+    oContainer.onclick=function(){
+      if(aImg[0].src=="2.jpg"){
+          aImg[0].src="1.jpg";
+      }else {
+          aImg[0].src="2.jpg";
+      }
+        }
+
+
+</script>
+</body>
+</html>
