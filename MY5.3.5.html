@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  //  var result=1;
+    function func(num){
+        var result=1;   //为什么要把这行代码写在for里面document.write(func(12)-func(10));这个才好使。然而 var result=1;这个写在哪里， document.write(func(10));这个都好使。
+        for(var i=1;i<=num;i++){
+            result=result*i;
+        }
+        return result;
+    };
+  //  document.write(func(10));
+   document.write(func(12)-func(10));
+</script>
+</body>
+</html>
