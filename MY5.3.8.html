@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var p;
+    function func(n){
+        if(n<=1) {
+            return 1
+        }else{
+             p=(Math.pow(-1,n-1)/(2*n-1)+func(n-1));
+        }
+         return p;
+    };
+    document.write(func(500)*4);
+</script>
+</body>
+</html>
