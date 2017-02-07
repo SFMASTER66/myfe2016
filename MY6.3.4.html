@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   // var ch,results="";  //这种东西应该定义在函数的外面还是里面啊？？？ results=""这么写是把results变成了字符串没吗？？？ 双引号里面就是字符串，然后一开始先让results能存字符串，所以这么写好
+    function func(src){
+      //  var s=new String(src);   //是让src加入到新定义的字符串里吗？   也可以用这种方法把src变成另一种String吗？？
+        var ch,results="";        // 这个写在外面和这里都行。
+        for(var i=0;i<src.length;i++){
+            ch=src.charAt(i);
+         //   console.log(s.charAt(2));
+            if(ch>="0"&&ch<="9"){
+                results+=ch;     //是叫做字符串相加吗？
+            }
+        }
+        return results;
+    };
+    var a=prompt("输入字母加数字","");
+    document.write(func(a));
+
+
+</script>
+</body>
+</html>
