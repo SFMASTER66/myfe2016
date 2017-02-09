@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background-image: url("friends/bg.jpg");
+        }
+        #container{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /*-webkit-transform-style:preserve-3d ;*/
+        }
+        #container .pic{
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            border:5px solid pink;
+            top: -150px;
+            left: -150px;
+            -webkit-transition: all 1.5s ease-out ;
+            /*-webkit-transform-style:preserve-3d ;*/
+            /*-webkit-perspective: 50px;*/
+        }
+        #container span{
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            opacity: 0;
+            /*-webkit-transform-style:preserve-3d ;*/
+            /*-webkit-transition: transform 2s ease-out;*/
+            -webkit-transition: all 1.5s ease-out;
+            /*-webkit-transition: opacity 1.5s ease-out,transform 2s ease-out;*/
+        }
+        #next,#prev{
+            width: 50px;
+            height: 90px;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+        #prev{
+            top: 50%;
+            margin-top: -45px;
+            border-radius: 0 15px 15px 0;
+            background: url("friends/prev.png") center no-repeat navajowhite ;
+            box-shadow: 2px 2px 10px gray;
+        }
+        #next{
+            top: 50%;
+            margin-top: -45px;
+            right: 0;
+            border-radius: 15px 0 0 15px;
+            background: url("friends/next.png") center no-repeat navajowhite;
+            box-shadow: -2px 2px 10px gray;
+        }
+        #click,#bomb{
+            width: 100px;
+            height: 50px;
+            background: navajowhite;
+            color: #0abdce;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+            display: none;
+        }
+        #click{
+            position: absolute;
+            bottom: 5px;
+            left: 400px;
+        }
+        #bomb{
+            position: absolute;
+            bottom: 5px;
+            right: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+</div>
+<div id="prev"></div>
+<div id="next"></div>
+<div id="click">点击</div>
+<div id="bomb">爆炸</div>
+<audio src="music/zeilala.mp3" autoplay="autoplay" loop="loop"></audio>
+</body>
+<script>
+    var num=0;
+    for(var i=0;i<24;i++){
+        var img=new Image();
+        img.onload=function(){
+            num++;
+            if(num==48){
+                loadSuccess();
+            }
+        }
+        img.src="friends/small/"+(i+1)+".png";
+//        img.src="friends/"+(i+1)+".JPG";
+    }
+    for(var i=0;i<24;i++){
+        var img=new Image();
+        img.onload=function(){
+            num++;
+            if(num==48){
+                loadSuccess();
+            }
+        }
+        img.src="friends/"+(i+1)+".JPG";
+    }
+    var oContainer=document.getElementById("container");
+    var oClick=document.getElementById("click");
+    var oBomb=document.getElementById("bomb");
+    var rowLeft=(oContainer.offsetWidth-6*120)/7;
+    var colTop=(oContainer.offsetHeight-4*120)/5;
+    var index=0;
+    function  loadSuccess(){
+        for(var i=0;i<4;i++){
+            for(var j=0;j<6;j++){
+                var oDiv=document.createElement("div");
+                oDiv.className="pic";//给创建的div一个class的名字
+                oDiv.pos={      //pos是自定义的
+                    posLeft:rowLeft+j*(rowLeft+120),
+                    posTop:colTop+i*(colTop+120)
+                }
+                oDiv.coords={     //coords是自定义的
+                    row:i,
+                    col:j
+                }
+                oDiv.imgIndex=index;    //先记住刚进来时候的索引，然后根据索引找到图片路径，最后再让index++
+                oDiv.style.background="url(friends/small/"+(index+1)+".png)";
+                oDiv.onclick=fn;
+                oDiv.innerHTML="<span></span>";    //innerHTML是往自己的内部插入元素
+                oContainer.appendChild(oDiv);
+                index++;
+            }
+        }
+
+        var aDiv=oContainer.getElementsByTagName("div");
+        var timer1=setInterval(function(){
+            index--;     //通过上面的index来显示照片，上面的index有24个，所以一进来减一
+            aDiv[index].style.left=aDiv[index].pos.posLeft+"px";   //给每一个div固定位置
+            aDiv[index].style.top=aDiv[index].pos.posTop+"px";
+            aDiv[index].style.transform="rotate("+(Math.random()*40-20)+"deg)";   //通过随机数来处理角度的问题，
+            if(index==0){    //要判断，假如不判断，就会报错，因为aDiv[-1]是没有的，找不到，所以会报错。
+                clearInterval(timer1);
+            }
+        },100)
+
+        var lleft=(oContainer.offsetWidth-6*120)/2;
+        var ttop=(oContainer.offsetHeight-4*120)/2;
+        var flag=0;
+        var iNow=0;
+        function fn(){     //这个是点击之后，每个div的位置变化，然后又是算位置
+            flag++;
+            console.log(this.imgIndex);    //当前点击图片的索引是多少
+            if(flag==1){
+                for(var i=0;i<24;i++){
+                    aDiv[i].style.left=lleft+aDiv[i].coords.col*120+"px";
+                    aDiv[i].style.top=ttop+aDiv[i].coords.row*120+"px";
+                    aDiv[i].style.transform="rotate("+0+"deg)";    //零度代表回到正常的位置，没有角度的变化。
+                    aDiv[i].style.border="1px solid pink";
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];   //给每一个div里的span定位，小精灵来显示大图的位置。
+                    var spanLeft=-aDiv[i].coords.col*120;
+                    var spanTop=-aDiv[i].coords.row*120;
+                    //下面的"px "里的px后面一定要有一个空格，因为正常不字符串拼接的时候，就是要有空格的。
+                    oSpan.style.background="url(friends/"+(this.imgIndex+1)+".JPG) "+spanLeft+"px "+spanTop+"px  no-repeat";
+                    oSpan.style.opacity=1;
+                }
+                iNow=this.imgIndex;
+                oNext.style.display="block";
+                oPrev.style.display="block";
+                oClick.style.display="block";
+                oBomb.style.display="block";
+            }else{    //下面的代码是再次点击的时候，每个div又是松散的。
+                for(var i=0;i<24;i++){
+                    aDiv[i].style.left=aDiv[i].pos.posLeft+"px";
+                    aDiv[i].style.top=aDiv[i].pos.posTop+"px";
+                    aDiv[i].style.transform="rotate("+(Math.random()*40-20)+"deg)";
+                    aDiv[i].style.border="5px solid pink";
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];
+                    oSpan.style.opacity=0;
+                    oNext.style.display="none";
+                    oPrev.style.display="none";
+                }
+                flag=0;
+            }
+        }
+
+        var oPrev=document.getElementById("prev");
+        var oNext=document.getElementById("next");
+        oPrev.onclick=oNext.onclick=function(){
+            if(this==oNext){
+                iNow++;
+                if(iNow==aDiv.length) {
+                    iNow = 0;
+                }
+            }else{
+                iNow--;
+                if(iNow<0) {
+                    iNow = aDiv.length-1;
+                }
+            }
+
+            var arr=[];   //从这行代码开始带最后，就是为了点击next或者点击prev的时候，可以随机的让不同的div进行变化显示图片
+            for(var i=0;i<24;i++){
+                arr.push(i);
+            }
+            arr.sort(function(a,b){    //注意写法！！
+                return Math.random()-0.5;
+            });
+            var timer2=setInterval(function(){
+                var random=arr.pop();
+                var oSpan=aDiv[random].getElementsByTagName("span")[0];
+                var spanLeft=-aDiv[random].coords.col*120;
+                var spanTop=-aDiv[random].coords.row*120;
+                oSpan.style.background="url(friends/"+(iNow+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                if(arr.length==0){
+                    clearInterval(timer2);
+                }
+            },30);
+        }
+
+    var tag=0;
+    oClick.onclick=function(){
+        iNow++;
+        if(iNow==oDiv.length){
+            iNow=0;
+        }
+        tag++;
+        if(tag==1){
+            var timer3=setInterval(function(){
+                for(var i=0;i<24;i++){
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];
+                    var spanLeft=-aDiv[i].coords.col*120;
+                    var spanTop=-aDiv[i].coords.row*120;
+                    oSpan.style.webkitTransitionDuration=300+"ms";
+                    oSpan.style.webkitTransitionDelay=i*100+"ms";
+                    oSpan.style.webkitTransform="rotateY("+360+"deg)";
+                    oSpan.style.background="url(friends/"+(iNow+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                }
+                if(i==24){
+                    clearInterval(timer3);
+                }
+            },30);
+        }else{
+            var timer4=setInterval(function(){
+                for(var i=0;i<24;i++){
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];
+                    var spanLeft=-aDiv[i].coords.col*120;
+                    var spanTop=-aDiv[i].coords.row*120;
+                    oSpan.style.webkitTransitionDuration=300+"ms";
+                    oSpan.style.webkitTransitionDelay=i*100+"ms";
+                    oSpan.style.webkitTransform="rotateY("+0+"deg)";
+                    oSpan.style.background="url(friends/"+(iNow+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                }
+                if(i==24){
+                    clearInterval(timer4);
+                }
+            },30);
+            tag=0;
+        }
+    }
+
+
+        var ttag=0;
+        oBomb.onclick=function(){
+            ttag++;
+            iNow++;
+            if(iNow==oDiv.length){
+                iNow=0;
+            }
+            var arr=[];
+            for(var i=0;i<24;i++){
+                arr.push(i);
+            }
+            arr.sort(function(a,b){
+                return Math.random()-0.5;
+            });
+            if(ttag==1){
+                var timer5=setInterval(function(){
+                    var random=arr.pop();
+                    var oSpan=aDiv[random].getElementsByTagName("span")[0];
+                    var spanLeft=-aDiv[random].coords.col*120;
+                    var spanTop=-aDiv[random].coords.row*120;
+                   // for(var i=0;i<24;i++){
+//                        oSpan.style.webkitTransitionDuration=30+"ms";
+//                        oSpan.style.webkitTransitionDelay=i*10+"ms";
+                        oSpan.style.transform="rotateY("+360+"deg) scale("+2+")";
+                        oSpan.style.opacity=0;
+//                        oSpan.style.transform="rotateY("+360+"deg)";
+//                        oSpan.style.transform="translateZ("+(i*20)+"px)";
+                   // }
+                    oSpan.style.background="url(friends/"+(iNow+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                    if(arr.length==0&&i==24){
+                        clearInterval(timer5);
+                    }
+                },30);
+            }else{
+                var timer6=setInterval(function(){
+                    var random=arr.pop();
+                    var oSpan=aDiv[random].getElementsByTagName("span")[0];
+                    var spanLeft=-aDiv[random].coords.col*120;
+                    var spanTop=-aDiv[random].coords.row*120;
+                    for(var i=0;i<24;i++){
+//                        oSpan.style.webkitTransitionDuration=300+"ms";
+//                        oSpan.style.webkitTransitionDelay=i*100+"ms";
+                        oSpan.style.transform="rotateY("+0+"deg) scale("+1+")";
+                        oSpan.style.opacity=1;
+//                        oSpan.style.transform="scale("+2+")";
+//                        oSpan.style.transform="rotateY("+360+"deg)";
+//                        oSpan.style.transform="translateZ("+0+"px)";
+                    }
+                    oSpan.style.background="url(friends/"+(iNow+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                    if(arr.length==0&&i==24){
+                        clearInterval(timer6);
+                    }
+                },30);
+                ttag=0;
+            }
+        }
+    }
+</script>
+</html>
