@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        h1{
+            width: 180px;
+            height: 80px;
+        }
+        .aa{
+            background: blue;
+        }
+        .bb{
+            background: red;  /*bb不是没有定义吗？怎么可以直接用的？？？*/
+
+
+
+
+
+        }
+    </style>
+</head>
+<body>
+<button id="VIP">点我啊！！！</button>
+<h1 class="aa">我要变颜色拉！！！</h1>
+<script>
+    var oH1=document.getElementsByTagName("h1")[0];
+    oH1.onclick=function(){
+
+        console.log(getStyle(this,"background"));
+//        if(this.className == "aa"){
+//            this.className = "bb";
+//
+//
+//
+//        }else{
+//            this.className = "aa";
+//        }
+//       console.log(getStyle(oH1, "c"));
+        if(getStyle(oH1, "background")=="rgb(0, 0, 255) none repeat scroll 0% 0% / auto padding-box border-box"){
+           this.style.background="greenyellow";
+        }else{
+           this.style.background="blue";
+        }
+    };
+//    var oB=document.getElementById("VIP");
+//    oB.onclick=function(){
+//        alert("点我干嘛呀!!!")
+//    };
+//
+    function getStyle(elem, prop){
+       if(window.getComputedStyle){
+           return window.getComputedStyle(elem, null)[prop];
+       }else if(elem.currentStyle){
+           return elem.currentStyle[prop];
+       }
+   }
+</script>
+</body>
+</html>
