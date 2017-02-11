@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        #container{
+            margin:100px auto;
+            width: 680px;
+            height: 344px;
+            position: relative;
+            overflow: hidden;
+        }
+        #tab{
+            position:absolute;
+            right: 10px;
+            bottom:10px;
+            z-index: 1;
+        }
+        #tab li{
+            width: 20px;
+            height:20px;
+            background: #000;
+            color:#fff;
+            float: left;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #tab li.selected{
+            background: orange;
+        }
+
+
+        #content img{
+            /*display: block;*/
+            float: left;
+        }
+        #arrow{
+            position: absolute;
+            left:10px;
+            bottom:10px;
+        }
+        #arrow span{
+            width:20px;
+            height: 20px;
+            background: #000;
+            color:#fff;
+            margin-left:5px;
+            float: left;
+            line-height: 20px;
+            text-align:center;
+            cursor:pointer;
+        }
+        #content{
+            position: absolute;
+            width: 3400px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul id="tab">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="content">
+        <img class="selected" src="img/1.jpg"/>
+        <img src="img/2.jpg" />
+        <img src="img/3.jpg" />
+        <img src="img/4.jpg" />
+        <img src="img/1.jpg" />
+    </div>
+    <div id="arrow">
+        <span id="prev">   &lt;   </span>
+        <span id="next">   &gt;   </span>
+    </div>
+
+</div>
+<script src="jslib.js"></script>   <!--引用外面的js文件.-->
+<script>
+
+    var oTab = document.getElementById('tab');
+    var aLi = oTab.getElementsByTagName('li');
+    var oContent = document.getElementById('content');
+    var aImg = oContent.getElementsByTagName('img');
+    var oNext = document.getElementById('next');
+    var oPrev = document.getElementById('prev');
+    var oContainer = document.getElementById("container");
+    var timer=setInterval(function(){
+        oContent.style.left=oContent.offsetLeft-30+"px";
+        //console.log(oContent1.offsetWidth);
+        if(oContent.offsetLeft==-3400+"px"){  //因为上面的 #list li的margin-right等于5px，当执行这行代码oContent1.offsetLeft-2+"px"，最后减的不等于这个oContent1.offsetWidth的一半，所以不能用==，应该用小于，
+            oContent.style.left=0;
+        }
+    },30);
+    var timer1;  //为了设置timer1为全局变量。
+    oGt.onmouseover=function(){
+        clearInterval(timer);
+        clearInterval(timer1);
+        clearInterval(timer3);
+        timer1=setInterval(function(){
+            oContent1.style.left=oContent1.offsetLeft+2+"px";
+            if(oContent1.offsetLeft==0){
+                oContent1.style.left=-oContent1.offsetWidth/2+"px";
+            }
+        },30);
+    };
+    var timer3  //为了设置timer3为全局变量。
+    oLt.onmouseover=function(){
+        clearInterval(timer1);
+        clearInterval(timer3);
+        clearInterval(timer);
+        timer3=setInterval(function(){
+            oContent1.style.left=oContent1.offsetLeft-2+"px";
+            if(oContent1.offsetLeft<-oContent1.offsetWidth/2){
+                oContent1.style.left=0;
+            }
+        },30);
+    };
+    </script>
+</body>
+</html>
