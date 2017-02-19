@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #container{
+            width: 400px;
+            height: 400px;
+            background: gray;
+            position: relative;
+            overflow: hidden;
+        }
+        #content{
+            width: 380px;
+            float: left;
+            position: relative;
+            /*top: 0;*/
+            /*left: 0;*/
+        }
+        #scroll-bar{
+            width: 20px;
+            height: 400px;
+            position: absolute;    /*这个应该是相对于整个大的container定位的。*/
+            background: green;
+            left: 380px;
+        }
+        #scroll-btn{
+            background: red;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: 0;
+            top:0;
+            cursor: pointer;
+        }
+        #updown{
+            position: absolute;
+            top: 0;
+            left: 450px;
+        }
+        #updown span{
+            float: left;
+            width: 100px;
+            height: 50px;
+            background: pink;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">11啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊vv啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+        啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊22
+    </div>
+
+    <div id="scroll-bar">
+        <div id="scroll-btn"></div>
+    </div>
+</div>
+<div id="updown">
+    <span>upup</span>
+    <span>downdown</span>
+</div>
+<script src="jquery-1.12.4.js"></script>
+<script>
+    var oScrollBtn=document.getElementById("scroll-btn");
+    var oScrollBar=document.getElementById("scroll-bar");
+    var oContent=document.getElementById("content");
+    var oContianer=document.getElementById("container");
+    var aSpan=document.getElementsByTagName("span");
+    aSpan.onclick=function(e){
+        for(var i=0;i<aSpan.length;i++){
+            if(aSpan[i].innerHTML=="upup"){
+                //var top=50;
+                var top= e.clientY-iY;
+                //top= top+50;;
+                //  var left= e.clientX-ix;
+                if (top<0){
+                    top=0;
+                }
+                if(top>oScrollBar.offsetHeight-oScrollBtn.offsetHeight){
+                    top=oScrollBar.offsetHeight-oScrollBtn.offsetHeight;
+                }
+                oScrollBtn.style.top=(top-50)+"px";
+                var fScale=top/(oScrollBar.offsetHeight-oScrollBtn.offsetHeight);
+                oContent.style.top=-(oContent.offsetHeight-oContianer.offsetHeight)*fScale+"px";
+                return false;
+            }
+        }
+    }
+    $("#updown span:eq(1)").on("click",function(){
+        if(!$("#content").is(":animate")){
+            $("#content").animate({scrollTop:"+=50"},400);
+        }
+    });
+    var iY;
+    oScrollBtn.onmousedown=function(e){
+        e=e||window.event;
+         iY= e.clientY-oScrollBtn.offsetTop;  //iY可以看成是鼠标在红的的这个Drag里，然后这个鼠标到这个红色Drag的上边据的距离是多少。！！
+        //  var ix= e.clientY-oScrollBtn.offsetWidth;
+        document.onmousemove=function(e){
+            e=e||window.event;
+            var top= e.clientY-iY;
+            //  var left= e.clientX-ix;
+            if (top<0){
+                top=0;
+            }
+            if(top>oScrollBar.offsetHeight-oScrollBtn.offsetHeight){
+                top=oScrollBar.offsetHeight-oScrollBtn.offsetHeight;
+            }
+            oScrollBtn.style.top=top+"px";
+            var fScale=top/(oScrollBar.offsetHeight-oScrollBtn.offsetHeight);
+            oContent.style.top=-(oContent.offsetHeight-oContianer.offsetHeight)*fScale+"px";
+            return false; //这个怎么解释来着？？ 取消浏览器的默认行为.  这个要在移动的（onmousemove）时候来写这行代码，因为只是移动的时候产生了浏览器的默认行为。
+        };
+        document.onmouseup=function(){
+            document.onmousemove=null;
+        };
+
+    };
+
+</script>
+</body>
+</html>
