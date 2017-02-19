@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #ul1{
+            list-style: none;
+            width: 400px;
+            height: 100px;
+        }
+        #ul1 .ulul{
+            border: 1px solid black;
+        }
+        #ul1 .li{
+            list-style: none;
+        }
+        h3{
+            background: black;
+            color: lime;
+        }
+        #ul1 .ulul{
+              display: none; /*为什么要写这个代码，才可以让第一次点击就好使？？？*/  /*让一开始的第二级的ului隐藏起来*/
+        }
+
+    </style>
+</head>
+<body>
+<ul id="ul1">
+
+    <li class="li">
+        <h3>经理部</h3>
+        <ul class="ulul">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+         </ul>
+    </li>
+
+    <li class="li">
+        <h3>员工部</h3>
+        <ul class="ulul">
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+        </ul>
+    </li>
+
+</ul>
+<script>
+    var ul1=document.getElementById("ul1");
+    var aLi=ul1.getElementsByTagName("li");
+//    for(var i=0;i<aLi.length;i++) {
+//        if (aLi[i].className == "li") {
+//            aLi[i].onclick = function () {
+//                var aUl = this.getElementsByTagName("ul")[0];     //为什么不加【0】，就显示错误？？  因为获取的数组，所以取第一个数组 虽然这个数组只有一个！！一定要记住这个！！
+//                if (aUl.style.display == "block") {         //不是说不可以调用style 为什么这里可以直接调用？？
+//                    aUl.style.display = "none";
+//                } else {
+//                    aUl.style.display = "block";
+//                }
+//            }
+//        }
+//    }
+    for(var i=0;i<aLi.length;i++) {
+        if (aLi[i].className == "li") {
+            aLi[i].onmouseover = function () {
+                var aUl = this.getElementsByTagName("ul")[0];
+
+                    aUl.style.display = "block";
+                }
+            aLi[i].onmouseout = function () {
+                var aUl = this.getElementsByTagName("ul")[0];
+
+                aUl.style.display = "none";
+            }
+        }
+
+    }
+
+
+
+
+</script>
+</body>
+</html>
