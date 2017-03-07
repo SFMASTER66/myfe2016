@@ -60,6 +60,40 @@ addEventlListener在chrome
 attachEvent是IE
 
 
+getElementByTagName返回的数据是NodeList，不是数组
+
+
+
+rem r指的是root
+tab和click的区别：300毫秒的区别
+
+带src属性的有onload方法
+
+bind后面的参数和call一样的，但是bind不会立即调用
+
+原生的style.width只能取到内联样式
+
+行级元素只能设置左右内边距，上下不好使。外边距也是，只能左右。
+
+offsetWidth包括内容，padding，border
+
+jq：outerWidth（true）包括margin。不写就没有margin
+
+301：永久重定向
+302：临时重定向
+304：本地缓存文件，不是服务器文件
+500；服务器或者数据库
+
+
+为什么会跨域：同源策略
+
+typeof返回的是字符串
+
+instanceOf返回的数组
+
+sort要看
+
+数组里面有indexOf
 
 
 
