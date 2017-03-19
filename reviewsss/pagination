@@ -9,4 +9,4 @@ $total_rows=$this->user_model->get_all_count();
         $offset=$this->uri->segment(3);
         $offset=!$offset?0:$offset;
 
-        $workinfo=$this->user_model->get_by_page($config['per_page'],$offset,$userid);
+        $workinfo=$this->user_model->get_by_page($config['per_page'],$offset,$userid)；
