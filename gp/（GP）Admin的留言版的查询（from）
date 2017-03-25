@@ -1,0 +1,11 @@
+ public function getmessage_by_page($limit,$offset){
+          $sql="select a.*,user.username as getreview
+from (select comment.*,user.username as reviewer
+from comment,user
+where comment.user_id=user.user_id) as a ,user
+where a.receiveid=user.user_id
+order by a.comment_id asc";
+          $this->db->limit($limit,$offset);
+          return $this->db->query($sql)->result();
+//          return $this->db->get()->result();
+      }
