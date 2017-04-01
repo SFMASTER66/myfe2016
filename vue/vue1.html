@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{{message}}    <!--在这里写是不好使的，因为不在id为app的范围内。-->
+<div id="app">
+    {{message}}
+    {{text}}        <!--在这里不解析text的标签-->
+    <input type="text" value="message" v-model="message"/>
+
+    <div v-html="text"></div>       <!--在这里写就会解析标签-->
+</div>
+
+
+<script src="vue.js"></script>
+<script>
+
+    var vm=new Vue({         //必须先new一个Vue才能用。
+        el:"#app",           //可以不写#，默认就是找id的
+        data:{         //data是规定写法
+            message:"hello",
+            text:"<p>world</p>"
+        }
+    });
+
+    console.log(vm.message);     //直接vm点message，data是不用写的。
+
+</script>
+</body>
+</html>
