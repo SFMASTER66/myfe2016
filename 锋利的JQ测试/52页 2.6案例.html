@@ -72,7 +72,7 @@
 </div>
 <script src="jquery-1.12.4.js"></script>
 <script>
-    $("li:gt(11)").css("display","none");
+       $("li:gt(11)").css("display","none");
     $("#box").on("click",function(){
         if($("li").is(":hidden")){
             $("li:hidden").show();
@@ -80,25 +80,14 @@
             $('#container li').filter(":contains(通用)").addClass("selected");
             $("#box").text("已经显示全部").css("bottom","5px");
         }else{
-                $("li:gt(11)").hide();
-                //$("li:gt(11)").css("display","none");
+            $("li:gt(11)").hide();
+            //$("li:gt(11)").css("display","none");
             $('#container li').filter(":contains(通用)").removeClass("selected");
-                $("#box").text("显示全部品牌").css("bottom","5px");
+            $("#box").text("显示全部品牌").css("bottom","5px");
         }
-
     });
 
-//    $("#box").toggle(function(){
-//        $("li:hidden").show();
-//        $("#container").css("height","$('#container li:text').height()").css("background","gray");
-//        $('#container li').filter(":contains(通用)").addClass("selected");
-//        $("#box").text("已经显示全部").css("bottom","5px");
-//    },function(){
-//        $("li:gt(11)").hide();
-//        //$("li:gt(11)").css("display","none");
-//        $('#container li').filter(":contains(通用)").removeClass("selected");
-//        $("#box").text("显示全部品牌").css("bottom","5px");
-//    });
+
 
 
 </script>
