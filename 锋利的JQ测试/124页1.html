@@ -20,14 +20,21 @@
 <div></div>
 <script src="jquery-1.12.4.js"></script>
 <script>
+//    $("div").on("click",function(){
+//        $(this).animate({left:"500px"},3000)
+//                .animate({top:"500px"},2000)
+//                .animate({opacity:"0.6"},1000 ,function(){     //这个属于回调函数
+//            $(this).css("border", "1px solid black")
+//        })
+////                .fadeOut("slow");
+//    });
+
+
+
     $("div").on("click",function(){
-        $(this).animate({left:"500px"},3000)
-                .animate({top:"500px"},2000)
-                .animate({opacity:"0.6"},1000 ,function(){     //这个属于回调函数
-            $(this).css("border", "1px solid black")
-        })
-//                .fadeOut("slow");
+        $(this).animate({left:"500px"},3000 ,{top:"500px"},2000 ,{opacity:"0.6"},1000)
     });
+
 </script>
 </body>
 </html>
