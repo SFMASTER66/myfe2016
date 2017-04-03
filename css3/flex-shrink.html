@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container{
+            width: 500px;
+            height: 500px;
+            display: -webkit-flex;   /*新*/
+            /*display: -webkit-box;     /!*旧*!/*/
+
+        }
+        #div1{
+            background: orange;
+            width: 200px;
+            -webkit-flex-shrink: 4;
+        }
+        #div2{
+            background: yellowgreen;
+            /*width: 200px;*/
+            -webkit-flex-shrink: 2;
+            /*-webkit-flex-grow: 3;*/
+        }
+        #div3{
+            background: black;
+            /*width: 200px;*/
+            /*-webkit-flex-shrink: 1;*/
+            -webkit-flex-grow: 1;
+
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+</div>
+</body>
+</html>
