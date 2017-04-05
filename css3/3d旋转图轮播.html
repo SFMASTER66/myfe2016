@@ -92,7 +92,7 @@
 <script>
     var $index=0;
     $("#next").on("click",function(){
-        $("img").eq($index).addClass("hide").removeClass("show")
+        $("img").eq($index).addClass("hide").removeClass("show");
         $index++;
         if($index>3){
             $index=0;
@@ -100,9 +100,9 @@
             $("img").eq($index).addClass("show").removeClass("hide");
     });
     $("#prev").on("click",function(){
-        $("img").eq($index).addClass("hide").removeClass("show")
+        $("img").eq($index).addClass("hide").removeClass("show");
         $index--;
-        if($index<1){
+        if($index<0){
             $index=$("img").size()-1;
         }
         $("img").eq($index).addClass("show").removeClass("hide");
