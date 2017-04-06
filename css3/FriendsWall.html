@@ -68,6 +68,7 @@
     </div>
     <div id="prev"></div>
     <div id="next"></div>
+    <audio src="music/zeilala.mp3" autoplay="autoplay" loop="loop"></audio>
 </body>
 <script>
     var num=0;
@@ -79,8 +80,8 @@
                 loadSuccess();
             }
         }
-        img.src="friends/small"+(i+1)+".png";
-        img.src="friends/"+(i+1)+".JPG";
+        img.src="friends/small/"+(i+1)+".png";
+//        img.src="friends/"+(i+1)+".JPG";
     }
     for(var i=0;i<24;i++){
         var img=new Image();
@@ -91,7 +92,6 @@
             }
         }
         img.src="friends/"+(i+1)+".JPG";
-//        img.src="friends/small"+(i+1)+".png";
     }
     var oContainer=document.getElementById("container");
     var rowLeft=(oContainer.offsetWidth-6*120)/7;
@@ -101,20 +101,19 @@
         for(var i=0;i<4;i++){
             for(var j=0;j<6;j++){
                 var oDiv=document.createElement("div");
-                oDiv.className="pic";
-                oDiv.pos={
+                oDiv.className="pic";//给创建的div一个class的名字
+                oDiv.pos={      //pos是自定义的
                     posLeft:rowLeft+j*(rowLeft+120),
                     posTop:colTop+i*(colTop+120)
                 }
-                oDiv.coords={
+                oDiv.coords={     //coords是自定义的
                     row:i,
                     col:j
                 }
-
-                oDiv.imgIndex=index;
+                oDiv.imgIndex=index;   //先记住刚进来时候的索引，然后根据索引找到图片路径，最后再让index++
                 oDiv.style.background="url(friends/small/"+(index+1)+".png)";
                 oDiv.onclick=fn;
-                oDiv.innerHTML="<span></span>"
+                oDiv.innerHTML="<span></span>"    //innerHTML是往自己的内部插入元素
                 oContainer.appendChild(oDiv);
                 index++;
             }
@@ -122,11 +121,11 @@
 
         var aDiv=oContainer.getElementsByTagName("div");
         var timer1=setInterval(function(){
-                index--;
-                aDiv[index].style.left=aDiv[index].pos.posLeft+"px";
+                index--;     //通过上面的index来显示照片，上面的index有24个，所以一进来减一
+                aDiv[index].style.left=aDiv[index].pos.posLeft+"px";   //给每一个div固定位置
                 aDiv[index].style.top=aDiv[index].pos.posTop+"px";
-                aDiv[index].style.transform="rotate("+(Math.random()*40-20)+"deg)";
-                if(index==0){
+                aDiv[index].style.transform="rotate("+(Math.random()*40-20)+"deg)";   //通过随机数来处理角度的问题，
+                if(index==0){    //要判断，假如不判断，就会报错，因为aDiv[-1]是没有的，找不到，所以会报错。
                     clearInterval(timer1);
                 }
         },100)
@@ -135,24 +134,26 @@
         var ttop=(oContainer.offsetHeight-4*120)/2;
         var flag=0;
         var iNow=0;
-        function fn(){
+        function fn(){     //这个是点击之后，每个div的位置变化，然后又是算位置
             flag++;
+            console.log(this.imgIndex);    //当前点击图片的索引是多少
             if(flag==1){
                 for(var i=0;i<24;i++){
                     aDiv[i].style.left=lleft+aDiv[i].coords.col*120+"px";
                     aDiv[i].style.top=ttop+aDiv[i].coords.row*120+"px";
-                    aDiv[i].style.transform="rotate("+0+"deg)";
+                    aDiv[i].style.transform="rotate("+0+"deg)";    //零度代表回到正常的位置，没有角度的变化。
                     aDiv[i].style.border="1px solid pink";
-                    var oSpan=aDiv[i].getElementsByTagName("span")[0];
+                    var oSpan=aDiv[i].getElementsByTagName("span")[0];   //给每一个div里的span定位，小精灵来显示大图的位置。
                     var spanLeft=-aDiv[i].coords.col*120;
                     var spanTop=-aDiv[i].coords.row*120;
-                    oSpan.style.background="url(friends/"+(this.imgIndex+1)+".JPG)"+spanLeft+"px "+spanTop+"px  no-repeat";
+                    //下面的"px "里的px后面一定要有一个空格，因为正常不字符串拼接的时候，就是要有空格的。
+                    oSpan.style.background="url(friends/"+(this.imgIndex+1)+".JPG) "+spanLeft+"px "+spanTop+"px  no-repeat";
                     oSpan.style.opacity=1;
                 }
                 iNow=this.imgIndex;
                 oNext.style.display="block";
                 oPrev.style.display="block";
-            }else{
+            }else{    //下面的代码是再次点击的时候，每个div又是松散的。
                 for(var i=0;i<24;i++){
                     aDiv[i].style.left=aDiv[i].pos.posLeft+"px";
                     aDiv[i].style.top=aDiv[i].pos.posTop+"px";
@@ -167,7 +168,6 @@
             }
         }
 
-//        var iNow=0;
         var oPrev=document.getElementById("prev");
         var oNext=document.getElementById("next");
         oPrev.onclick=oNext.onclick=function(){
@@ -183,11 +183,11 @@
                 }
             }
 
-            var arr=[];
+            var arr=[];   //从这行代码开始带最后，就是为了点击next或者点击prev的时候，可以随机的让不同的div进行变化显示图片
             for(var i=0;i<24;i++){
                 arr.push(i);
             }
-            arr.sort(function(a,b){
+            arr.sort(function(a,b){    //注意写法！！
                 return Math.random()-0.5;
             });
             var timer2=setInterval(function(){
