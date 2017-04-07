@@ -80,11 +80,9 @@
 </head>
 <body>
 <div id="container">
-
     <div id="prev">&lt;</div>
     <div id="next">&gt;</div>
 </div>
-
 <script>
     var oContainer=document.getElementById("container");
     var oNext=document.getElementById("next");
@@ -122,13 +120,12 @@
                 for(var i=0;i<4;i++){
                     aPic[i].className="";
                 }
-                aPic[iNow].className="iimg";
-                if(iNow==0){
+                aPic[iNow].className="iimg";   //让下一张显示。此时的iNow为1
+                if(iNow==0){             //来个双重判断, 这个非常的重要啊！！！！！
                     aPic[aPic.length-1].className="bb";
                 }else{
                     aPic[iNow-1].className="bb";
                 }
-                return false;
             }else{
                 iNow--;
                 if(iNow<0){
@@ -139,7 +136,7 @@
                     aPic[i].className="";
                 }
                 aPic[iNow].className="iimg";
-                if(iNow==aPic.length-1){
+                if(iNow==aPic.length-1){      //来个双重判断,这个非常的重要啊！！！！！
                     aPic[0].className="bb";
                 }else{
                     aPic[iNow+1].className="bb";
