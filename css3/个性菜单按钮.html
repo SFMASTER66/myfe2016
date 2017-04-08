@@ -9,7 +9,7 @@
             padding: 0;
         }
         #container{
-            position: absolute;
+            position: fixed;
             width: 50px;
             height: 50px;
             bottom: 20px;
@@ -49,30 +49,33 @@
     oHome.onclick=function(){
         flag++;
         if(flag==1){
-            this.style.webkitTransform="rotate("+-360+"deg)";
+            this.style.WebkitTransform="rotate("+-360+"deg)";
             for(var i=0;i<5;i++){
-                aImg[i].style.webkitTransitionDelay=(i*40)+"ms";
-//            aImg[i].style.webkitTransform="translatex("+(-120)*Math.cos((i*22.5)*Math.PI/180)+"px) translatey("+-Math.sin((i*22.5)*120)+"px) rotate("+360+"deg)";
-                aImg[i].style.WebkitTransform = "translate("+(-180) * Math.sin((i * 22.5)*Math.PI/180)+"px,"+(-180) * Math.cos((i * 22.5)*Math.PI/180)+"px) rotate(-360deg) ";
+                aImg[i].style.WebkitTransitionDelay=(i*40)+"ms";
+                //假如下面的这行代码用的是translateX和translateY分开写的，则下面else变回去的时候，也要用translateX和translateY分开写，也就是一一对应才会有效果。
+//                aImg[i].style.WebkitTransform="translateX("+(-180)*Math.sin((i*22.5)*Math.PI/180)+"px) translateY("+(-180)*Math.cos((i*22.5)*Math.PI/180)+"px) rotate(-"+360+"deg)";
+                //如果下面的代码用的是translate（），然后里面一起写X和Y值，则下面else变回去的时候，也要用translate（），也就是一一对应才会有效果。
+              aImg[i].style.WebkitTransform = "translate("+(-180) * Math.sin((i * 22.5)*Math.PI/180)+"px,"+(-180) * Math.cos((i * 22.5)*Math.PI/180)+"px) rotate(-360deg) ";
             }
         }else{
-            this.style.webkitTransform="rotate("+0+"deg)";
+            this.style.WebkitTransform="rotate("+0+"deg)";
             for(var i=0;i<5;i++){
-                aImg[i].style.webkitTransitionDuration=1+"s"; //这里要写点击home键，然后其余5个回去的时间，不然会给下面的0.3s覆盖了
-                aImg[i].style.webkitTransitionDelay=((aImg.length-i)*40)+"ms";
-                aImg[i].style.WebkitTransform = "translate("+0+"px,"+0+"px) rotate(0deg) ";
-                flag=0;
+                aImg[i].style.WebkitTransitionDuration="1s"; //这里要写点击home键，然后其余5个回去的时间，不然会给下面的0.3s覆盖了
+                aImg[i].style.WebkitTransitionDelay=((aImg.length-i)*40)+"ms";
+//                aImg[i].style.WebkitTransform = "translateX(0px)  translateY(0px) rotate(0deg)";  //一起写就这么打空格写
+                aImg[i].style.WebkitTransform = "translate(0px ,0px) rotate(0deg)";
             }
+            flag=0;
         }
 
         for(var i=0;i<5;i++){
             aImg[i].onclick=function(){
-                var curStyle=this.style.webkitTransform;
-                this.style.webkitTransitionDuration=0.3+"s"
-                this.style.webkitTransform=curStyle+"scale(2)";
+                var curStyle=this.style.WebkitTransform;
+                this.style.WebkitTransitionDuration=0.3+"s"
+                this.style.WebkitTransform=curStyle+"scale(2)";
                 this.style.opacity=0.3;
                 var fn=function(){
-                    this.style.webkitTransform=curStyle;
+                    this.style.WebkitTransform=curStyle;
                     this.style.opacity=1;
                     this.removeEventListener("webkitTransitionEnd",fn)
                 }
