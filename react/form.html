@@ -5,9 +5,85 @@
     <title></title>
 </head>
 <body>
+<div id="container"></div>
+<!--<script src="react-15.3.1/build/react-with-addons.min.js"></script>
+引入上面这个文件就是为了能够获取真实的dom结构。
+-->
+<script src="react-15.3.1/build/react.js"></script>     <!--首先要引入这个js文件-->
+<script src="react-15.3.1/build/react-dom.js"></script>      <!--为了解析dom操作-->
+<script src="react-15.3.1/browser.js"></script>                  <!--为了解析下面的JSX代码-->
+
+<script type="text/babel">       //type="text/babel"这个也是必须要加的，才能解析下面的dom结构啊
+    var Form=React.createClass({
+            getInitialState:function() {     //每一个初始化都是这么些的。
+                return {                   //返回一个东西，然后写在对象里面。
+                    name: "",               //一开始可以赋一个空值，也可以是一个给定的初始值。
+                    interest: "",
+                    sex: ""
+                }
+            },
+                nameHandler:function(e){           //nameHandler这个方法是自定义的，名字是子取得。
+            this.setState({                     //这个是给上面初始化的值设置值，是固定的写法
+                name: e.target.value
+            })
+        },
+        sexHandler:function(e){
+            this.setState({
+                sex: e.target.value
+            })
+        },
+        interestHandler:function(e){
+            this.setState({
+                interest: e.target.value
+            })
+        },
+        submitHandler:function(e){
+            console.log({
+                name:this.state.name,
+                    interest:this.state.interest,
+                    sex:this.state.sex
+            }),
+                    e.preventDefault()    //
+        },
+
+
+        render:function(){
+            return (   //下面用到为止的值的时候，就用{}括起来。 表单可以有一个onSubmit事件，可以有一个方法。方法的名字就是submitHandler
+                        //onChange是域的内容被改变触发的事件
+                    <form onSubmit={this.submitHandler}>
+                    <p>
+                    <input type="text" onChange={this.nameHandler} value={this.state.name}/>
+                    </p>
+                    <p>
+                    男:<input type="radio" value="男" name="sex" onChange={this.sexHandler}/>
+                    女:<input type="radio" value="女" name="sex" onChange={this.sexHandler}/>
+                    </p>
+                    <p>
+                            interest:
+                    <select onChange={this.interestHandler} value={this.state.interest}>
+                    <option>watch movie</option>
+                    <option>shopping</option>
+                    <option >hiking</option>
+            </select>
+                    </p>
+                    <p>
+                    <input type="submit"/>
+            </p>
+                    </form>
+            )
+        }
+    });
+
+    ReactDOM.render(         //这个是渲染，然后是一个括号，里面有两个参数，第一个是你要渲染的元素是什么，也可以是组件。
+            <Form/>,
+            document.getElementById("container")     //第二个参数也是必须的，就是要把上面的元素添加到哪里去。
+    )
 
 
 
+
+
+</script>
 
 
 </body>
