@@ -19,7 +19,7 @@ $result=$pdo->query($sql);
 
 if(is_array($result)){
     echo "1111";
-    foreach($result as $row=>$credit){
+    foreach($result as $row=>$credit){        //$credit是个对象， $row是键（索引）。
         if($username==$credit["username"]&&$password==$credit["password"]){
             header("location:userLoginList.php");
         }else{
