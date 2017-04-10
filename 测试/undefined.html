@@ -6,13 +6,22 @@
 </head>
 <body>
 <script>
-    var message=undefined;
-    console.log(message);
-    console.log(typeof message)
-//    var test;
-//    console.log(test);
-    console.log(typeof test)
-    //对于未初始化和未声明的变量的类型都是undefined，
+//    var message=undefined;
+//    console.log(message);
+//    console.log(typeof message);
+////    var test;
+////    console.log(test);
+//    console.log(typeof test);
+//    //对于未初始化和未声明的变量的类型都是undefined，
+
+
+
+//    scenario 1:
+            var a=2;
+            (function(){     //这个是函数立即调用。
+                alert(a);    //此时的a弹出2，因为在这个作用域内，先去找a，在该function作用域内没有找到a，就会去外面找，外面有a，就用外面的a
+         //如果外面没有a(就是没有声明a)或者声明了a，但是没有给a赋值(初始化)，此时的a也是undefined
+            }());
 </script>
 </body>
 </html>
