@@ -16,11 +16,17 @@
 <script src="react-15.3.1/build/react-dom.js"></script>
 
 <script>
+//    ReactDOM.render(
+//            React.createElement("h1",{className:"a"},"Hello World",
+//            React.createElement("h2",{},"lalalalalalal")
+//            ),document.getElementById("container")
+//    );
+
+
     ReactDOM.render(
-            React.createElement("h1",{className:"a"},"Hello World",
-            React.createElement("h2",{},"lalalalalalal")
-            ),document.getElementById("container")
-    );
+            React.createElement("div",{},"helloworld"),    //有三个参数，第一个代表创建的dom的具体标签，第二个是样式，第三个是标签里面的内容。其实内容后面还可以添加这个React.createElement()
+            document.getElementById("container")      //这个表示需要将React创建的元素插入到哪一个dom中，
+    )
 </script>
 
 
