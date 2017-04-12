@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container{
+            background: black;
+        }
+        /*#container:after{           /!*这个就是为了解决子元素浮动，然后父元素塌陷，然后父元素没有高度，如果不知道父元素高度的情况下，就可以用这个伪类对象选择器来解决*!/*/
+            /*content: "";*/
+            /*display: block;*/
+            /*clear: both;*/
+        /*}*/
+        #h1{
+            color: white;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div id="container">
+    <h1 id="h1">我要被录取</h1>
+    <div style="clear:both;"></div>     <!--除了上面的:after解决方法，这个也是一个解决方法，解决子元素浮动，父元素塌陷的问题-->
+</div>
+
+
+</body>
+</html>
