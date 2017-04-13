@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            position: relative;
+        }
+        button{
+            position: fixed;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+ <button>点我</button>
+<img id="img" src="3.jpg" alt=""/>
+<script src="../jquery-1.12.4.js"></script>
+<script>
+//    $("button").on("click",function(){
+//        $("#img").stop(true,false).animate({
+//            opacity:0.25,
+//            left:"+=20",
+//            height:"toggle"
+//        })
+//    })
+
+
+    $("button").on("click",function(){
+        $("#img").stop(true,false).animate({
+            width:["toggle","swing"],
+            height:["toggle","linear"],
+            opacity: 'toggle'
+        },5000)
+    })
+
+
+</script>
+</body>
+</html>
