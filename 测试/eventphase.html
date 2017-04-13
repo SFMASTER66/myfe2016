@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">点我</button>
+<script>
+    var oBtn=document.getElementById("btn");
+    oBtn.onclick=function(event){
+        alert(event.eventPhase);  //2
+    }
+    //为什么下面写true的时候，是从一开始弹出？？
+    document.body.addEventListener("click",function(event){
+        alert(event.eventPhase);      //下面是false就是3
+    },true)     //false代表支持的是冒泡阶段，然后书上的解释是在冒泡阶段调用的时间处理程序。
+    document.body.onclick=function(event){
+        alert(event.eventPhase);    //这个默认好像是冒泡。    所以显示3
+    }
+</script>
+</body>
+</html>
