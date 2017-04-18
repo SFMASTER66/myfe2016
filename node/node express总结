@@ -1,17 +1,27 @@
-1.bin下面的WWW是配置一些端口信息的东西，比如端口号3000
+1.bin下面的WWW是配置一些端口信息的东西，比如端口号3000（3000端口号是可以改变的）   （不用去动bin下的东西）
 2.controllers是控制器，只要负责的是业务上的处理，比如跳转到哪个页面（res.render（""）），
   都是function，然后通过exports暴露function，在别的页面中通过require来引用
 3.models就理解为只是跟数据库有关的操作，纯数据库操作，就是sql，然后再传参数到封装出来的db.js里（db也是在models中）
-4.node_modules是express自带的，然后用里面的文件就直接引用就行了，不用../或者./这样写
+4.node_modules是express自带的，然后用里面的文件就直接引用就行了，不用../或者./这样写   （node_modules是保存一些node需要用到依赖的包）
 5.public是放公共的东西，比如图片，前端页面的js交互部分，还有css
 6.routes就是简单的转发接受路径，router.get或者router.post，然后将这个转发给controllers，由controllers来渲染到具体的哪个页面。
 7.views就是用户能看到的界面的样子，然后比如有超链接，超链接的地址跳转到哪里，routes就get或者post。
   假如views里面的超链接直接写/+跳转的地方（名字随便取），那么就是在routes的index.js写get或者post。
   要是写了/users/+跳转的地方（名字随便取），那么就在routes的users.js写get或者post。
 8.package.json就是包的说明了。
+9.app.js是项目的入口文件
 
 每一表就有一个自己的controllers和models。
 
 post就是body，get就是query。
 
 从具体的controllers写一个回调函数，这个回调函数是个实参，然后传给了具体的models，然后再传给db。然后db里的rows就可以用了。
+
+用node express写后台，顺序大概就是 路由（routes）->控制器（controllers）->模型（models）。
+其中，路由只是负责转发到哪个路径，控制器就是负责对应路径的需要的业务逻辑，模型就只是负责单纯的数据库的增删改查。
+另外每一次进行数据库的增删改查，都是要连接一次数据库的操作，所以把这一部分代码封装起来为一个模块（我把这个模块取名为db），让模型引用这个模块再调用
+就好了。
+
+获取页面用的是get，然后表单提交之类的东西用post。
+地址栏和超链接都是GET请求
+除了EJS文件改动不用重启服务器之外，动别的文件都有要重启服务器
