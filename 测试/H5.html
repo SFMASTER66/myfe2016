@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        command{
+            display: block;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+
+<menu>
+    <command>
+        <!--male：<input type="radio" name="sex"/>/-->
+        <!--female：<input type="radio" name="sex"/>-->
+    </command>
+</menu>
+
+
+<button id="btn">dianwo </button>
+<input type="text"/>
+
+</body>
+<script>
+//    var bb = 1;
+//    function aa(bb) { //总结：当函数里有参数的时候，那么函数的参数就是局部变量，按理来说下面的bb没有用var声明，
+//                         // 他是全局变量，但是下面的变量bb是参数带来的，所以是局部变量。
+//         bb = 2;
+//        alert(bb);
+//    };
+//    aa(bb);
+//    alert(bb);
+
+
+
+//    var bb = 1;
+//    function aa() {
+//        bb = 2;      //如果该变量不是函数带来的变量，那么这个没有用var声明的变量就是全局变量。会覆盖函数外面定义的bb
+//        alert(bb);
+//    };
+//    aa();
+//    alert(bb);
+
+//    var bb = 1;
+//    function aa() {
+//       var bb = 2;      //如果该变量是用var声明的，那么该变量就是局部变量，出了函数就无效了。
+//        alert(bb);
+//    };
+//    aa();
+//    alert(bb);
+
+//    var a="fdfsdfs";
+//     console.log(isNaN(a));   //如果不是数字，才返回true。是数字返回false
+
+
+
+    var btn=document.getElementsByTagName("input")[0];
+console.log(btn);
+    btn.onkeydown=function(){    //onkeypress和onkeydown都是键盘按下就会输出。onkeyup是键盘按下后弹起来再输出
+        console.log("2222");
+    };
+
+
+
+
+
+
+</script>
+</html>
