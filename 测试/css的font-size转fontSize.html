@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    function change(cssName){
+        var cssName=cssName.split("");  //把每一个字符分开
+        console.log(cssName);
+        if(cssName.indexOf("-")==0){            //indexOf取的是索引值
+            cssName.splice(0,1);
+        }else{
+            for(var i=0;i<cssName.length;i++){
+                if(cssName[i]=="-"){
+                    cssName.splice(i,1); //splice()方法是从索引值几开始删除，第二个参数是删除几个
+                    cssName[i]=cssName[i].toUpperCase();
+                }
+            }
+            console.log(cssName.join(""));   //用着这个方法可以将单个的字符串连接起来
+        }
+    }
+    change('back-grund-dsdssd');
+
+    console.log(navigator.cookieEnabled );
+
+</script>
+
+</body>
+</html>
