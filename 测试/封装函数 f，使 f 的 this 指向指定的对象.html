@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+
+<script>
+//    function bindThis(f, oTarget) {
+//            return f.bind(oTarget);     //bind只是改变this的指针
+//    }
+//    console.log(bindThis(function(a, b){
+//        return this.test + a + b
+//    }, {test: 1})(2,3));
+
+
+
+
+    function bindThis(func, oTarget) {
+        return function(){        //arguments获取的是距离它最近的那一层函数的实参数组。
+                            // 如果不使用该匿名函数，那么arguments获取的就是bindThis()的实参数组。
+            console.log(func.apply(oTarget, arguments));   //以后记住，apply就得这么写两个参数
+        };
+    }
+    bindThis(function(a, b){
+        return this.test + a + b
+    }, {test: 1})(2,3);
+
+</script>
+
+</body>
+</html>
