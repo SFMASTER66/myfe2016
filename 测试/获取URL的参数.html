@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+//    1. 指定参数名称，返回该参数的值 或者 空字符串
+//    2. 不指定参数名称，返回全部的参数对象 或者 {}
+//    3. 如果存在多个同名参数，则返回数组
+
+//下面这个是别人写的
+    //    function getUrlParam(sUrl, sKey) {
+//        var param = sUrl.split('#')[0].split('?')[1];
+//        if (sKey){//指定参数名称
+//            var strs = param.split('&');
+//            var arrs = new Array();//如果存在多个同名参数，则返回数组
+//            for(var i = 0, len = strs.length; i < len; i++){
+//                var tmp = strs[i].split('=');
+//                if(tmp[0] == sKey){
+//                    arrs.push(tmp[1]);
+//                }
+//            }
+//            if (arrs.length == 1){//返回该参数的值或者空字符串
+//                console.log(arrs[0]);
+//            } else if (arrs.length == 0){
+//                console.log("");
+//            } else {
+//                console.log(arrs);
+//            }
+//        } else {//不指定参数名称，返回全部的参数对象 或者 {}
+//            if(param == undefined || param == ""){
+//                console.log({});
+//            } else {
+//                var strs = param.split('&');
+//                var arrObj = new Object();
+//                for(var i = 0, len = strs.length; i < len; i++){
+//                    var tmp = strs[i].split('=');
+//                    if (!(tmp[0] in arrObj)) {
+//                        arrObj[tmp[0]] = [];
+//                    }
+//                    arrObj[tmp[0]].push(tmp[1]);
+//                }
+//                console.log(arrObj);
+//            }
+//        }
+//    }
+
+
+
+//下面是自己写的，有点小瑕疵。
+    function getUrlParam(sUrl, sKey) {
+        var sUrl=sUrl.split("?")[1];
+//        console.log(sUrl);
+        var newArr=sUrl.split("&");
+//        console.log(newArr);
+        var arr1=[];
+        var obj={};
+        for(var i=0;i<newArr.length;i++){
+            var arr=newArr[i].split("=");
+            console.log(arr);
+            if(sKey!=""){
+                if(arr[0]==sKey){
+                    arr1.push(arr[1]);
+                }
+            }else if(sKey==''){
+                if (!(arr[0] in obj)) {
+                    obj[arr[0]] = [];
+                }
+                obj[arr[0]].push(arr[1]);  //一个对象里的相同的属性多次这样，这个对象的值就是一个数组了。
+            }
+        }
+        if (arr1.length == 1){//返回该参数的值或者空字符串    如果输入的参数是唯一的，那么就字符串的形式输出
+            console.log(arr1[0]);
+        } else if (arr1.length == 0){   //如果没有输入参数，就输出空的字符串
+            console.log("");
+        } else {
+            console.log(arr1);         //如果输入的参数在url里有几个相同的参数，那么该参数的值就已数组的形式输出
+        }
+        console.log(obj);
+    }
+    getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#wew', 'key');
+</script>
+
+
+</body>
+</html>
