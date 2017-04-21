@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<br>
+
+<input type="text" required="required"/></br>
+<button id="btn"></button>
+
+
+<form action="/example/html5/demo_form.asp" method="get">
+    Name: <input type="text" name="usr_name" required="required" />   <!--readonly只能写在input为text或者password里，或者是textarea里-->
+    Password: <input type="password" readonly="readonly"/>
+    <textarea name="" id="" cols="30" rows="10" ></textarea>
+    <input type="submit" value="提交" />
+</form>
+<script>
+
+
+    document.getElementById("btn").disabled=true;    //这个是原生的js禁用标签的方式
+
+</script>
+
+
+
+
+</body>
+</html>
