@@ -13,6 +13,13 @@
         console.log(cssName);
         if(cssName.indexOf("-")==0){            //indexOf取的是索引值
             cssName.splice(0,1);
+            console.log(cssName);
+            for(var i=0;i<cssName.length;i++){
+                if(cssName[i]=="-"){
+                    cssName.splice(i,1); //splice()方法是从索引值几开始删除，第二个参数是删除几个
+                    cssName[i]=cssName[i].toUpperCase();
+                }
+            }
         }else{
             for(var i=0;i<cssName.length;i++){
                 if(cssName[i]=="-"){
@@ -20,10 +27,10 @@
                     cssName[i]=cssName[i].toUpperCase();
                 }
             }
-            console.log(cssName.join(""));   //用着这个方法可以将单个的字符串连接起来
         }
+        console.log(cssName.join(""));   //用着这个方法可以将单个的字符串连接起来
     }
-    change('back-grund-dsdssd');
+    change('-back-grund-dsdssd');
 
     console.log(navigator.cookieEnabled );
 
