@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div id="div1">
+    我
+    <div id="div2">
+        爱
+        <div id="div3">
+            你
+            <div id="div4">
+                好
+                <div id="div5">
+                    吗
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //方法一：   不是很懂
+    function commonParentNode(oNode1, oNode2) {
+            //下面这个for()循环这样理解，第三个参数是通过第二个参数找父节点得到的，然后看找到的父节点是否包含oNode1，
+            //如果包含，就是这个父节点了，如果不包含，就继续循环找父节点，直到找到为止。
+            for(;oNode2;oNode2=oNode2.parentNode){//（第一个参数可以省略）这里写oNode1 下面除了contains()里面写oNode2，别的全部oNode1
+                if(oNode2.contains(oNode1)){          //要是写oNode2 下面除了contains()里面写oNode1，别的全部oNode2
+                    return oNode2;   //返回的是传过来的参数，而不是找到的父节点
+                }
+            }
+        }
+    var div3=document.getElementById("div3");
+    var div5=document.getElementById("div5");
+    console.log(commonParentNode(div5,div3));
+//    console.log(div3.parentNode);
+
+
+
+    //方法二
+//function commonParentNode(oNode1, oNode2) {
+//    if(oNode1.contains(oNode2)){
+//        console.log(oNode1);
+//    }else if(oNode2.contains(oNode1)){
+//        console.log(oNode2);
+//    }else{
+//        console.log(arguments.callee(oNode1.parentNode,oNode2));  //递归
+//    }
+//}
+//var div3=document.getElementById("div3");
+//    var div5=document.getElementById("div5");
+//    commonParentNode(div3,div5);
+
+
+
+</script>
+
+
+</body>
+</html>
