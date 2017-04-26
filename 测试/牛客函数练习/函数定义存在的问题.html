@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    function functions(flag) {
+        if (flag) {
+//            function getValue() { console.log("a"); } //函数声明  对于函数声明，解析器会率先读取并且让其在执行
+//  任何代码前可用，意思就是别的代码还没运行呢，两个getValue声明已经被读取，所以总是执行最新的那个。
+// 函数表达式，当解析器执行到它所在的代码行时，才会真正被解释执行，所以两个逻辑分支可以分别执行
+          var  getValue=function(){      //这样不会变量提升
+                console.log("a");
+            };
+        } else {
+//            function getValue() { console.log("b"); }  //函数声明
+           var  getValue=function(){
+                console.log("b");
+            }
+        }
+        return getValue();
+    }
+    functions("dsds");
+</script>
+
+</body>
+</html>
