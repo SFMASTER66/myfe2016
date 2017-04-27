@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+1、返回一个函数 result，该函数接受一个参数
+2、执行 result(str3) ，返回的结果与 fn(str1, str2, str3) 一致
+<script>
+    function partial(fn, str1, str2) {
+        return function result(str3){
+            fn(str1,str2,str3);  //这个写在result函数里，就可以满足上面的第二个要求
+            fn.call(null,str1,str2,str3);  //这个这么写也行
+        }
+    }
+
+//    function partial(fn, str1, str2) {
+//       return  function result(str3) {
+//            return fn(str1, str2, str3);
+//        };
+//    }
+
+    var sayIt = function(greeting, name, punctuation){
+        console.log(greeting + ', ' + name + (punctuation || '!'));
+    };
+    partial(sayIt, 'Hello', 'Ellie')('!!!');
+</script>
+</body>
+</html>
