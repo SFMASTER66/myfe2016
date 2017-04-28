@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+    var arr = new Array(3)
+    arr[0] = "George"
+    arr[1] = "John"
+    arr[2] = "Thomas"
+
+    var arr2 = new Array(3)
+    arr2[0] = "George"
+    arr2[1] = "Adrew"
+    arr2[2] = "Martin"
+
+    document.write(arr.concat(arr2)+ "<br/>")  //该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+    document.write(arr)     //并没有改变arr
+
+
+
+</script>
+
+</body>
+</html>
