@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    for(var i=0;i<5;++i){
+        setTimeout(function(){
+            console.log(i+ " ");
+        }(),100);    //这里后面加上一个括号，就是马上执行定时器的函数，会输出0，1，2，3，4
+                    //没有括号就是五个五
+    }
+
+
+</script>
+<noscript>Your browser does not support JavaScript!</noscript>
+
+</body>
+</html>
