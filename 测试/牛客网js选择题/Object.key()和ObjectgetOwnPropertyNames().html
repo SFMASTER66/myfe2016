@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    var data = {a: 1, b: 2, c: 3, d: 4};   //Object.keys(data)会生成[a,b,c,d],然后通过filter方法，下面的x就是[a,b,c,d]里的值
+    console.log(Object.keys(data).filter(function(x){  //返回其枚举自身属性的对象。
+        return data[x]>2;
+    }));
+
+    var my_obj = Object.create({}, {
+        getFoo: {
+            value: function() { return this.foo; },
+            enumerable: false
+        }
+    });
+    my_obj.foo = 1;
+
+    console.log(Object.getOwnPropertyNames(my_obj).sort()); // ["foo", "getFoo"]  //一个对象，其自身的可枚举和不可枚举属性的名称被返回。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
