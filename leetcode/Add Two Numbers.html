@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var addTwoNumbers = function(l1, l2) {
+        let newListHead = new ListNode(0);
+        let current = newListHead;
+        let carry = 0;
+        while(l1 || l2) {
+            let addition = 0;
+            addition += carry;
+            addition += (l1) ? l1.val: 0;
+            addition += (l2) ? l2.val: 0;
+
+            if (addition >= 10) {
+                carry = 1;
+            }
+            else {
+                carry = 0;
+            }
+
+            current.next = new ListNode(addition % 10);
+            current = current.next;
+
+            if (l1) {
+                l1 = l1.next;
+            }
+            if (l2) {
+                l2 = l2.next;
+            }
+        }
+        if (carry > 0) {
+            current.next = new ListNode(1);
+        }
+
+        newListHead = newListHead.next;
+
+//        console.log(newListHead);
+        return newListHead;
+    };
+
+    addTwoNumbers(ListNode(1,2,3),ListNode(1,2,3))
+</script>
+
+</body>
+</html>
