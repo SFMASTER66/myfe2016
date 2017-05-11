@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    if(!a in window){   //这里的变量a是下面的变量，下面的a用var定义，就会变量提升
+        var a=1;        //因为js没有块级作用域（if就相当于块级作用域），而只有函数作用域。所以这里的var a=1就相当于
+                         //     var a;            这个就叫做变量提升
+                               //  if(!a in window){
+                                 //    a=1;
+                                 //  }
+
+
+    };
+
+    console.log(a)           //所以这里的a是undefined
+
+
+//    (function() {
+//        var x=foo();     //这个也相当于变量提升，下面的var foo是一个变量，但是这里用到的foo就没有定义，虽然下面的
+//                         //foo有函数的赋值，但是函数不会提升。
+//        var foo=function foo() {
+//            return "foobar"
+//        };
+////        var x=foo();     //但是把上面的var x=foo()写在这里是可以的。
+//        console.log(x);
+//    })();
+
+
+//(function(){
+//    var x=foos();     //这个也相当于变量提升，下面的var foo是一个变量，但是这里用到的foo就没有定义，虽然下面的
+//                     //foo有函数的赋值，但是函数不会提升。
+//    function foos() {    //这个这么写是可以的。
+//        return "foobar"
+//    };
+//    console.log(x);
+//})();
+
+
+</script>
+
+</body>
+</html>
