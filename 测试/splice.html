@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var a=[1,2,3,4,5];
+    a.splice(1,3,5,2,1);  //这个的含义是从下标为1的开始，一直删除到下标为3，然后插入5，2，1三个数字。最后重新组合
+                          //成一个新的数组[1,5,2,1,5]
+    console.log(a);
+
+
+    var b=4399<0||typeof(4399+"");
+    var c=4399+" ";      //数字与字符串相加，即使字符串是空，最后的结果的类型也是字符串
+    console.log(typeof c);
+
+</script>
+
+</body>
+</html>
