@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    function count(str){
+        var obj={};
+//        var arr=str.split("");     //这个返回的是数组
+        var arr=str.replace(/\s/g,"");     //这个返回的是字符串    正则完之后是字符串
+        console.log(arr[1]);    //字符串也可以用这个中括号的形式用索引的方式取出要的值  用这种方式出来的东西是字符串
+        for(var i=0;i<arr.length;i++){
+            if(obj.hasOwnProperty(arr[i])){
+                console.log(obj[arr[i]]++);  //obj[arr[i]]++就是在obj有的属性中的值加1
+            }else{
+                obj[arr[i]]=1;   //当obj第一次遇到这个属性的时候，就让这个属性的值等于1
+            }
+        }
+        console.log(obj);
+    }
+    count("3232423");
+    count("eww ee we");
+
+
+
+
+    var a="32323232";
+    console.log(a[4]);
+
+//    var b={'a':1,b:2,c:3};
+    var b={d:2};
+    b['d']++;    //通过这个方法就可以往上面的b对象添加属性了
+    console.log(b);    //对象是可以通过键值对的方式然后像数组一样的方式输出
+
+
+</script>
+
+</body>
+</html>
