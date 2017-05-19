@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>you</li>
+    <li>you</li>
+    <li>you</li>
+    <li>yuo</li>
+</ul>
+<script>
+//    var elements=document.getElementsByTagName('li');
+//    var length=elements.length;
+//    for(var i=0;i<length;i++){
+//        elements[i].onclick=function(){   //闭包只能取得包含函数中任何变量的最后一个值。
+                                          //创建方式
+                                           //在一个函数内部创建另一个函数。
+//            alert(i);
+//        }
+//    }
+
+
+//    var elements=document.getElementsByTagName('li');
+//    var length=elements.length;
+//    var handler=function(i){       //函数里面套了一个函数，且用return返回了
+//        return function(){
+//            alert(i)
+//        }
+//
+//    };
+//
+//    for(var i=0;i<length;i++){
+//        elements[i].onclick=handler(i);      //闭包
+//    };
+
+//第一种方法
+    function aa(){
+        var temp=2;
+        function bb(){
+            var time=2;
+            console.log(temp+time);
+        };
+      return  bb();
+    }
+        aa();
+
+
+//第二种方法
+//    function aa(){
+//        var temp=2;
+//      return  function bb(){
+//            var time=2;
+//            console.log(temp+time);
+//        };
+//    }
+//        var my=aa();
+//        my();
+</script>
+</body>
+</html>
