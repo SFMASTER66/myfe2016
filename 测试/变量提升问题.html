@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var name='World!';
+    console.log(name);
+    (function() {
+        if(typeof name==='undefined') {    //块级作用域，变量提升啊，  if里面的变量（这里是name）看的是if花括号里的变量
+            name='Jack';       //如果花括号里的变量没有var，用的就是函数外部已经定义好的name，要是这里用了var定义变量name
+                              //就是重新在局部定义了一个新的变量，然后块级作用域会使变量提升，提升到if之前，变成
+                              //var name，这样就是undefined了
+            console.log('Goodbye'+name);
+        } else {
+            console.log('Hello'+name);
+        }
+    })();
+
+    var a=1;
+    function foo(){
+        var a=2;
+//        console.log(a);
+        return a;
+    }
+    console.log(foo());
+
+
+
+var t=1;
+    if(t){     //如果if括号里没有下面花括号里的变量，那么下面用var定义的变量就不会变量提升。
+       var f=88;   //这样的时候，
+//        console.log(f);
+    }else{
+        console.log("wrong");
+    }
+    console.log(f);
+
+</script>
+
+</body>
+</html>
