@@ -38,7 +38,9 @@
 
 
     function rgb2hex(sRGB) {
-        var rgbnum=sRGB.toString().match(/\d+/g);
+        var rgbnum=sRGB.toString().match(/\d+/g);   //对象
+        console.log(rgbnum.constructor==Array);
+        console.log(rgbnum instanceof Array);
         var arr="#";
         for(var i=0;i<rgbnum.length;i++){
             arr+=("0"+Number(rgbnum[i]).toString(16)).slice(-2);
@@ -48,6 +50,13 @@
     }
 
     rgb2hex('rgb(67, 255, 255)')
+
+
+
+    var s=[1,1,1,1];
+    var a={1:2};
+    console.log(s instanceof Array);
+    console.log(a.constructor==Array);
 </script>
 </body>
 </html>
