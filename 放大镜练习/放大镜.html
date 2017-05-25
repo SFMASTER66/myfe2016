@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border: 0;  /*使得图片没有边框*/
+        }
+        #container1{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            float: left; /*是整个container1左移，然后下面的container2就会向上挪动。*/
+        }
+        #container2{
+            width: 400px;
+            height: 400px;
+            position: relative;
+            /*left: 400px;*/
+            overflow:hidden;
+            /*float: left;*/
+        }
+        #drag{
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 0.5;
+            filter: alpha(opacity=50);  /*为了解决IE的兼容性问题。*/
+            display: none;  /*这个是为了一开始刷新页面的时候，使得这个挪动的小红块显示在container1的左上角。*/
+            position: absolute;
+            left: 0;   /*定位一开始的红色小块在container1的左上角*/
+            top: 0;    /*定位一开始的红色小块在container1的左上角*/
+        }
+        #small-pic{
+            float: left;
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #big-pic{
+            display: none;  /*这样一开始机使得大的图片就会隐藏起来*/
+            position: absolute;
+        }
+        #mask{    /*为了解决事件冒泡的问题。先来个整个框架套住这个图片，然后让鼠标在这个mask上移动。*/
+            width: 400px;
+            height: 400px;
+            background: red;
+            opacity:0;
+            filter: alpha(opacity=0); /*为了解决IE兼容性问题。*/
+            z-index: 1;  /*让mask优先级更高，使得mask在屏幕上更向我们靠前*/
+            position: absolute;  /*要有这个position 也就是说只有定位了，才可以使用z-index*/
+        }
+    </style>
+</head>
+<body>
+<div id="container1">
+    <div id="mask"></div>
+    <img id="small-pic" src="1.jpg" alt=""/>  <!--img和div都是块元素 所以设置imgfloat为left才可以使div的drag上移动。-->
+    <div id="drag"></div>
+</div>
+<div id="container2">    <!--通过曹写的代码可以知道，双引号之间不可以随意添加空格，不然会导致最后的显示效果不一样。-->
+    <img id="big-pic" src="2.jpg" alt=""/>
+</div>
+<script>
+    var oSmallPic=document.getElementById("small-pic");
+    var oDrag=document.getElementById("drag");
+    var oBigPic=document.getElementById("big-pic");
+    var oContainer2=document.getElementById("container2");
+    var oMask=document.getElementById("mask");
+    oMask.onmouseover=function(){
+        oDrag.style.display="block";   //因为在css里设置了drag隐藏，然后现在当鼠标滑进的时候，可以让drag显示。
+        oBigPic.style.display="block";    //因为在css里设置了big-pic隐藏，然后现在当鼠标滑进的时候，可以让big-pic显示。
+    };
+    oMask.onmousemove=function(e){
+        e=e||window.event;
+      var left= e.clientX-oDrag.offsetWidth/2;   //这个其实就是相当于给鼠标和Drag绑定了，让鼠标进入第一个Div的时候，鼠标能够在drag上定位移动不变。
+        var top= e.clientY-oDrag.offsetHeight/2;   //其实可以这么理解，理解成top和left是Drag移动的距离是多少。
+        if(top<0){
+            top=0;
+        }
+        if(top>oSmallPic.offsetHeight-oDrag.offsetHeight){
+            top=oSmallPic.offsetHeight-oDrag.offsetHeight;
+        }
+        if(left<0){
+            left=0;
+        }
+        if(left>oSmallPic.offsetWidth-oDrag.offsetWidth){
+            left=oSmallPic.offsetWidth-oDrag.offsetWidth;
+        }
+       // console.log(top +','+left);
+        oDrag.style.top=top+"px";
+        oDrag.style.left=left+"px";
+       //下面的几行代码就是让鼠标滑入小图片的时候，大图片可以根据比列进行显示相应的位置。
+        var fLeft=left/(oSmallPic.offsetWidth-oDrag.offsetWidth);   //变化系数
+        var fTop=top/(oSmallPic.offsetHeight-oDrag.offsetHeight);
+
+        oBigPic.style.left=-(oBigPic.offsetWidth-oContainer2.offsetWidth)*fLeft+"px";
+        oBigPic.style.top=-(oBigPic.offsetHeight-oContainer2.offsetHeight)*fTop+"px";
+    };
+    oMask.onmouseout=function(){
+        oDrag.style.display="none";//这个其实相当于给css样式改变了。
+        oBigPic.style.display="none";
+    }
+</script>
+</body>
+</html>
