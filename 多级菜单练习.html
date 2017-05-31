@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style: none;
+        }
+        #menu .main-menu{
+            float:left;
+            background:gray;
+            margin-right:5px;
+            width: 180px;
+            height: 70px;
+        }
+        #menu .sub-menu{
+            background:lightgray;
+            display: none;       /*隐藏第二级的UL*/
+        }
+        #menu .main-menu a{
+            width: 100%;
+            height: 100%;
+            display:block;
+            text-align: center;
+            line-height: 70px;
+            text-decoration: none;
+        }
+        #menu .sub-menu a{
+            text-align: left;
+            text-indent:4px;
+        }
+        #menu .sub-menu li{
+            border-bottom:2px dashed black;
+        }
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu"><a href="#">link1</a>
+        <ul class="sub-menu">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu"><a href="#">link2</a>
+        <ul class="sub-menu">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+    </li>
+    <li class="main-menu"><a href="#">link3</a>
+        <ul class="sub-menu">
+            <li><a href="#">sublink1</a></li>
+            <li><a href="#">sublink2</a></li>
+            <li><a href="#">sublink3</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oMain=document.getElementById('menu');
+    var oMainMenu=oMain.getElementsByTagName('li');
+    for(var i=0;i<oMainMenu.length;i++){
+        if(oMainMenu[i].className =='main-menu'){
+            oMainMenu[i].onmouseover=function(){
+                var oSubMenu=this.getElementsByTagName("ul")[0];   /*这个li只找到一个ul，然后我要把他的值取出来，所以后写【0】，虽然里面只有一个ul，但是也要用【0】把他取出来！*/
+                oSubMenu.style.display="block";
+            };
+                oMainMenu[i].onmouseout=function(){
+                    var oSubMenu=this.getElementsByTagName("ul")[0];
+                    oSubMenu.style.display="none";
+                };
+        }
+    }
+</script>
+</body>
+</html>
