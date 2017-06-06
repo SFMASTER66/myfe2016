@@ -13,7 +13,7 @@
     var aInput=document.getElementsByName("sex");
     for(var i=0;i<aInput.length;i++){
         aInput[i].index=i;        //自定义属性，将当前循环的索引也赋值给index，然后在alert的时候就用index就行，假如不用index，在alert的是时候就写i，最后会得到4，因为循环是一开始就全部循环完了。
-        aInput[i].onchange=function(){
+        aInput[i].onchange=function(){  //这里的onchange也可以换成onclick的
             if(this.checked){
                 alert(this.index+1);
             }
